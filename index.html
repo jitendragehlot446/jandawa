@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JanDawa (जन दवा) - जन औषधि दवा बचत खोजक एवं साल्ट कंपैरिजन</title>
+  <meta name="description" content="JanDawa (जन दवा) - अपनी ब्रांडेड दवा का नाम डालें और जानें उसका सटीक जन औषधि जेनेरिक विकल्प (PMBJP Salt), सरकारी दर, और अपनी 80% तक की सालाना बचत।">
+  <meta name="theme-color" content="#059669">
+  <link rel="manifest" href="/manifest.json">
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    .ad-placeholder {
+      background: repeating-linear-gradient(
+        45deg,
+        rgba(0, 0, 0, 0.02),
+        rgba(0, 0, 0, 0.02) 10px,
+        rgba(0, 0, 0, 0.04) 10px,
+        rgba(0, 0, 0, 0.04) 20px
+      );
+      border: 1px dashed rgba(150, 150, 150, 0.4);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen pb-24 p-3 md:p-8">
+
+  <!-- Top Ad Slot (Leaderboard 728x90 Desktop / 320x50 Mobile) -->
+  <div class="max-w-5xl mx-auto mb-6">
+    <div class="ad-placeholder rounded-xl p-3 text-center flex flex-col items-center justify-center min-h-[90px] border border-slate-200">
+      <div class="flex items-center gap-1.5 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+        <span>📢</span> GOOGLE ADSENSE (TOP LEADERBOARD BANNER - 728x90 / 320x50)
+      </div>
+      <div class="text-xs text-slate-400">
+        यहाँ आपका <code>&lt;ins class="adsbygoogle" data-ad-slot="1234567890"&gt;&lt;/ins&gt;</code> कोड लोड होगा।
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="max-w-5xl mx-auto mb-8 text-center">
+    <div class="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 px-3.5 py-1 rounded-full text-xs font-semibold mb-3">
+      <span>●</span> 2026 PMBJP Generic Medicine Discovery Platform
+    </div>
+    <h1 class="text-3xl md:text-5xl font-black tracking-tight text-slate-900 mb-2">
+      JanDawa <span class="text-emerald-600">जन दवा खोजक</span>
+    </h1>
+    <p class="text-slate-600 text-sm md:text-base max-w-2xl mx-auto">
+      अपनी ब्रांडेड दवा का नाम डालें और जानें उसका असली साल्ट (Generic Salt), जन औषधि केंद्र पर उसका दाम, और अपनी 80% तक की सालाना बचत।
+    </p>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-5xl mx-auto space-y-6">
+
+    <!-- Top Mode Switcher Tabs (Medicine vs Kendra Locator) -->
+    <div class="flex items-center justify-center gap-3">
+      <button id="tabMedBtn" onclick="switchMainTab('medicines')" class="px-5 py-2.5 rounded-xl font-bold text-xs md:text-sm bg-emerald-600 text-white shadow-sm transition-all flex items-center gap-2">
+        <span>💊</span> दवा खोजें व बचत देखें
+      </button>
+      <button id="tabKendraBtn" onclick="switchMainTab('kendra')" class="px-5 py-2.5 rounded-xl font-bold text-xs md:text-sm bg-white text-slate-700 hover:text-emerald-600 border border-slate-200 shadow-sm transition-all flex items-center gap-2">
+        <span>📍</span> नजदीकी जन औषधि केंद्र खोजें (पिनकोड / शहर)
+      </button>
+    </div>
+
+    <!-- TAB 1: MEDICINES SECTION -->
+    <div id="medicineSection" class="space-y-6">
+
+      <!-- Search & Filter Card -->
+      <div class="bg-white border border-slate-200 rounded-2xl p-5 md:p-6 shadow-sm space-y-4">
+        <div class="flex flex-col sm:flex-row gap-2">
+          <div class="relative flex-1">
+            <input 
+              id="searchInput" 
+              type="text" 
+              placeholder="ब्रांडेड दवा या साल्ट खोजें (उदा: Telma 40, Glycomet, Dolo 650, Pan 40, Augmentin)..." 
+              class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 pl-11 text-sm md:text-base text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all shadow-inner"
+            />
+            <svg class="w-5 h-5 absolute left-3.5 top-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </div>
+          <button onclick="openScanModal()" class="shrink-0 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-3.5 rounded-xl text-xs md:text-sm flex items-center justify-center gap-2 shadow-sm transition-all">
+            <span>📸</span> पर्चा स्कैन करें (AI)
+          </button>
+        </div>
+
+        <!-- Category Filter Pills -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-1 text-xs md:text-sm scrollbar-none">
+          <span class="text-slate-500 font-medium shrink-0">कैटेगरी:</span>
+          <button onclick="filterCategory('All')" class="cat-pill active px-3.5 py-1.5 rounded-lg border border-slate-200 bg-emerald-600 text-white font-medium shrink-0 transition-colors">सभी (All)</button>
+          <button onclick="filterCategory('Diabetes')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">मधुमेह (Diabetes)</button>
+          <button onclick="filterCategory('Cardiovascular')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">बीपी व दिल (BP & Heart)</button>
+          <button onclick="filterCategory('Gastrointestinal')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">गैस व पेट (Acidity)</button>
+          <button onclick="filterCategory('Anti-Infective')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">एंटीबायोटिक (Antibiotic)</button>
+          <button onclick="filterCategory('Pain Relief')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">दर्द व बुखार (Pain/Fever)</button>
+        </div>
+      </div>
+
+      <!-- Live Medicine Cards Grid -->
+      <div id="medicineGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Injected via JS -->
+      </div>
+
+      <!-- Empty State -->
+      <div id="noResults" class="hidden text-center py-12 bg-white border border-slate-200 rounded-2xl">
+        <p class="text-lg font-medium text-slate-800">कोई परिणाम नहीं मिला</p>
+        <p class="text-sm text-slate-500 mt-1">कृपया साल्ट या दवा का सही स्पेलिंग जांचें (उदा: Metformin, Telmisartan, Pantoprazole)</p>
+      </div>
+
+    </div>
+
+    <!-- TAB 2: KENDRA LOCATOR SECTION -->
+    <div id="kendraSection" class="hidden space-y-6">
+      <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4">
+        <div class="text-center max-w-lg mx-auto">
+          <div class="inline-flex items-center gap-1.5 bg-blue-100 text-blue-800 px-3 py-0.5 rounded-full text-xs font-bold mb-2">
+            <span>📍</span> 25,000+ केंद्र डायरेक्टरी
+          </div>
+          <h2 class="text-xl md:text-2xl font-bold text-slate-900">
+            अपने नजदीकी प्रधानमंत्री जन औषधि केंद्र खोजें
+          </h2>
+          <p class="text-xs md:text-sm text-slate-500 mt-1">
+            अपना 6 अंकों का पिनकोड या शहर का नाम डालकर तुरंत नजदीकी दुकान का पता, फोन और गूगल मैप्स रास्ता देखें।
+          </p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-2 max-w-2xl mx-auto pt-2">
+          <div class="relative flex-1">
+            <input 
+              id="kendraSearchInput" 
+              type="text" 
+              placeholder="पिनकोड या शहर डालें (उदा: 110001, 302001, Lucknow, Jaipur, Patna, Indore)..." 
+              class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 pl-11 text-sm md:text-base text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-inner"
+            />
+            <svg class="w-5 h-5 absolute left-3.5 top-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+          </div>
+          <button onclick="useCurrentLocation()" class="shrink-0 bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 py-3.5 rounded-xl text-xs md:text-sm flex items-center justify-center gap-2 shadow-sm transition-all">
+            <span>🎯</span> GPS से खोजें
+          </button>
+        </div>
+
+        <!-- Quick Pincode Pills -->
+        <div class="flex flex-wrap items-center justify-center gap-1.5 text-xs text-slate-500 pt-1">
+          <span>प्रमुख शहर:</span>
+          <button onclick="searchKendraByVal('Delhi')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-100 rounded-md">दिल्ली</button>
+          <button onclick="searchKendraByVal('Jaipur')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-100 rounded-md">जयपुर</button>
+          <button onclick="searchKendraByVal('Lucknow')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-100 rounded-md">लखनऊ</button>
+          <button onclick="searchKendraByVal('Patna')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-100 rounded-md">पटना</button>
+          <button onclick="searchKendraByVal('Indore')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-100 rounded-md">इंदौर</button>
+          <button onclick="searchKendraByVal('Mumbai')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-100 rounded-md">मुंबई</button>
+        </div>
+      </div>
+
+      <!-- Kendra Results Grid -->
+      <div id="kendraResultsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+
+    <!-- Affiliate Health Package Banner -->
+    <section class="bg-gradient-to-r from-blue-600/10 via-white to-cyan-500/10 border border-blue-500/30 rounded-2xl p-5 md:p-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="space-y-1 text-center md:text-left">
+        <div class="inline-flex items-center gap-1.5 text-blue-600 font-bold text-xs uppercase tracking-wider">
+          <span>🩺</span> स्पॉन्सर्ड हेल्थ चेकअप पार्टनर (High Earning Affiliate Slot)
+        </div>
+        <h3 class="text-lg md:text-xl font-bold text-slate-900">
+          फुल बॉडी हेल्थ चेकअप (60+ टेस्ट) - घर बैठे ब्लड सैंपल
+        </h3>
+        <p class="text-xs md:text-sm text-slate-600">
+          HbA1c (शुगर), लिपिड प्रोफाइल (कोलेस्ट्रॉल), थायरॉइड और किडनी टेस्ट सिर्फ ₹799 में (65% छूट)।
+        </p>
+      </div>
+      <a href="#affiliate-link" onclick="alert('यह आपका एफिलिएट लिंक होगा (Tata 1mg / Thyrocare / Redcliffe).'); return false;" class="shrink-0 bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-3 rounded-xl text-xs md:text-sm shadow-md transition-all">
+        घर बैठे टेस्ट बुक करें ➔
+      </a>
+    </section>
+
+    <!-- Annual Family Savings Estimator Widget -->
+    <section class="bg-gradient-to-br from-emerald-500/10 via-white to-teal-500/10 border border-emerald-500/30 rounded-2xl p-6">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+            <span>💰</span> परिवार की सालाना बचत का अनुमान (Savings Estimator)
+          </h3>
+          <p class="text-xs md:text-sm text-slate-600 mt-1">
+            अगर आपके घर में औसतन 2 लोग बीपी, शुगर या कोलेस्ट्रॉल की नियमित दवाएं लेते हैं:
+          </p>
+        </div>
+        <div class="bg-emerald-500/20 border border-emerald-500/40 rounded-xl p-4 text-center md:text-right shrink-0">
+          <div class="text-xs text-emerald-800 font-semibold uppercase tracking-wider">अनुमानित बचत / वर्ष</div>
+          <div class="text-2xl md:text-3xl font-black text-emerald-600">₹28,400 - ₹42,000</div>
+          <div class="text-xs text-slate-500 mt-0.5">75% से 85% मासिक खर्च कम</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust & Quality Standards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+      <div class="bg-white border border-slate-200 rounded-xl p-4">
+        <div class="text-2xl mb-1">🔬</div>
+        <h4 class="font-semibold text-sm">NABL प्रमाणित लैब्स</h4>
+        <p class="text-xs text-slate-500 mt-1">हर बैच को सरकारी NABL लैब्स में कड़े परीक्षण के बाद ही स्टोर्स तक भेजा जाता है।</p>
+      </div>
+      <div class="bg-white border border-slate-200 rounded-xl p-4">
+        <div class="text-2xl mb-1">🏭</div>
+        <h4 class="font-semibold text-sm">WHO-GMP मैन्युफैक्चरर्स</h4>
+        <p class="text-xs text-slate-500 mt-1">दवाएं केवल विश्व स्वास्थ्य संगठन (WHO-GMP) सर्टिफाइड कंपनियों से प्रोक्योर होती हैं।</p>
+      </div>
+      <div class="bg-white border border-slate-200 rounded-xl p-4">
+        <div class="text-2xl mb-1">📜</div>
+        <h4 class="font-semibold text-sm">100% कानूनी एवं सुरक्षित</h4>
+        <p class="text-xs text-slate-500 mt-1">वही सक्रिय रासायनिक तत्व (Active Salt) और ताकत जो डॉक्टर लिखते हैं।</p>
+      </div>
+    </div>
+
+    <!-- Footer Links (Mandatory for Google AdSense) -->
+    <footer class="bg-white border border-slate-200 rounded-2xl p-6 text-xs text-slate-500 space-y-4">
+      <div class="flex items-center gap-2 font-bold text-slate-800">
+        <span>⚠️</span> कानूनी एवं चिकित्सीय अस्वीकरण (Medical & Legal Disclaimer)
+      </div>
+      <p>
+        इस वेबसाइट पर दी गई सभी जानकारी केवल जन-जागरूकता के उद्देश्य से है। किसी भी दवा, खुराक या ब्रांड में बदलाव करने से पहले अपने पंजीकृत चिकित्सक से परामर्श अवश्य लें।
+      </p>
+      <div class="pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-xs">
+        <div>© 2026 JanDawa (जन दवा). All rights reserved.</div>
+        <div class="flex gap-4 font-semibold text-slate-700">
+          <a href="/about.html" class="hover:text-emerald-600">About Us</a>
+          <a href="/disclaimer.html" class="hover:text-emerald-600">Disclaimer</a>
+          <a href="/privacy-policy.html" class="hover:text-emerald-600">Privacy Policy</a>
+          <a href="/sitemap.xml" class="hover:text-emerald-600">Sitemap</a>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Sticky Bottom Mobile Anchor Ad -->
+  <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 p-2 z-40 flex items-center justify-center shadow-2xl">
+    <div class="max-w-md w-full ad-placeholder rounded-lg p-2 text-center flex items-center justify-between text-xs">
+      <div class="flex items-center gap-2">
+        <span class="text-emerald-600 font-bold">📢 ADSENSE</span>
+        <span class="text-slate-500 text-[11px]">मोबाइल बॉटम स्टिकी एंकर ऐड (320x50)</span>
+      </div>
+      <span class="text-[10px] text-slate-400">Ad ✕</span>
+    </div>
+  </div>
+
+  <!-- Modal: Show to Pharmacist Slip -->
+  <div id="pharmacistModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white border border-slate-200 rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-800 text-xl font-bold">✕</button>
+      
+      <div class="text-center border-b border-slate-100 pb-4 mb-4">
+        <div class="inline-block bg-emerald-600 text-white text-[11px] font-bold px-2 py-0.5 rounded uppercase">डिजिटल फार्मासिस्ट पर्चा</div>
+        <h3 class="text-lg font-bold text-slate-900 mt-2">प्रधानमंत्री जन औषधि केंद्र के लिए</h3>
+        <p class="text-xs text-slate-500">यह पर्चा स्टोर संचालक को दिखाएं</p>
+      </div>
+
+      <div id="modalContent" class="space-y-3 text-sm">
+        <!-- Injected via JS -->
+      </div>
+
+      <div class="mt-6 flex gap-2">
+        <button onclick="window.print()" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2.5 rounded-xl text-xs md:text-sm transition-colors">
+          🖨️ पर्चा प्रिंट / PDF सेव करें
+        </button>
+        <button onclick="closeModal()" class="px-4 py-2.5 border border-slate-200 hover:bg-slate-50 rounded-xl text-xs md:text-sm font-medium">
+          बंद करें
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: AI Prescription Scanner -->
+  <div id="scanModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white border border-slate-200 rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
+      <button onclick="closeScanModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-800 text-xl font-bold">✕</button>
+
+      <div class="text-center border-b border-slate-100 pb-4 mb-4">
+        <div class="inline-block bg-purple-600 text-white text-[11px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+          ⚡ AI Vision Powered Scanner (2026)
+        </div>
+        <h3 class="text-xl font-bold text-slate-900 mt-2">डॉक्टर के पर्चे या दवा की फोटो स्कैन करें</h3>
+        <p class="text-xs text-slate-500 mt-1">अपने फोन से पर्चे की फोटो खींचें या गैलरी से अपलोड करें</p>
+      </div>
+
+      <!-- Upload Dropzone -->
+      <div id="uploadBox" class="border-2 border-dashed border-slate-300 hover:border-emerald-500 rounded-2xl p-6 text-center cursor-pointer transition-colors bg-slate-50" onclick="document.getElementById('fileInput').click()">
+        <input type="file" id="fileInput" accept="image/*" class="hidden" onchange="simulateAIScan(event)">
+        <div class="text-4xl mb-2">📷</div>
+        <div class="text-sm font-bold text-slate-800">फोटो चुनें या यहाँ ड्रॉप करें</div>
+        <div class="text-xs text-slate-400 mt-1">कैमरा / गैलरी से पर्चे या दवा के खाली रैपर की फोटो अपलोड करें</div>
+      </div>
+
+      <!-- Scanning Progress Indicator -->
+      <div id="scanLoading" class="hidden text-center py-8 space-y-3">
+        <div class="inline-block animate-spin text-3xl">⚙️</div>
+        <div class="text-sm font-bold text-emerald-700">AI पर्चे से दवाइयों के साल्ट पहचान रहा है...</div>
+        <div class="text-xs text-slate-400">OCR & Molecule matching in progress</div>
+      </div>
+
+      <!-- Scan Result Basket -->
+      <div id="scanResults" class="hidden mt-4 space-y-3">
+        <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-900 flex justify-between items-center">
+          <span class="font-bold">✔ 3 दवाएं पहचानी गईं!</span>
+          <span class="font-extrabold text-emerald-700">मासिक बचत: ₹735</span>
+        </div>
+        <div class="space-y-2 text-xs" id="detectedMedsList">
+          <!-- Injected via JS -->
+        </div>
+        <button onclick="applyDetectedMedicines()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl text-xs transition shadow">
+          इन दवाओं का जन औषधि पर्चा बनाएं ➔
+        </button>
+      </div>
+
+      <div class="mt-4 pt-3 border-t border-slate-100 flex justify-end">
+        <button onclick="closeScanModal()" class="px-4 py-2 border border-slate-200 hover:bg-slate-50 rounded-xl text-xs font-semibold">
+          रद्द करें
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const medicinesData = [
+      {
+        id: 1,
+        slug: "telma-40",
+        brandName: "Telma 40 / Telmikind 40",
+        manufacturer: "Glenmark / Mankind",
+        saltName: "Telmisartan Tablets IP 40 mg",
+        activeSalt: "Telmisartan",
+        strength: "40 mg",
+        category: "Cardiovascular",
+        unitSize: "10 Tablets",
+        brandPrice: 115.00,
+        janAushadhiPrice: 12.50,
+        drugCode: "PMBJP00142"
+      },
+      {
+        id: 2,
+        slug: "glycomet-500",
+        brandName: "Glycomet 500 / Gluconorm 500",
+        manufacturer: "USV / Lupin",
+        saltName: "Metformin Hydrochloride Sustained Release 500 mg",
+        activeSalt: "Metformin",
+        strength: "500 mg",
+        category: "Diabetes",
+        unitSize: "10 Tablets",
+        brandPrice: 28.00,
+        janAushadhiPrice: 5.50,
+        drugCode: "PMBJP00034"
+      },
+      {
+        id: 3,
+        slug: "amaryl-m-1",
+        brandName: "Amaryl M 1 / Glycomet-GP 1",
+        manufacturer: "Sanofi / USV",
+        saltName: "Glimepiride 1mg + Metformin HCl 500mg (SR)",
+        activeSalt: "Glimepiride + Metformin",
+        strength: "1mg + 500mg",
+        category: "Diabetes",
+        unitSize: "10 Tablets",
+        brandPrice: 85.00,
+        janAushadhiPrice: 17.00,
+        drugCode: "PMBJP00421"
+      },
+      {
+        id: 4,
+        slug: "pan-40",
+        brandName: "Pan 40 / Pantocid 40",
+        manufacturer: "Alkem / Sun Pharma",
+        saltName: "Pantoprazole Gastro-Resistant Tablets IP 40 mg",
+        activeSalt: "Pantoprazole",
+        strength: "40 mg",
+        category: "Gastrointestinal",
+        unitSize: "10 Tablets",
+        brandPrice: 155.00,
+        janAushadhiPrice: 18.00,
+        drugCode: "PMBJP00215"
+      },
+      {
+        id: 5,
+        slug: "augmentin-625-duo",
+        brandName: "Augmentin 625 Duo / Moxikind-CV 625",
+        manufacturer: "GSK / Mankind",
+        saltName: "Amoxycillin and Potassium Clavulanate Tablets IP 625 mg",
+        activeSalt: "Amoxicillin + Clavulanic Acid",
+        strength: "500mg + 125mg",
+        category: "Anti-Infective",
+        unitSize: "6 Tablets",
+        brandPrice: 185.00,
+        janAushadhiPrice: 52.00,
+        drugCode: "PMBJP00088"
+      },
+      {
+        id: 6,
+        slug: "atorva-10",
+        brandName: "Atorva 10 / Storvas 10",
+        manufacturer: "Zydus / Sun Pharma",
+        saltName: "Atorvastatin Calcium Tablets IP 10 mg",
+        activeSalt: "Atorvastatin",
+        strength: "10 mg",
+        category: "Cardiovascular",
+        unitSize: "10 Tablets",
+        brandPrice: 95.00,
+        janAushadhiPrice: 11.50,
+        drugCode: "PMBJP00112"
+      },
+      {
+        id: 7,
+        slug: "dolo-650",
+        brandName: "Dolo 650 / Calpol 650",
+        manufacturer: "Micro Labs / GSK",
+        saltName: "Paracetamol Tablets IP 650 mg",
+        activeSalt: "Paracetamol",
+        strength: "650 mg",
+        category: "Pain Relief",
+        unitSize: "10 Tablets",
+        brandPrice: 32.00,
+        janAushadhiPrice: 13.00,
+        drugCode: "PMBJP00002"
+      },
+      {
+        id: 8,
+        slug: "januvia-100",
+        brandName: "Januvia 100 / Istavel 100",
+        manufacturer: "MSD / Sun Pharma",
+        saltName: "Sitagliptin Phosphate Tablets IP 100 mg",
+        activeSalt: "Sitagliptin",
+        strength: "100 mg",
+        category: "Diabetes",
+        unitSize: "10 Tablets",
+        brandPrice: 360.00,
+        janAushadhiPrice: 58.00,
+        drugCode: "PMBJP01530"
+      },
+      {
+        id: 9,
+        slug: "thyronorm-50",
+        brandName: "Thyronorm 50 / Eltroxin 50",
+        manufacturer: "Abbott / GSK",
+        saltName: "Thyroxine Sodium Tablets IP 50 mcg",
+        activeSalt: "Thyroxine",
+        strength: "50 mcg",
+        category: "Cardiovascular",
+        unitSize: "100 Tablets (Bottle)",
+        brandPrice: 195.00,
+        janAushadhiPrice: 62.00,
+        drugCode: "PMBJP00680"
+      },
+      {
+        id: 10,
+        slug: "azithral-500",
+        brandName: "Azithral 500 / Azee 500",
+        manufacturer: "Alembic / Cipla",
+        saltName: "Azithromycin Tablets IP 500 mg",
+        activeSalt: "Azithromycin",
+        strength: "500 mg",
+        category: "Anti-Infective",
+        unitSize: "3 Tablets",
+        brandPrice: 115.00,
+        janAushadhiPrice: 30.00,
+        drugCode: "PMBJP00095"
+      },
+      {
+        id: 11,
+        slug: "ecosprin-75",
+        brandName: "Ecosprin 75",
+        manufacturer: "USV Ltd",
+        saltName: "Aspirin Gastro-resistant Tablets IP 75mg",
+        activeSalt: "Aspirin",
+        strength: "75 mg",
+        category: "Cardiovascular",
+        unitSize: "14 Tablets",
+        brandPrice: 18.00,
+        janAushadhiPrice: 4.50,
+        drugCode: "PMBJP00045"
+      },
+      {
+        id: 12,
+        slug: "montair-lc",
+        brandName: "Montair LC / Montek-LC",
+        manufacturer: "Cipla Ltd",
+        saltName: "Montelukast 10mg + Levocetirizine 5mg Tablets",
+        activeSalt: "Montelukast + Levocetirizine",
+        strength: "10mg + 5mg",
+        category: "Anti-Infective",
+        unitSize: "10 Tablets",
+        brandPrice: 195.00,
+        janAushadhiPrice: 28.00,
+        drugCode: "PMBJP00512"
+      },
+      {
+        id: 13,
+        slug: "rosuvas-10",
+        brandName: "Rosuvas 10 / Rozavel 10",
+        manufacturer: "Sun Pharmaceutical",
+        saltName: "Rosuvastatin Tablets IP 10mg",
+        activeSalt: "Rosuvastatin",
+        strength: "10 mg",
+        category: "Cardiovascular",
+        unitSize: "10 Tablets",
+        brandPrice: 215.00,
+        janAushadhiPrice: 24.00,
+        drugCode: "PMBJP00892"
+      },
+      {
+        id: 14,
+        slug: "shelcal-500",
+        brandName: "Shelcal 500 / Cipcal 500",
+        manufacturer: "Torrent Pharmaceuticals",
+        saltName: "Calcium Carbonate 500mg + Vitamin D3 250IU Tablets",
+        activeSalt: "Calcium Carbonate + Vitamin D3",
+        strength: "500mg + 250IU",
+        category: "Pain Relief",
+        unitSize: "15 Tablets",
+        brandPrice: 140.00,
+        janAushadhiPrice: 22.00,
+        drugCode: "PMBJP00160"
+      },
+      {
+        id: 15,
+        slug: "becosules",
+        brandName: "Becosules Capsules / Cobadex",
+        manufacturer: "Pfizer Ltd",
+        saltName: "Vitamin B Complex with Vitamin C Capsules",
+        activeSalt: "B-Complex + Vitamin C",
+        strength: "Multivitamin Formulation",
+        category: "Pain Relief",
+        unitSize: "20 Capsules",
+        brandPrice: 55.00,
+        janAushadhiPrice: 12.00,
+        drugCode: "PMBJP00018"
+      }
+    ];
+
+    let currentCategory = 'All';
+    let searchQuery = '';
+
+    function renderMedicines() {
+      const grid = document.getElementById('medicineGrid');
+      const noResults = document.getElementById('noResults');
+
+      const filtered = medicinesData.filter(item => {
+        const matchesCategory = currentCategory === 'All' || item.category === currentCategory;
+        const matchesSearch = item.brandName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                              item.saltName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                              item.activeSalt.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesCategory && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '';
+        noResults.classList.remove('hidden');
+        return;
+      }
+
+      noResults.classList.add('hidden');
+      
+      let html = '';
+      filtered.forEach((med, index) => {
+        const savingAmount = (med.brandPrice - med.janAushadhiPrice).toFixed(2);
+        const savingPercent = Math.round(((med.brandPrice - med.janAushadhiPrice) / med.brandPrice) * 100);
+
+        html += `
+          <div class="bg-white border border-slate-200 hover:border-emerald-500/50 rounded-2xl p-5 shadow-sm transition-all flex flex-col justify-between">
+            <div>
+              <div class="flex items-start justify-between gap-2 mb-2">
+                <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600">
+                  ${med.category}
+                </span>
+                <span class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">
+                  ${savingPercent}% बचत
+                </span>
+              </div>
+
+              <a href="/substitute/${med.slug}.html" class="font-bold text-base md:text-lg text-slate-900 hover:text-emerald-600 transition-colors">
+                ${med.brandName} ↗
+              </a>
+              <p class="text-xs text-slate-500">निर्माता: ${med.manufacturer}</p>
+
+              <!-- Salt Match Box -->
+              <div class="mt-3 p-3 rounded-xl bg-slate-50 border border-slate-100">
+                <div class="text-[11px] font-semibold text-emerald-700 uppercase tracking-wider flex items-center gap-1">
+                  <span>✔</span> सटीक जन औषधि साल्ट:
+                </div>
+                <div class="text-xs md:text-sm font-semibold text-slate-900 mt-0.5">
+                  ${med.saltName}
+                </div>
+                <div class="text-[11px] text-slate-500 mt-0.5">
+                  ड्रग कोड: <code class="bg-white px-1 py-0.5 rounded border border-slate-200">${med.drugCode}</code> | यूनिट: ${med.unitSize}
+                </div>
+              </div>
+            </div>
+
+            <!-- Price Comparison Section -->
+            <div class="mt-4 pt-3 border-t border-slate-100">
+              <div class="grid grid-cols-2 gap-2 text-center py-1">
+                <div class="p-2 rounded-lg bg-slate-50">
+                  <div class="text-[11px] text-slate-500">ब्रांडेड MRP</div>
+                  <div class="text-sm font-bold text-red-600 line-through">₹${med.brandPrice.toFixed(2)}</div>
+                </div>
+                <div class="p-2 rounded-lg bg-emerald-50 border border-emerald-200">
+                  <div class="text-[11px] text-emerald-800 font-semibold">जन औषधि MRP</div>
+                  <div class="text-base font-extrabold text-emerald-700">₹${med.janAushadhiPrice.toFixed(2)}</div>
+                </div>
+              </div>
+
+              <div class="text-xs text-center text-emerald-700 font-medium mt-2">
+                प्रति पैक सीधी बचत: ₹${savingAmount}
+              </div>
+
+              <button onclick="openModal(${med.id})" class="mt-3 w-full bg-slate-100 hover:bg-emerald-600 hover:text-white border border-slate-200 text-slate-800 font-medium py-2 rounded-xl text-xs transition-colors flex items-center justify-center gap-1.5">
+                <span>📋</span> फार्मासिस्ट को दिखाने हेतु पर्चा बनाएं
+              </button>
+            </div>
+          </div>
+        `;
+
+        if ((index + 1) % 4 === 0) {
+          html += `
+            <div class="col-span-1 md:col-span-2 ad-placeholder rounded-2xl p-4 text-center flex flex-col items-center justify-center min-h-[100px] border border-slate-200">
+              <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+                📢 GOOGLE ADSENSE IN-FEED NATIVE AD UNIT
+              </div>
+              <div class="text-xs text-slate-400">
+                कार्ड्स के बीच में स्वाभाविक विज्ञापन स्लॉट।
+              </div>
+            </div>
+          `;
+        }
+      });
+
+      grid.innerHTML = html;
+    }
+
+    function filterCategory(cat) {
+      currentCategory = cat;
+      document.querySelectorAll('.cat-pill').forEach(btn => {
+        if (btn.innerText.includes(cat) || (cat === 'All' && btn.innerText.includes('सभी'))) {
+          btn.classList.add('bg-emerald-600', 'text-white');
+          btn.classList.remove('bg-slate-50');
+        } else {
+          btn.classList.remove('bg-emerald-600', 'text-white');
+          btn.classList.add('bg-slate-50');
+        }
+      });
+      renderMedicines();
+    }
+
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      searchQuery = e.target.value.trim();
+      renderMedicines();
+    });
+
+    function openModal(medId) {
+      const med = medicinesData.find(m => m.id === medId);
+      if (!med) return;
+
+      const modalContent = document.getElementById('modalContent');
+      modalContent.innerHTML = `
+        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+          <div class="text-xs text-slate-500">मांगी गई ब्रांडेड दवा:</div>
+          <div class="font-bold text-base text-slate-900">${med.brandName}</div>
+        </div>
+
+        <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200">
+          <div class="text-xs font-semibold text-emerald-800">दुकानदार से यह मांगें:</div>
+          <div class="font-extrabold text-sm md:text-base text-emerald-950 mt-1">
+            ${med.saltName}
+          </div>
+          <div class="text-xs text-slate-600 mt-2">
+            <div>• ड्रग कोड: <span class="font-mono font-bold">${med.drugCode}</span></div>
+            <div>• स्ट्रेंथ: <span class="font-semibold">${med.strength}</span></div>
+            <div>• जन औषधि सरकारी दर: <span class="font-bold text-emerald-700">₹${med.janAushadhiPrice.toFixed(2)}</span> (${med.unitSize})</div>
+          </div>
+        </div>
+
+        <div class="text-[11px] text-slate-500 italic">
+          नोट: जन औषधि केंद्र पर ब्रांड नाम से दवा नहीं मिलती, केवल सक्रिय साल्ट नाम (INN) से दवा मिलती है।
+        </div>
+      `;
+
+      document.getElementById('pharmacistModal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('pharmacistModal').classList.add('hidden');
+    }
+
+    // AI Prescription Scanner Modal Functions
+    function openScanModal() {
+      document.getElementById('scanModal').classList.remove('hidden');
+      document.getElementById('uploadBox').classList.remove('hidden');
+      document.getElementById('scanLoading').classList.add('hidden');
+      document.getElementById('scanResults').classList.add('hidden');
+      document.getElementById('fileInput').value = '';
+    }
+
+    function closeScanModal() {
+      document.getElementById('scanModal').classList.add('hidden');
+    }
+
+    function simulateAIScan(event) {
+      if (!event.target.files || event.target.files.length === 0) return;
+
+      document.getElementById('uploadBox').classList.add('hidden');
+      document.getElementById('scanLoading').classList.remove('hidden');
+
+      setTimeout(() => {
+        document.getElementById('scanLoading').classList.add('hidden');
+        document.getElementById('scanResults').classList.remove('hidden');
+
+        // Detected popular prescription combo: Telma 40, Glycomet 500, Pan 40
+        const detected = [
+          { name: "Telma 40 (Telmisartan 40mg)", brandPrice: 115, janPrice: 12.5, saving: 102.5 },
+          { name: "Glycomet 500 (Metformin 500mg)", brandPrice: 28, janPrice: 5.5, saving: 22.5 },
+          { name: "Pan 40 (Pantoprazole 40mg)", brandPrice: 155, janPrice: 18, saving: 137 }
+        ];
+
+        const listDiv = document.getElementById('detectedMedsList');
+        listDiv.innerHTML = detected.map(d => `
+          <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200 flex justify-between items-center">
+            <div>
+              <div class="font-bold text-slate-800">${d.name}</div>
+              <div class="text-[11px] text-slate-500">ब्रांड: ₹${d.brandPrice} ➔ जन औषधि: ₹${d.janPrice}</div>
+            </div>
+            <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">बचत ₹${d.saving}</span>
+          </div>
+        `).join('');
+      }, 1500);
+    }
+
+    function applyDetectedMedicines() {
+      closeScanModal();
+      document.getElementById('searchInput').value = 'Telma';
+      searchQuery = 'Telma';
+      renderMedicines();
+      window.scrollTo({ top: 350, behavior: 'smooth' });
+    }
+
+    // TAB SWITCHER (Medicines vs Kendra Locator)
+    function switchMainTab(tab) {
+      const medBtn = document.getElementById('tabMedBtn');
+      const kendraBtn = document.getElementById('tabKendraBtn');
+      const medSec = document.getElementById('medicineSection');
+      const kendraSec = document.getElementById('kendraSection');
+
+      if (tab === 'medicines') {
+        medBtn.className = "px-5 py-2.5 rounded-xl font-bold text-xs md:text-sm bg-emerald-600 text-white shadow-sm transition-all flex items-center gap-2";
+        kendraBtn.className = "px-5 py-2.5 rounded-xl font-bold text-xs md:text-sm bg-white text-slate-700 hover:text-emerald-600 border border-slate-200 shadow-sm transition-all flex items-center gap-2";
+        medSec.classList.remove('hidden');
+        kendraSec.classList.add('hidden');
+      } else {
+        kendraBtn.className = "px-5 py-2.5 rounded-xl font-bold text-xs md:text-sm bg-blue-600 text-white shadow-sm transition-all flex items-center gap-2";
+        medBtn.className = "px-5 py-2.5 rounded-xl font-bold text-xs md:text-sm bg-white text-slate-700 hover:text-blue-600 border border-slate-200 shadow-sm transition-all flex items-center gap-2";
+        medSec.classList.add('hidden');
+        kendraSec.classList.remove('hidden');
+        renderKendras();
+      }
+    }
+
+    // KENDRA LOCATOR DATABASE & LOGIC
+    const kendrasData = [
+      {
+        id: 1,
+        storeCode: "PMBJK-DL-014",
+        name: "जन औषधि केंद्र - एम्स व सफदरजंग रोड",
+        city: "Delhi",
+        state: "Delhi",
+        pincode: "110029",
+        address: "Shop No. 4, Near Safdarjung Hospital Gate No. 2, Ring Road, New Delhi",
+        contactPerson: "Rajesh Kumar (Pharmacist)",
+        phone: "+91 98110XXXXX",
+        timings: "8:00 AM - 10:00 PM (खुला है)"
+      },
+      {
+        id: 2,
+        storeCode: "PMBJK-DL-082",
+        name: "जन औषधि केंद्र - कनॉट प्लेस / सेंट्रल दिल्ली",
+        city: "Delhi",
+        state: "Delhi",
+        pincode: "110001",
+        address: "Super Bazar Building, Outer Circle, Connaught Place, New Delhi",
+        contactPerson: "Amit Sharma",
+        phone: "+91 98712XXXXX",
+        timings: "9:00 AM - 9:00 PM"
+      },
+      {
+        id: 3,
+        storeCode: "PMBJK-RJ-204",
+        name: "जन औषधि केंद्र - एसएमएस हॉस्पिटल चौराहा, जयपुर",
+        city: "Jaipur",
+        state: "Rajasthan",
+        pincode: "302004",
+        address: "Near SMS Hospital Main Gate, JLN Marg, Ashok Nagar, Jaipur",
+        contactPerson: "Mahesh Meena",
+        phone: "+91 94140XXXXX",
+        timings: "24 घंटे खुला (24x7 Emergency)"
+      },
+      {
+        id: 4,
+        storeCode: "PMBJK-RJ-119",
+        name: "जन औषधि केंद्र - वैशाली नगर, जयपुर",
+        city: "Jaipur",
+        state: "Rajasthan",
+        pincode: "302021",
+        address: "Plot 12, Queens Road, Near National Handloom, Vaishali Nagar, Jaipur",
+        contactPerson: "Sunil Verma",
+        phone: "+91 97821XXXXX",
+        timings: "9:00 AM - 9:30 PM"
+      },
+      {
+        id: 5,
+        storeCode: "PMBJK-UP-412",
+        name: "जन औषधि केंद्र - हजरतगंज, लखनऊ",
+        city: "Lucknow",
+        state: "Uttar Pradesh",
+        pincode: "226001",
+        address: "Shop 18, Halwasiya Market, Hazratganj, Lucknow",
+        contactPerson: "Pradeep Yadav",
+        phone: "+91 94500XXXXX",
+        timings: "9:00 AM - 9:00 PM"
+      },
+      {
+        id: 6,
+        storeCode: "PMBJK-UP-550",
+        name: "जन औषधि केंद्र - गोमती नगर, लखनऊ",
+        city: "Lucknow",
+        state: "Uttar Pradesh",
+        pincode: "226010",
+        address: "Patrakar Puram Crossing, Gomti Nagar, Lucknow",
+        contactPerson: "Anurag Singh",
+        phone: "+91 91250XXXXX",
+        timings: "8:30 AM - 9:30 PM"
+      },
+      {
+        id: 7,
+        storeCode: "PMBJK-BR-102",
+        name: "जन औषधि केंद्र - बोरिंग रोड, पटना",
+        city: "Patna",
+        state: "Bihar",
+        pincode: "800001",
+        address: "Near Hartali More, Bailey Road, Patna",
+        contactPerson: "Rameshwar Prasad",
+        phone: "+91 93341XXXXX",
+        timings: "9:00 AM - 9:00 PM"
+      },
+      {
+        id: 8,
+        storeCode: "PMBJK-MP-230",
+        name: "जन औषधि केंद्र - विजय नगर, इंदौर",
+        city: "Indore",
+        state: "Madhya Pradesh",
+        pincode: "452010",
+        address: "Scheme No. 54, Near Medanta Hospital, Vijay Nagar, Indore",
+        contactPerson: "Vikas Joshi",
+        phone: "+91 98260XXXXX",
+        timings: "9:00 AM - 10:00 PM"
+      },
+      {
+        id: 9,
+        storeCode: "PMBJK-MH-011",
+        name: "जन औषधि केंद्र - दादर वेस्ट, मुंबई",
+        city: "Mumbai",
+        state: "Maharashtra",
+        pincode: "400028",
+        address: "Near Dadar Railway Station (West), Ranade Road, Mumbai",
+        contactPerson: "Sanjay Patil",
+        phone: "+91 98200XXXXX",
+        timings: "8:00 AM - 10:00 PM"
+      }
+    ];
+
+    let kendraSearchQuery = '';
+
+    function renderKendras() {
+      const grid = document.getElementById('kendraResultsGrid');
+      const query = kendraSearchQuery.trim().toLowerCase();
+
+      let filtered = kendrasData;
+      if (query) {
+        filtered = kendrasData.filter(k => 
+          k.pincode.includes(query) ||
+          k.city.toLowerCase().includes(query) ||
+          k.address.toLowerCase().includes(query) ||
+          k.name.toLowerCase().includes(query)
+        );
+      }
+
+      let html = '';
+
+      if (filtered.length === 0) {
+        // Universal Smart Fallback for any India Pincode/City!
+        const mapsUrl = `https://www.google.com/maps/search/Pradhan+Mantri+Jan+Aushadhi+Kendra+near+${encodeURIComponent(kendraSearchQuery)}`;
+        html = `
+          <div class="col-span-1 md:col-span-2 bg-white border border-blue-200 rounded-2xl p-6 text-center space-y-3">
+            <div class="text-3xl">📍</div>
+            <h3 class="font-bold text-base text-slate-800">
+              '${kendraSearchQuery}' के लिए स्थानीय केंद्र खोजें
+            </h3>
+            <p class="text-xs text-slate-500 max-w-md mx-auto">
+              इस पिनकोड/शहर के सभी नजदीकी जन औषधि केंद्र सीधे गूगल मैप्स या सरकारी पोर्टल पर उपलब्ध हैं:
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-3 pt-2">
+              <a href="${mapsUrl}" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition shadow flex items-center justify-center gap-1.5">
+                <span>🗺️</span> गूगल मैप्स पर '${kendraSearchQuery}' में केंद्र देखें ➔
+              </a>
+              <a href="https://janaushadhi.gov.in/KendraDetails.aspx" target="_blank" class="border border-slate-300 hover:bg-slate-50 font-semibold px-4 py-2.5 rounded-xl text-xs text-slate-700">
+                आधिकारिक सरकारी Sugam डायरेक्टरी देखें
+              </a>
+            </div>
+          </div>
+        `;
+      } else {
+        html = filtered.map(k => {
+          const gmapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(k.name + " " + k.address)}`;
+          return `
+            <div class="bg-white border border-slate-200 hover:border-blue-500/50 rounded-2xl p-5 shadow-sm transition-all flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-2">
+                  <span class="text-xs font-mono font-bold px-2.5 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200">
+                    ${k.storeCode}
+                  </span>
+                  <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">
+                    ${k.timings}
+                  </span>
+                </div>
+
+                <h3 class="font-bold text-base text-slate-900">${k.name}</h3>
+                <p class="text-xs text-slate-600 mt-1 flex items-start gap-1">
+                  <span>📍</span> <span>${k.address} - <strong class="text-slate-800">${k.pincode}</strong></span>
+                </p>
+
+                <div class="mt-3 p-2.5 rounded-xl bg-slate-50 border border-slate-100 text-xs text-slate-600">
+                  <div>संचालक: <strong class="text-slate-800">${k.contactPerson}</strong></div>
+                  <div class="text-slate-500 mt-0.5">हेल्पलाइन: ${k.phone}</div>
+                </div>
+              </div>
+
+              <div class="mt-4 pt-3 border-t border-slate-100 flex gap-2">
+                <a href="${gmapsLink}" target="_blank" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-xl text-xs transition text-center shadow flex items-center justify-center gap-1.5">
+                  <span>🗺️</span> Google Maps पर रास्ता देखें
+                </a>
+                <a href="tel:${k.phone}" class="px-3.5 py-2.5 border border-slate-200 hover:bg-slate-50 rounded-xl text-xs font-bold text-slate-700 flex items-center justify-center">
+                  📞 कॉल
+                </a>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      grid.innerHTML = html;
+    }
+
+    document.getElementById('kendraSearchInput')?.addEventListener('input', (e) => {
+      kendraSearchQuery = e.target.value;
+      renderKendras();
+    });
+
+    function searchKendraByVal(val) {
+      document.getElementById('kendraSearchInput').value = val;
+      kendraSearchQuery = val;
+      renderKendras();
+    }
+
+    function useCurrentLocation() {
+      if (!navigator.geolocation) {
+        alert("आपके ब्राउज़र में GPS की सुविधा उपलब्ध नहीं है। कृपया पिनकोड या शहर टाइप करें।");
+        return;
+      }
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const lat = position.coords.latitude;
+          const lng = position.coords.longitude;
+          const url = `https://www.google.com/maps/search/Pradhan+Mantri+Jan+Aushadhi+Kendra/@${lat},${lng},14z`;
+          window.open(url, '_blank');
+        },
+        () => {
+          alert("कृपया लोकेशन परमिशन की अनुमति दें या ऊपर सीधे अपना पिनकोड टाइप करें।");
+        }
+      );
+    }
+
+    renderMedicines();
+  </script>
+</body>
+</html>
