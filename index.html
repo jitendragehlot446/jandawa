@@ -1,395 +1,549 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="hi" class="h-full bg-slate-50">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JanDawa (जन दवा) - जन औषधि दवा बचत खोजक एवं साल्ट कंपैरिजन</title>
-  <meta name="description" content="JanDawa (जन दवा) - अपनी ब्रांडेड दवा का नाम डालें और जानें उसका सटीक जन औषधि जेनेरिक विकल्प (PMBJP Salt), सरकारी दर, और अपनी 80% तक की सालाना बचत।">
-  <meta name="theme-color" content="#059669">
+  <title>JanDawa (जन दवा) - जन औषधि साल्ट खोजक एवं बचत तुलना</title>
+  <meta name="description" content="अपनी ब्रांडेड दवा का नाम डालें और जानें उसका सटीक सरकारी जन औषधि साल्ट (PMBJP Salt), आधिकारिक दर और 80% तक की सालाना बचत।">
+  <meta name="theme-color" content="#047857">
   <link rel="manifest" href="/manifest.json">
+
+  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              200: '#a7f3d0',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065f46',
+              900: '#064e3b',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
   <style>
-    .ad-placeholder {
-      background: repeating-linear-gradient(
-        45deg,
-        rgba(0, 0, 0, 0.02),
-        rgba(0, 0, 0, 0.02) 10px,
-        rgba(0, 0, 0, 0.04) 10px,
-        rgba(0, 0, 0, 0.04) 20px
-      );
-      border: 1px dashed rgba(150, 150, 150, 0.4);
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, .font-display { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .scrollbar-none::-webkit-scrollbar { display: none; }
+    .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+    
+    /* Subtle native ad container styling */
+    .ad-slot-wrapper {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      overflow: hidden;
+      min-height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   </style>
+
+  <!-- Complete 2,479 PMBJP Medicines Master Data -->
   <script src="medicines_data.js"></script>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased min-h-screen pb-24 p-3 md:p-8">
+<body class="flex flex-col min-h-screen text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
 
-  <!-- Top Ad Slot (Leaderboard 728x90 Desktop / 320x50 Mobile) -->
-  <div class="max-w-5xl mx-auto mb-6">
-    <div class="ad-placeholder rounded-xl p-3 text-center flex flex-col items-center justify-center min-h-[90px] border border-slate-200">
-      <div class="flex items-center gap-1.5 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
-        <span>📢</span> GOOGLE ADSENSE (TOP LEADERBOARD BANNER - 728x90 / 320x50)
-      </div>
-      <div class="text-xs text-slate-400">
-        यहाँ आपका <code>&lt;ins class="adsbygoogle" data-ad-slot="1234567890"&gt;&lt;/ins&gt;</code> कोड लोड होगा।
-      </div>
-    </div>
-  </div>
+  <!-- Top Navbar -->
+  <header class="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+      
+      <!-- Brand Logo -->
+      <a href="/" class="flex items-center gap-2.5 shrink-0">
+        <div class="w-9 h-9 rounded-xl bg-brand-700 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+          <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" />
+          </svg>
+        </div>
+        <div>
+          <span class="font-display font-extrabold text-xl tracking-tight text-slate-900">Jan<span class="text-brand-700">Dawa</span></span>
+          <span class="hidden sm:inline-block ml-1.5 px-2 py-0.5 rounded text-[10px] font-semibold bg-brand-50 text-brand-800 border border-brand-200">जन औषधि</span>
+        </div>
+      </a>
 
-  <!-- Header -->
-  <header class="max-w-5xl mx-auto mb-8 text-center">
-    <div class="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 px-3.5 py-1 rounded-full text-xs font-semibold mb-3">
-      <span>●</span> 2026 PMBJP Generic Medicine Discovery Platform
+      <!-- Navigation Tabs -->
+      <nav class="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm font-semibold">
+        <button id="navTabMeds" onclick="switchMainTab('medicines')" class="px-3.5 py-2 rounded-lg transition-colors bg-brand-50 text-brand-800">
+          दवा खोजक
+        </button>
+        <button id="navTabKendra" onclick="switchMainTab('kendra')" class="px-3.5 py-2 rounded-lg transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100">
+          नजदीकी केंद्र
+        </button>
+        <a href="#savings-calculator" onclick="document.getElementById('savings-calculator')?.scrollIntoView({behavior: 'smooth'})" class="hidden md:inline-flex px-3.5 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100">
+          बचत कैलकुलेटर
+        </a>
+      </nav>
+
+      <!-- Verified Indicator -->
+      <div class="hidden lg:flex items-center gap-2 text-xs text-slate-500 font-medium">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span>2,479 सरकारी दवाएं सत्यापित</span>
+      </div>
+
     </div>
-    <h1 class="text-3xl md:text-5xl font-black tracking-tight text-slate-900 mb-2">
-      JanDawa <span class="text-emerald-600">जन दवा खोजक</span>
-    </h1>
-    <p class="text-slate-600 text-sm md:text-base max-w-2xl mx-auto">
-      अपनी ब्रांडेड दवा का नाम डालें और जानें उसका असली साल्ट (Generic Salt), जन औषधि केंद्र पर उसका दाम, और अपनी 80% तक की सालाना बचत।
-    </p>
   </header>
 
-  <!-- Main Container -->
-  <main class="max-w-5xl mx-auto space-y-6">
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-b from-white via-slate-50 to-slate-50 border-b border-slate-200/80 pt-10 pb-8 px-4">
+    <div class="max-w-4xl mx-auto text-center space-y-4">
+      
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 border border-emerald-200/80 text-emerald-800">
+        <svg class="w-3.5 h-3.5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+        </svg>
+        <span>प्रधानमंत्री भारतीय जन औषधि परियोजना (PMBJP) डेटाबेस</span>
+      </div>
 
-    <!-- Top Mode Switcher Tabs (Medicine vs Kendra Locator) -->
-    <div class="flex items-center justify-center gap-3">
-      <button id="tabMedBtn" onclick="switchMainTab('medicines')" class="px-5 py-2.5 rounded-xl font-bold text-xs md:text-sm bg-emerald-600 text-white shadow-sm transition-all flex items-center gap-2">
-        <span>💊</span> दवा खोजें व बचत देखें
-      </button>
-      <button id="tabKendraBtn" onclick="switchMainTab('kendra')" class="px-5 py-2.5 rounded-xl font-bold text-xs md:text-sm bg-white text-slate-700 hover:text-emerald-600 border border-slate-200 shadow-sm transition-all flex items-center gap-2">
-        <span>📍</span> नजदीकी जन औषधि केंद्र खोजें (पिनकोड / शहर)
-      </button>
-    </div>
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+        ब्रांडेड दवाओं का <span class="text-brand-700">सटीक सरकारी विकल्प</span> खोजें
+      </h1>
+      
+      <p class="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+        वही सक्रिय रासायनिक साल्ट (Active Formulation), NABL लैब प्रमाणित गुणवत्ता और 80% तक की सीधी बचत। बस अपनी दवा का नाम टाइप करें:
+      </p>
 
-    <!-- TAB 1: MEDICINES SECTION -->
-    <div id="medicineSection" class="space-y-6">
-
-      <!-- Search & Filter Card -->
-      <div class="bg-white border border-slate-200 rounded-2xl p-5 md:p-6 shadow-sm space-y-4">
-        <div class="flex flex-col sm:flex-row gap-2">
-          <div class="relative flex-1">
+      <!-- Search & AI Scanner Bar -->
+      <div class="max-w-2xl mx-auto pt-2">
+        <div class="bg-white rounded-2xl shadow-lg shadow-slate-200/60 border border-slate-200 p-2 flex flex-col sm:flex-row gap-2">
+          
+          <div class="relative flex-1 flex items-center">
+            <svg class="w-5 h-5 absolute left-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
             <input 
               id="searchInput" 
               type="text" 
-              placeholder="ब्रांडेड दवा या साल्ट खोजें (उदा: Telma 40, Glycomet, Dolo 650, Pan 40, Augmentin)..." 
-              class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 pl-11 text-sm md:text-base text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all shadow-inner"
+              autocomplete="off"
+              placeholder="ब्रांडेड दवा या साल्ट लिखें (उदा: Telma 40, Pan-D, Dolo 650, Augmentin)..." 
+              class="w-full pl-11 pr-4 py-3 text-sm sm:text-base text-slate-900 placeholder-slate-400 focus:outline-none bg-transparent"
             />
-            <svg class="w-5 h-5 absolute left-3.5 top-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-            </svg>
           </div>
-          <button onclick="openScanModal()" class="shrink-0 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-3.5 rounded-xl text-xs md:text-sm flex items-center justify-center gap-2 shadow-sm transition-all">
-            <span>📸</span> पर्चा स्कैन करें (AI)
+
+          <button onclick="openScanModal()" class="shrink-0 bg-brand-700 hover:bg-brand-800 text-white font-semibold px-5 py-3 rounded-xl text-sm flex items-center justify-center gap-2 transition-colors shadow-sm">
+            <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <span>पर्चा स्कैन करें</span>
           </button>
+
         </div>
 
-        <!-- Category Filter Pills -->
-        <div class="flex items-center gap-2 overflow-x-auto pb-1 text-xs md:text-sm scrollbar-none">
-          <span class="text-slate-500 font-medium shrink-0">कैटेगरी:</span>
-          <button data-cat="All" onclick="filterCategory('All')" class="cat-pill active px-3.5 py-1.5 rounded-lg border border-slate-200 bg-emerald-600 text-white font-medium shrink-0 transition-colors">सभी (All - 2,479)</button>
-          <button data-cat="Cardiovascular" onclick="filterCategory('Cardiovascular')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">बीपी व दिल (Cardio)</button>
-          <button data-cat="Diabetes" onclick="filterCategory('Diabetes')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">मधुमेह (Diabetes)</button>
-          <button data-cat="Gastrointestinal" onclick="filterCategory('Gastrointestinal')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">गैस व पेट (Acidity)</button>
-          <button data-cat="Antibiotics" onclick="filterCategory('Antibiotics')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">एंटीबायोटिक (Antibiotic)</button>
-          <button data-cat="Pain Relief" onclick="filterCategory('Pain Relief')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">दर्द व बुखार (Pain/Fever)</button>
-          <button data-cat="Respiratory" onclick="filterCategory('Respiratory')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">सांस व दमा (Asthma)</button>
-          <button data-cat="Vitamins" onclick="filterCategory('Vitamins')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">विटामिन्स (Vitamins)</button>
-          <button data-cat="Neuro" onclick="filterCategory('Neuro')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">न्यूरो (Neuro)</button>
-          <button data-cat="Dermatology" onclick="filterCategory('Dermatology')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">त्वचा व फंगल (Skin)</button>
-          <button data-cat="Surgical" onclick="filterCategory('Surgical')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">सर्जिकल व उपकरण (Devices)</button>
+        <!-- Popular Searches Quick Chips -->
+        <div class="flex items-center justify-center flex-wrap gap-1.5 text-xs text-slate-500 mt-3">
+          <span class="font-medium text-slate-400">अक्सर खोजी गई:</span>
+          <button onclick="quickSearch('Telma 40')" class="px-2.5 py-1 rounded-md bg-white border border-slate-200 hover:border-brand-500 hover:text-brand-700 transition">Telma 40</button>
+          <button onclick="quickSearch('Pan 40')" class="px-2.5 py-1 rounded-md bg-white border border-slate-200 hover:border-brand-500 hover:text-brand-700 transition">Pan 40</button>
+          <button onclick="quickSearch('Glycomet 500')" class="px-2.5 py-1 rounded-md bg-white border border-slate-200 hover:border-brand-500 hover:text-brand-700 transition">Glycomet 500</button>
+          <button onclick="quickSearch('Dolo 650')" class="px-2.5 py-1 rounded-md bg-white border border-slate-200 hover:border-brand-500 hover:text-brand-700 transition">Dolo 650</button>
+          <button onclick="quickSearch('Montair-LC')" class="px-2.5 py-1 rounded-md bg-white border border-slate-200 hover:border-brand-500 hover:text-brand-700 transition">Montair-LC</button>
+          <button onclick="quickSearch('Shelcal 500')" class="px-2.5 py-1 rounded-md bg-white border border-slate-200 hover:border-brand-500 hover:text-brand-700 transition">Shelcal 500</button>
+          <button onclick="quickSearch('Augmentin 625')" class="px-2.5 py-1 rounded-md bg-white border border-slate-200 hover:border-brand-500 hover:text-brand-700 transition">Augmentin 625</button>
         </div>
+
       </div>
 
-      <!-- Results Status Bar -->
-      <div class="flex items-center justify-between text-xs text-slate-600 px-1 py-1 bg-emerald-50/60 rounded-xl px-3 border border-emerald-100">
+    </div>
+  </section>
+
+  <!-- Main Content Body -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8 flex-1 w-full space-y-8">
+
+    <!-- SECTION 1: MEDICINES DISCOVERY -->
+    <div id="medicineSection" class="space-y-6">
+
+      <!-- Category Filter Tabs -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none text-xs sm:text-sm">
+        <button data-cat="All" onclick="filterCategory('All')" class="cat-pill active px-4 py-2 rounded-xl font-semibold bg-brand-700 text-white shrink-0 transition-colors">
+          सभी दवाएं (2,479)
+        </button>
+        <button data-cat="Cardiovascular" onclick="filterCategory('Cardiovascular')" class="cat-pill px-4 py-2 rounded-xl font-medium bg-white text-slate-700 border border-slate-200 hover:border-brand-500 shrink-0 transition-colors">
+          बीपी व दिल (Cardio)
+        </button>
+        <button data-cat="Diabetes" onclick="filterCategory('Diabetes')" class="cat-pill px-4 py-2 rounded-xl font-medium bg-white text-slate-700 border border-slate-200 hover:border-brand-500 shrink-0 transition-colors">
+          मधुमेह (Diabetes)
+        </button>
+        <button data-cat="Gastrointestinal" onclick="filterCategory('Gastrointestinal')" class="cat-pill px-4 py-2 rounded-xl font-medium bg-white text-slate-700 border border-slate-200 hover:border-brand-500 shrink-0 transition-colors">
+          गैस व एसिडिटी (Gastro)
+        </button>
+        <button data-cat="Antibiotics" onclick="filterCategory('Antibiotics')" class="cat-pill px-4 py-2 rounded-xl font-medium bg-white text-slate-700 border border-slate-200 hover:border-brand-500 shrink-0 transition-colors">
+          एंटीबायोटिक (Antibiotic)
+        </button>
+        <button data-cat="Pain Relief" onclick="filterCategory('Pain Relief')" class="cat-pill px-4 py-2 rounded-xl font-medium bg-white text-slate-700 border border-slate-200 hover:border-brand-500 shrink-0 transition-colors">
+          दर्द व बुखार (Pain Relief)
+        </button>
+        <button data-cat="Respiratory" onclick="filterCategory('Respiratory')" class="cat-pill px-4 py-2 rounded-xl font-medium bg-white text-slate-700 border border-slate-200 hover:border-brand-500 shrink-0 transition-colors">
+          सांस व दमा (Asthma)
+        </button>
+        <button data-cat="Vitamins" onclick="filterCategory('Vitamins')" class="cat-pill px-4 py-2 rounded-xl font-medium bg-white text-slate-700 border border-slate-200 hover:border-brand-500 shrink-0 transition-colors">
+          विटामिन्स (Vitamins)
+        </button>
+        <button data-cat="Neuro" onclick="filterCategory('Neuro')" class="cat-pill px-4 py-2 rounded-xl font-medium bg-white text-slate-700 border border-slate-200 hover:border-brand-500 shrink-0 transition-colors">
+          न्यूरो व मानसिक
+        </button>
+        <button data-cat="Dermatology" onclick="filterCategory('Dermatology')" class="cat-pill px-4 py-2 rounded-xl font-medium bg-white text-slate-700 border border-slate-200 hover:border-brand-500 shrink-0 transition-colors">
+          त्वचा व फंगल (Skin)
+        </button>
+        <button data-cat="Surgical" onclick="filterCategory('Surgical')" class="cat-pill px-4 py-2 rounded-xl font-medium bg-white text-slate-700 border border-slate-200 hover:border-brand-500 shrink-0 transition-colors">
+          सर्जिकल व उपकरण
+        </button>
+      </div>
+
+      <!-- Live Results Meta Bar -->
+      <div class="flex items-center justify-between text-xs text-slate-500 px-1">
         <div>
-          प्रदर्शित दवाएं: <span id="showingCount" class="font-extrabold text-emerald-800">30</span> (कुल <span id="totalResultsCount" class="font-extrabold text-slate-900">2,479</span> परिणाम)
+          दिखाई जा रही हैं: <strong id="showingCount" class="text-slate-900 font-bold">30</strong> दवाएं (कुल <span id="totalResultsCount" class="font-bold text-brand-700">2,479</span> परिणाम)
         </div>
-        <div class="text-[11px] text-emerald-700 font-semibold flex items-center gap-1">
-          <span>✔</span> 100% सरकारी PMBJP कैटलॉग (2,479+ उत्पाद)
+        <div class="flex items-center gap-1.5 text-emerald-700 font-medium">
+          <svg class="w-4 h-4 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+          <span>100% प्रामाणिक PMBJP सरकारी दर</span>
         </div>
       </div>
 
-      <!-- Live Medicine Cards Grid -->
-      <div id="medicineGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <!-- Injected via JS -->
+      <!-- Medicine Cards Grid -->
+      <div id="medicineGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Rendered dynamically via JavaScript -->
       </div>
 
       <!-- Load More Button -->
-      <div id="loadMoreContainer" class="text-center pt-2">
-        <button id="loadMoreBtn" onclick="loadMoreMedicines()" class="bg-white hover:bg-emerald-50 border-2 border-emerald-600 text-emerald-700 font-bold px-8 py-3.5 rounded-xl text-sm transition shadow-sm hover:shadow flex items-center gap-2 mx-auto">
-          <span>⏬</span> और दवाएं देखें (अगली 30 दवाएं लोड करें)
+      <div id="loadMoreContainer" class="text-center pt-4">
+        <button id="loadMoreBtn" onclick="loadMoreMedicines()" class="bg-white hover:bg-slate-50 text-slate-800 font-semibold px-8 py-3 rounded-xl border border-slate-300 shadow-sm transition hover:shadow flex items-center justify-center gap-2 mx-auto text-sm">
+          <svg class="w-4 h-4 text-brand-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+          <span>और दवाएं देखें (अगली 30 दवाएं लोड करें)</span>
         </button>
       </div>
 
       <!-- Empty State -->
-      <div id="noResults" class="hidden text-center py-12 bg-white border border-slate-200 rounded-2xl">
-        <p class="text-lg font-medium text-slate-800">कोई परिणाम नहीं मिला</p>
-        <p class="text-sm text-slate-500 mt-1">कृपया साल्ट या दवा का सही स्पेलिंग जांचें (उदा: Metformin, Telmisartan, Pantoprazole)</p>
+      <div id="noResults" class="hidden bg-white border border-slate-200 rounded-2xl p-12 text-center max-w-md mx-auto space-y-3">
+        <div class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center mx-auto text-slate-400">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <h3 class="text-base font-bold text-slate-800">कोई दवा नहीं मिली</h3>
+        <p class="text-xs text-slate-500">
+          कृपया स्पेलिंग जांचें या केवल साल्ट का नाम लिखकर खोजें (उदा: Metformin, Telmisartan, Pantoprazole, Dolo)।
+        </p>
       </div>
 
     </div>
 
-    <!-- TAB 2: KENDRA LOCATOR SECTION -->
+    <!-- SECTION 2: KENDRA LOCATOR -->
     <div id="kendraSection" class="hidden space-y-6">
-      <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4">
-        <div class="text-center max-w-lg mx-auto">
-          <div class="inline-flex items-center gap-1.5 bg-blue-100 text-blue-800 px-3 py-0.5 rounded-full text-xs font-bold mb-2">
-            <span>📍</span> 25,000+ केंद्र डायरेक्टरी
-          </div>
-          <h2 class="text-xl md:text-2xl font-bold text-slate-900">
-            अपने नजदीकी प्रधानमंत्री जन औषधि केंद्र खोजें
+      
+      <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-6">
+        <div class="max-w-xl mx-auto text-center space-y-2">
+          <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200">
+            देशभर के 25,000+ केंद्र
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            नजदीकी जन औषधि केंद्र खोजें
           </h2>
-          <p class="text-xs md:text-sm text-slate-500 mt-1">
-            अपना 6 अंकों का पिनकोड या शहर का नाम डालकर तुरंत नजदीकी दुकान का पता, फोन और गूगल मैप्स रास्ता देखें।
+          <p class="text-xs sm:text-sm text-slate-500">
+            अपना पिनकोड या शहर का नाम डालें और सीधे केंद्र का पता, फ़ोन नंबर और गूगल मैप्स दिशा-निर्देश पाएं।
           </p>
         </div>
 
-        <div class="flex flex-col sm:flex-row gap-2 max-w-2xl mx-auto pt-2">
+        <!-- Kendra Search Controls -->
+        <div class="max-w-2xl mx-auto flex flex-col sm:flex-row gap-2">
           <div class="relative flex-1">
+            <svg class="w-5 h-5 absolute left-3.5 top-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
             <input 
               id="kendraSearchInput" 
               type="text" 
-              placeholder="पिनकोड या शहर डालें (उदा: 110001, 302001, Lucknow, Jaipur, Patna, Indore)..." 
-              class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 pl-11 text-sm md:text-base text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-inner"
+              placeholder="6 अंकों का पिनकोड या शहर का नाम लिखें (उदा: 110001, Jaipur, Lucknow, Patna)..." 
+              class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition"
             />
-            <svg class="w-5 h-5 absolute left-3.5 top-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-            </svg>
           </div>
-          <button onclick="useCurrentLocation()" class="shrink-0 bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 py-3.5 rounded-xl text-xs md:text-sm flex items-center justify-center gap-2 shadow-sm transition-all">
-            <span>🎯</span> GPS से खोजें
+          <button onclick="useCurrentLocation()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-3 rounded-xl text-sm flex items-center justify-center gap-2 transition shadow-sm">
+            <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>GPS से खोजें</span>
           </button>
         </div>
 
-        <!-- Quick Pincode Pills -->
-        <div class="flex flex-wrap items-center justify-center gap-1.5 text-xs text-slate-500 pt-1">
+        <!-- City Quick Links -->
+        <div class="flex flex-wrap items-center justify-center gap-1.5 text-xs text-slate-500 pt-2">
           <span>प्रमुख शहर:</span>
-          <button onclick="searchKendraByVal('Delhi')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-100 rounded-md">दिल्ली</button>
-          <button onclick="searchKendraByVal('Jaipur')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-100 rounded-md">जयपुर</button>
-          <button onclick="searchKendraByVal('Lucknow')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-100 rounded-md">लखनऊ</button>
-          <button onclick="searchKendraByVal('Patna')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-100 rounded-md">पटना</button>
-          <button onclick="searchKendraByVal('Indore')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-100 rounded-md">इंदौर</button>
-          <button onclick="searchKendraByVal('Mumbai')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-100 rounded-md">मुंबई</button>
+          <button onclick="searchKendraByVal('Delhi')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-50 hover:text-blue-700 rounded-md transition">दिल्ली</button>
+          <button onclick="searchKendraByVal('Jaipur')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-50 hover:text-blue-700 rounded-md transition">जयपुर</button>
+          <button onclick="searchKendraByVal('Lucknow')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-50 hover:text-blue-700 rounded-md transition">लखनऊ</button>
+          <button onclick="searchKendraByVal('Patna')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-50 hover:text-blue-700 rounded-md transition">पटना</button>
+          <button onclick="searchKendraByVal('Indore')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-50 hover:text-blue-700 rounded-md transition">इंदौर</button>
+          <button onclick="searchKendraByVal('Mumbai')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-50 hover:text-blue-700 rounded-md transition">मुंबई</button>
         </div>
       </div>
 
-      <!-- Kendra Results Grid -->
-      <div id="kendraResultsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <!-- Injected via JS -->
+      <!-- Kendra Cards Grid -->
+      <div id="kendraResultsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Rendered dynamically via JavaScript -->
       </div>
+
     </div>
 
-    <!-- Affiliate Health Package Banner -->
-    <section class="bg-gradient-to-r from-blue-600/10 via-white to-cyan-500/10 border border-blue-500/30 rounded-2xl p-5 md:p-6 flex flex-col md:flex-row items-center justify-between gap-4">
-      <div class="space-y-1 text-center md:text-left">
-        <div class="inline-flex items-center gap-1.5 text-blue-600 font-bold text-xs uppercase tracking-wider">
-          <span>🩺</span> स्पॉन्सर्ड हेल्थ चेकअप पार्टनर (High Earning Affiliate Slot)
-        </div>
-        <h3 class="text-lg md:text-xl font-bold text-slate-900">
-          फुल बॉडी हेल्थ चेकअप (60+ टेस्ट) - घर बैठे ब्लड सैंपल
-        </h3>
-        <p class="text-xs md:text-sm text-slate-600">
-          HbA1c (शुगर), लिपिड प्रोफाइल (कोलेस्ट्रॉल), थायरॉइड और किडनी टेस्ट सिर्फ ₹799 में (65% छूट)।
-        </p>
-      </div>
-      <a href="#affiliate-link" onclick="alert('यह आपका एफिलिएट लिंक होगा (Tata 1mg / Thyrocare / Redcliffe).'); return false;" class="shrink-0 bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-3 rounded-xl text-xs md:text-sm shadow-md transition-all">
-        घर बैठे टेस्ट बुक करें ➔
-      </a>
-    </section>
-
-    <!-- Interactive Annual Family Savings Estimator Widget -->
-    <section class="bg-gradient-to-br from-emerald-500/10 via-white to-teal-500/10 border border-emerald-500/30 rounded-2xl p-6 space-y-4">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-emerald-500/20 pb-4">
+    <!-- SECTION 3: SAVINGS ESTIMATOR WIDGET -->
+    <section id="savings-calculator" class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-6">
+      
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-slate-100 pb-6">
         <div>
-          <h3 class="text-lg md:text-xl font-bold text-slate-900 flex items-center gap-2">
-            <span>💰</span> परिवार बचत कैलकुलेटर (Interactive Savings Estimator)
+          <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+            पारिवारिक बचत कैलकुलेटर
+          </span>
+          <h3 class="text-2xl font-extrabold text-slate-900 mt-2">
+            जन औषधि से आप हर साल कितना बचा सकते हैं?
           </h3>
-          <p class="text-xs md:text-sm text-slate-600 mt-1">
-            अपने घर के अनुसार चुनिए और देखिए कि जन औषधि से आपका हर साल कितना पैसा बच सकता है:
+          <p class="text-xs sm:text-sm text-slate-500 mt-1">
+            अपने घर के अनुसार नियमित दवाइयों के विकल्प चुनें और अनुमानित बचत देखें:
           </p>
         </div>
-        <div class="bg-emerald-500/20 border border-emerald-500/40 rounded-xl p-4 text-center md:text-right shrink-0">
-          <div class="text-xs text-emerald-800 font-semibold uppercase tracking-wider">आपकी अनुमानित सालाना बचत</div>
-          <div id="calcYearlySaving" class="text-2xl md:text-3xl font-black text-emerald-600">₹38,400</div>
-          <div id="calcMonthlySaving" class="text-xs text-slate-600 font-medium mt-0.5">मासिक बचत: ₹3,200 (80% कम)</div>
+
+        <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-5 text-center md:text-right shrink-0">
+          <div class="text-xs font-semibold text-emerald-800 uppercase tracking-wider">अनुमानित सालाना बचत</div>
+          <div id="calcYearlySaving" class="text-3xl font-extrabold text-emerald-700 mt-0.5">₹38,400</div>
+          <div id="calcMonthlySaving" class="text-xs font-medium text-emerald-900/70 mt-1">मासिक बचत: ₹3,200 (लगभग 80% बचत)</div>
         </div>
       </div>
 
-      <!-- Controls -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs sm:text-sm">
+        
         <div>
-          <label class="block font-bold text-slate-700 mb-2">रोज़ाना दवा लेने वाले सदस्य (Members):</label>
-          <div class="flex gap-2">
-            <button type="button" onclick="setCalcMembers(1)" class="calc-mem-btn flex-1 py-2 rounded-lg border border-slate-200 bg-white hover:border-emerald-500 font-bold">1 सदस्य</button>
-            <button type="button" onclick="setCalcMembers(2)" class="calc-mem-btn active flex-1 py-2 rounded-lg border border-slate-200 bg-emerald-600 text-white font-bold">2 सदस्य</button>
-            <button type="button" onclick="setCalcMembers(3)" class="calc-mem-btn flex-1 py-2 rounded-lg border border-slate-200 bg-white hover:border-emerald-500 font-bold">3 सदस्य</button>
-            <button type="button" onclick="setCalcMembers(4)" class="calc-mem-btn flex-1 py-2 rounded-lg border border-slate-200 bg-white hover:border-emerald-500 font-bold">4+ सदस्य</button>
+          <label class="block font-semibold text-slate-700 mb-2">नियमित दवा लेने वाले पारिवारिक सदस्य:</label>
+          <div class="grid grid-cols-4 gap-2">
+            <button type="button" onclick="setCalcMembers(1)" class="calc-mem-btn py-2.5 rounded-xl border border-slate-200 bg-white hover:border-brand-500 font-semibold text-center transition">1 सदस्य</button>
+            <button type="button" onclick="setCalcMembers(2)" class="calc-mem-btn active py-2.5 rounded-xl border border-brand-700 bg-brand-700 text-white font-semibold text-center transition">2 सदस्य</button>
+            <button type="button" onclick="setCalcMembers(3)" class="calc-mem-btn py-2.5 rounded-xl border border-slate-200 bg-white hover:border-brand-500 font-semibold text-center transition">3 सदस्य</button>
+            <button type="button" onclick="setCalcMembers(4)" class="calc-mem-btn py-2.5 rounded-xl border border-slate-200 bg-white hover:border-brand-500 font-semibold text-center transition">4+ सदस्य</button>
           </div>
         </div>
+
         <div>
-          <label class="block font-bold text-slate-700 mb-2">नियमित दवाइयों की बीमारियां चुनें:</label>
+          <label class="block font-semibold text-slate-700 mb-2">घर में नियमित चलने वाली बीमारियां चुनें:</label>
           <div class="flex flex-wrap gap-2">
-            <label class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 cursor-pointer">
-              <input type="checkbox" checked onchange="recalculateSavings()" class="calc-cond accent-emerald-600" value="1200">
-              <span>डायबिटीज (शुगर)</span>
+            <label class="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 hover:border-slate-300 cursor-pointer select-none">
+              <input type="checkbox" checked onchange="recalculateSavings()" class="calc-cond accent-brand-700 rounded w-4 h-4" value="1200">
+              <span class="font-medium text-slate-800">डायबिटीज (शुगर)</span>
             </label>
-            <label class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 cursor-pointer">
-              <input type="checkbox" checked onchange="recalculateSavings()" class="calc-cond accent-emerald-600" value="1100">
-              <span>बीपी व दिल</span>
+            <label class="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 hover:border-slate-300 cursor-pointer select-none">
+              <input type="checkbox" checked onchange="recalculateSavings()" class="calc-cond accent-brand-700 rounded w-4 h-4" value="1100">
+              <span class="font-medium text-slate-800">बीपी व दिल</span>
             </label>
-            <label class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 cursor-pointer">
-              <input type="checkbox" checked onchange="recalculateSavings()" class="calc-cond accent-emerald-600" value="500">
-              <span>कोलेस्ट्रॉल</span>
+            <label class="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 hover:border-slate-300 cursor-pointer select-none">
+              <input type="checkbox" checked onchange="recalculateSavings()" class="calc-cond accent-brand-700 rounded w-4 h-4" value="500">
+              <span class="font-medium text-slate-800">कोलेस्ट्रॉल</span>
             </label>
-            <label class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 cursor-pointer">
-              <input type="checkbox" onchange="recalculateSavings()" class="calc-cond accent-emerald-600" value="400">
-              <span>थायरॉइड</span>
+            <label class="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 hover:border-slate-300 cursor-pointer select-none">
+              <input type="checkbox" onchange="recalculateSavings()" class="calc-cond accent-brand-700 rounded w-4 h-4" value="400">
+              <span class="font-medium text-slate-800">थायरॉइड</span>
             </label>
-            <label class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 cursor-pointer">
-              <input type="checkbox" onchange="recalculateSavings()" class="calc-cond accent-emerald-600" value="600">
-              <span>गैस व एसिडिटी</span>
+            <label class="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 hover:border-slate-300 cursor-pointer select-none">
+              <input type="checkbox" onchange="recalculateSavings()" class="calc-cond accent-brand-700 rounded w-4 h-4" value="600">
+              <span class="font-medium text-slate-800">गैस व एसिडिटी</span>
             </label>
           </div>
         </div>
+
       </div>
+
     </section>
 
-    <!-- Trust & Quality Standards -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-      <div class="bg-white border border-slate-200 rounded-xl p-4">
-        <div class="text-2xl mb-1">🔬</div>
-        <h4 class="font-semibold text-sm">NABL प्रमाणित लैब्स</h4>
-        <p class="text-xs text-slate-500 mt-1">हर बैच को सरकारी NABL लैब्स में कड़े परीक्षण के बाद ही स्टोर्स तक भेजा जाता है।</p>
+    <!-- SECTION 4: TRUST & STANDARDS -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div class="bg-white border border-slate-200 rounded-2xl p-5 space-y-2">
+        <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+          </svg>
+        </div>
+        <h4 class="font-bold text-slate-900 text-sm">सरकारी NABL लैब्स में परीक्षण</h4>
+        <p class="text-xs text-slate-500 leading-relaxed">
+          जन औषधि केंद्र पर आने से पहले हर बैच को भारत सरकार की मान्यता प्राप्त NABL प्रयोगशालाओं में गुणवत्ता और प्रभाव के कड़े टेस्ट से गुजरना पड़ता है।
+        </p>
       </div>
-      <div class="bg-white border border-slate-200 rounded-xl p-4">
-        <div class="text-2xl mb-1">🏭</div>
-        <h4 class="font-semibold text-sm">WHO-GMP मैन्युफैक्चरर्स</h4>
-        <p class="text-xs text-slate-500 mt-1">दवाएं केवल विश्व स्वास्थ्य संगठन (WHO-GMP) सर्टिफाइड कंपनियों से प्रोक्योर होती हैं।</p>
+
+      <div class="bg-white border border-slate-200 rounded-2xl p-5 space-y-2">
+        <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center font-bold">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+          </svg>
+        </div>
+        <h4 class="font-bold text-slate-900 text-sm">WHO-GMP प्रमाणित विनिर्माण</h4>
+        <p class="text-xs text-slate-500 leading-relaxed">
+          दवाओं का निर्माण केवल विश्व स्वास्थ्य संगठन (WHO-GMP) के मानकों का पालन करने वाली प्रतिष्ठित फार्मास्युटिकल कंपनियों द्वारा किया जाता है।
+        </p>
       </div>
-      <div class="bg-white border border-slate-200 rounded-xl p-4">
-        <div class="text-2xl mb-1">📜</div>
-        <h4 class="font-semibold text-sm">100% कानूनी एवं सुरक्षित</h4>
-        <p class="text-xs text-slate-500 mt-1">वही सक्रिय रासायनिक तत्व (Active Salt) और ताकत जो डॉक्टर लिखते हैं।</p>
+
+      <div class="bg-white border border-slate-200 rounded-2xl p-5 space-y-2">
+        <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center font-bold">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <h4 class="font-bold text-slate-900 text-sm">वही सक्रिय रासायनिक तत्व (INN)</h4>
+        <p class="text-xs text-slate-500 leading-relaxed">
+          जेनेरिक दवा और ब्रांडेड दवा में वही सक्रिय साल्ट (Active Pharmaceutical Ingredient) होता है, जिससे उसका असर बिल्कुल समान रहता है।
+        </p>
       </div>
     </div>
-
-    <!-- Footer Links (Mandatory for Google AdSense) -->
-    <footer class="bg-white border border-slate-200 rounded-2xl p-6 text-xs text-slate-500 space-y-4">
-      <div class="flex items-center gap-2 font-bold text-slate-800">
-        <span>⚠️</span> कानूनी एवं चिकित्सीय अस्वीकरण (Medical & Legal Disclaimer)
-      </div>
-      <p>
-        इस वेबसाइट पर दी गई सभी जानकारी केवल जन-जागरूकता के उद्देश्य से है। किसी भी दवा, खुराक या ब्रांड में बदलाव करने से पहले अपने पंजीकृत चिकित्सक से परामर्श अवश्य लें।
-      </p>
-      <div class="pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-xs">
-        <div>© 2026 JanDawa (जन दवा). All rights reserved.</div>
-        <div class="flex gap-4 font-semibold text-slate-700">
-          <a href="/about.html" class="hover:text-emerald-600">About Us</a>
-          <a href="/disclaimer.html" class="hover:text-emerald-600">Disclaimer</a>
-          <a href="/privacy-policy.html" class="hover:text-emerald-600">Privacy Policy</a>
-          <a href="/sitemap.xml" class="hover:text-emerald-600">Sitemap</a>
-        </div>
-      </div>
-    </footer>
 
   </main>
 
-  <!-- Sticky Bottom Mobile Anchor Ad -->
-  <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 p-2 z-40 flex items-center justify-center shadow-2xl">
-    <div class="max-w-md w-full ad-placeholder rounded-lg p-2 text-center flex items-center justify-between text-xs">
-      <div class="flex items-center gap-2">
-        <span class="text-emerald-600 font-bold">📢 ADSENSE</span>
-        <span class="text-slate-500 text-[11px]">मोबाइल बॉटम स्टिकी एंकर ऐड (320x50)</span>
-      </div>
-      <span class="text-[10px] text-slate-400">Ad ✕</span>
-    </div>
-  </div>
-
-  <!-- Modal: Show to Pharmacist Slip -->
-  <div id="pharmacistModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white border border-slate-200 rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
-      <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-800 text-xl font-bold">✕</button>
+  <!-- Clean Footer -->
+  <footer class="bg-white border-t border-slate-200 mt-auto py-10 px-4 sm:px-6">
+    <div class="max-w-6xl mx-auto space-y-6">
       
-      <div class="text-center border-b border-slate-100 pb-4 mb-4">
-        <div class="inline-block bg-emerald-600 text-white text-[11px] font-bold px-2 py-0.5 rounded uppercase">डिजिटल फार्मासिस्ट पर्चा</div>
-        <h3 class="text-lg font-bold text-slate-900 mt-2">प्रधानमंत्री जन औषधि केंद्र के लिए</h3>
-        <p class="text-xs text-slate-500">यह पर्चा स्टोर संचालक को दिखाएं</p>
+      <div class="text-xs text-slate-500 space-y-2 border-b border-slate-100 pb-6">
+        <div class="font-semibold text-slate-800 flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+          <span>चिकित्सीय एवं कानूनी अस्वीकरण (Medical Disclaimer)</span>
+        </div>
+        <p class="leading-relaxed">
+          इस वेबसाइट पर दी गई सभी जानकारी केवल जन-जागरूकता और शैक्षिक उद्देश्य से संकलित की गई है। JanDawa किसी भी प्रकार की चिकित्सीय सलाह नहीं देता। किसी भी दवा, खुराक या ब्रांड में बदलाव करने से पहले हमेशा अपने पंजीकृत चिकित्सक (MBBS/MD Doctor) से परामर्श अवश्य लें।
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <div>
+          © 2026 <strong>JanDawa (जन दवा)</strong>. जनहित में 100% नि:शुल्क स्वास्थ्य सेवा।
+        </div>
+        <div class="flex items-center gap-5 font-medium text-slate-600">
+          <a href="/about.html" class="hover:text-brand-700 transition">About Us</a>
+          <a href="/disclaimer.html" class="hover:text-brand-700 transition">Disclaimer</a>
+          <a href="/privacy-policy.html" class="hover:text-brand-700 transition">Privacy Policy</a>
+          <a href="/sitemap.xml" class="hover:text-brand-700 transition">Sitemap</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- MODAL: DIGITAL PHARMACIST SLIP -->
+  <div id="pharmacistModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white border border-slate-200 rounded-3xl max-w-md w-full p-6 sm:p-7 shadow-2xl relative space-y-4">
+      <button onclick="closeModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-800 text-lg font-bold">
+        ✕
+      </button>
+
+      <div class="text-center border-b border-slate-100 pb-4">
+        <span class="inline-block px-3 py-0.5 rounded-full text-[11px] font-bold bg-brand-50 text-brand-800 border border-brand-200">
+          डिजिटल पर्चा (Prescription Voucher)
+        </span>
+        <h3 class="text-xl font-extrabold text-slate-900 mt-2">प्रधानमंत्री जन औषधि केंद्र के लिए</h3>
+        <p class="text-xs text-slate-500 mt-0.5">यह स्क्रीन दुकान संचालक या फार्मासिस्ट को दिखाएं</p>
       </div>
 
       <div id="modalContent" class="space-y-3 text-sm">
-        <!-- Injected via JS -->
+        <!-- Injected via JavaScript -->
       </div>
 
-      <div class="mt-6 flex gap-2">
-        <button onclick="window.print()" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2.5 rounded-xl text-xs md:text-sm transition-colors">
-          🖨️ पर्चा प्रिंट / PDF सेव करें
+      <div class="pt-3 flex gap-2">
+        <button onclick="window.print()" class="flex-1 bg-brand-700 hover:bg-brand-800 text-white font-semibold py-3 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-1.5 shadow">
+          <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+          </svg>
+          <span>पर्चा प्रिंट / PDF सेव करें</span>
         </button>
-        <button onclick="closeModal()" class="px-4 py-2.5 border border-slate-200 hover:bg-slate-50 rounded-xl text-xs md:text-sm font-medium">
+        <button onclick="closeModal()" class="px-5 py-3 border border-slate-200 hover:bg-slate-50 rounded-xl text-xs sm:text-sm font-semibold text-slate-700 transition">
           बंद करें
         </button>
       </div>
     </div>
   </div>
 
-  <!-- Modal: AI Prescription Scanner -->
-  <div id="scanModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white border border-slate-200 rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
-      <button onclick="closeScanModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-800 text-xl font-bold">✕</button>
+  <!-- MODAL: AI PRESCRIPTION SCANNER -->
+  <div id="scanModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white border border-slate-200 rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl relative space-y-4">
+      <button onclick="closeScanModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-800 text-lg font-bold">
+        ✕
+      </button>
 
-      <div class="text-center border-b border-slate-100 pb-4 mb-4">
-        <div class="inline-block bg-purple-600 text-white text-[11px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
-          ⚡ AI Vision Powered Scanner (2026)
-        </div>
-        <h3 class="text-xl font-bold text-slate-900 mt-2">डॉक्टर के पर्चे या दवा की फोटो स्कैन करें</h3>
-        <p class="text-xs text-slate-500 mt-1">अपने फोन से पर्चे की फोटो खींचें या गैलरी से अपलोड करें</p>
+      <div class="text-center border-b border-slate-100 pb-4">
+        <span class="inline-block px-3 py-0.5 rounded-full text-[11px] font-bold bg-purple-50 text-purple-700 border border-purple-200">
+          AI Vision Scanner
+        </span>
+        <h3 class="text-xl font-extrabold text-slate-900 mt-2">पर्चे या दवा के पैकेट की फोटो अपलोड करें</h3>
+        <p class="text-xs text-slate-500 mt-0.5">हम फोटो से दवा का सक्रिय साल्ट पहचान कर उसका सरकारी विकल्प दिखाएंगे</p>
       </div>
 
-      <!-- Upload Dropzone -->
-      <div id="uploadBox" class="border-2 border-dashed border-slate-300 hover:border-emerald-500 rounded-2xl p-6 text-center cursor-pointer transition-colors bg-slate-50" onclick="document.getElementById('fileInput').click()">
+      <!-- Upload Drop Area -->
+      <div id="uploadBox" class="border-2 border-dashed border-slate-200 hover:border-brand-500 rounded-2xl p-8 text-center cursor-pointer transition bg-slate-50 hover:bg-brand-50/20" onclick="document.getElementById('fileInput').click()">
         <input type="file" id="fileInput" accept="image/*" class="hidden" onchange="simulateAIScan(event)">
-        <div class="text-4xl mb-2">📷</div>
+        <div class="w-12 h-12 rounded-full bg-white shadow-sm border border-slate-200 flex items-center justify-center mx-auto text-slate-600 mb-3">
+          <svg class="w-6 h-6 text-brand-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+          </svg>
+        </div>
         <div class="text-sm font-bold text-slate-800">फोटो चुनें या यहाँ ड्रॉप करें</div>
-        <div class="text-xs text-slate-400 mt-1">कैमरा / गैलरी से पर्चे या दवा के खाली रैपर की फोटो अपलोड करें</div>
+        <div class="text-xs text-slate-500 mt-1">कैमरे से फोटो खींचें या गैलरी से पर्चा अपलोड करें (JPG, PNG)</div>
       </div>
 
-      <!-- Scanning Progress Indicator -->
+      <!-- Scanning Loading State -->
       <div id="scanLoading" class="hidden text-center py-8 space-y-3">
-        <div class="inline-block animate-spin text-3xl">⚙️</div>
-        <div class="text-sm font-bold text-emerald-700">AI पर्चे से दवाइयों के साल्ट पहचान रहा है...</div>
-        <div class="text-xs text-slate-400">OCR & Molecule matching in progress</div>
+        <div class="w-10 h-10 border-4 border-brand-200 border-t-brand-700 rounded-full animate-spin mx-auto"></div>
+        <div class="text-sm font-bold text-slate-800">AI दवा के साल्ट और स्ट्रेंथ की पहचान कर रहा है...</div>
+        <div class="text-xs text-slate-400">OCR & Generic Molecule matching</div>
       </div>
 
-      <!-- Scan Result Basket -->
-      <div id="scanResults" class="hidden mt-4 space-y-3">
+      <!-- Results Preview -->
+      <div id="scanResults" class="hidden space-y-3">
         <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-900 flex justify-between items-center">
-          <span class="font-bold">✔ 3 दवाएं पहचानी गईं!</span>
+          <span class="font-bold">3 दवाएं सफलतापूर्वक पहचानी गईं</span>
           <span class="font-extrabold text-emerald-700">मासिक बचत: ₹735</span>
         </div>
         <div class="space-y-2 text-xs" id="detectedMedsList">
-          <!-- Injected via JS -->
+          <!-- Injected via JavaScript -->
         </div>
-        <button onclick="applyDetectedMedicines()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl text-xs transition shadow">
-          इन दवाओं का जन औषधि पर्चा बनाएं ➔
+        <button onclick="applyDetectedMedicines()" class="w-full bg-brand-700 hover:bg-brand-800 text-white font-semibold py-3 rounded-xl text-xs sm:text-sm transition shadow">
+          इन दवाओं की जन औषधि सूची देखें ➔
         </button>
       </div>
 
-      <div class="mt-4 pt-3 border-t border-slate-100 flex justify-end">
-        <button onclick="closeScanModal()" class="px-4 py-2 border border-slate-200 hover:bg-slate-50 rounded-xl text-xs font-semibold">
+      <div class="pt-2 flex justify-end">
+        <button onclick="closeScanModal()" class="px-5 py-2.5 border border-slate-200 hover:bg-slate-50 rounded-xl text-xs font-semibold text-slate-700 transition">
           रद्द करें
         </button>
       </div>
+
     </div>
   </div>
 
+  <!-- APPLICATION LOGIC JAVASCRIPT -->
   <script>
-    // Global State
+    // State variables
     let currentCategory = 'All';
     let searchQuery = '';
     let currentLimit = 30;
 
+    // Render medicines into the grid
     function renderMedicines(resetLimit = false) {
       if (resetLimit) {
         currentLimit = 30;
@@ -402,7 +556,7 @@
       const totalResultsCountEl = document.getElementById('totalResultsCount');
 
       if (typeof medicinesData === 'undefined' || !medicinesData || medicinesData.length === 0) {
-        grid.innerHTML = '<div class="col-span-2 text-center py-8 text-slate-500">2,479 दवाइयां लोड हो रही हैं...</div>';
+        grid.innerHTML = '<div class="col-span-full text-center py-12 text-slate-400">2,479 दवाइयां लोड हो रही हैं...</div>';
         return;
       }
 
@@ -455,77 +609,71 @@
         const savingPercent = med.savingPercent || Math.round(((brandP - janP) / (brandP || 1)) * 100);
 
         html += `
-          <div class="bg-white border border-slate-200 hover:border-emerald-500/50 rounded-2xl p-5 shadow-sm transition-all flex flex-col justify-between">
+          <div class="bg-white border border-slate-200/90 hover:border-brand-500/60 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
             <div>
-              <div class="flex items-start justify-between gap-2 mb-2">
-                <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700">
+              <div class="flex items-start justify-between gap-2 mb-2.5">
+                <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700">
                   ${med.category_hi || med.category}
                 </span>
-                <span class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">
+                <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-200">
                   ${savingPercent}% बचत
                 </span>
               </div>
 
-              <div class="font-bold text-base md:text-lg text-slate-900 leading-snug">
+              <div class="font-bold text-base text-slate-900 leading-snug">
                 ${med.brandName}
               </div>
-              <p class="text-xs text-slate-500 mt-0.5">निर्माता: ${med.manufacturer || 'भारतीय फार्मास्युटिकल मानक'}</p>
+              <p class="text-[11px] text-slate-500 mt-0.5">निर्माता: ${med.manufacturer || 'भारतीय फार्मास्युटिकल मानक'}</p>
 
               <!-- Salt Match Box -->
-              <div class="mt-3 p-3 rounded-xl bg-slate-50 border border-slate-100">
-                <div class="text-[11px] font-semibold text-emerald-700 uppercase tracking-wider flex items-center gap-1">
-                  <span>✔</span> सटीक जन औषधि साल्ट:
+              <div class="mt-3.5 p-3 rounded-xl bg-slate-50/80 border border-slate-100">
+                <div class="text-[10px] font-bold text-brand-700 uppercase tracking-wider flex items-center gap-1">
+                  <svg class="w-3 h-3 text-brand-700" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  सटीक जन औषधि साल्ट:
                 </div>
-                <div class="text-xs md:text-sm font-semibold text-slate-900 mt-0.5 leading-snug">
+                <div class="text-xs font-semibold text-slate-900 mt-1 leading-snug">
                   ${med.saltName}
                 </div>
-                <div class="text-[11px] text-slate-500 mt-1">
-                  ड्रग कोड: <code class="bg-white px-1.5 py-0.5 rounded border border-slate-200 font-bold font-mono">${med.drugCode}</code> | यूनिट: ${med.unitSize}
+                <div class="text-[11px] text-slate-500 mt-1.5 flex items-center justify-between">
+                  <span>कोड: <code class="font-mono font-bold text-slate-700 bg-white px-1.5 py-0.5 rounded border border-slate-200">${med.drugCode}</code></span>
+                  <span>पैकिंग: ${med.unitSize}</span>
                 </div>
               </div>
             </div>
 
-            <!-- Price Comparison Section -->
-            <div class="mt-4 pt-3 border-t border-slate-100">
-              <div class="grid grid-cols-2 gap-2 text-center py-1">
-                <div class="p-2 rounded-lg bg-slate-50">
-                  <div class="text-[11px] text-slate-500">ब्रांडेड MRP</div>
-                  <div class="text-sm font-bold text-red-600 line-through">₹${brandP.toFixed(2)}</div>
+            <!-- Price Comparison -->
+            <div class="mt-4 pt-3.5 border-t border-slate-100">
+              <div class="grid grid-cols-2 gap-2 text-center">
+                <div class="p-2 rounded-xl bg-slate-50">
+                  <div class="text-[10px] font-medium text-slate-500">ब्रांडेड MRP</div>
+                  <div class="text-xs sm:text-sm font-semibold text-slate-400 line-through">₹${brandP.toFixed(2)}</div>
                 </div>
-                <div class="p-2 rounded-lg bg-emerald-50 border border-emerald-200">
-                  <div class="text-[11px] text-emerald-800 font-semibold">जन औषधि MRP</div>
-                  <div class="text-base font-extrabold text-emerald-700">₹${janP.toFixed(2)}</div>
+                <div class="p-2 rounded-xl bg-emerald-50/80 border border-emerald-200/80">
+                  <div class="text-[10px] font-bold text-emerald-800">जन औषधि दर</div>
+                  <div class="text-sm sm:text-base font-extrabold text-emerald-700">₹${janP.toFixed(2)}</div>
                 </div>
               </div>
 
-              <div class="text-xs text-center text-emerald-700 font-medium mt-2">
-                प्रति पैक सीधी बचत: ₹${savingAmount}
+              <div class="text-[11px] text-center text-emerald-700 font-semibold mt-2">
+                सीधी बचत: ₹${savingAmount} प्रति पैक
               </div>
 
               <div class="mt-3 flex gap-2">
-                <button onclick="openModal(${med.id})" class="flex-1 bg-slate-100 hover:bg-emerald-600 hover:text-white border border-slate-200 text-slate-800 font-medium py-2 rounded-xl text-xs transition-colors flex items-center justify-center gap-1">
-                  <span>📋</span> पर्चा बनाएं
+                <button onclick="openModal(${med.id})" class="flex-1 bg-brand-50 hover:bg-brand-700 text-brand-800 hover:text-white border border-brand-200 font-semibold py-2 rounded-xl text-xs transition flex items-center justify-center gap-1.5">
+                  <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <span>डिजिटल पर्चा</span>
                 </button>
-                <a href="https://api.whatsapp.com/send?text=${encodeURIComponent('दवा पर ' + savingPercent + '% बचत! ' + med.brandName + ' जो बाज़ार में ₹' + brandP.toFixed(2) + ' की है, जन औषधि केंद्र पर मात्र ₹' + janP.toFixed(2) + ' में मिल रही है! यहाँ देखें: https://jandawa.pages.dev/')}" target="_blank" class="px-3 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 font-bold py-2 rounded-xl text-xs transition-colors flex items-center justify-center gap-1">
-                  <span>💬</span> WhatsApp
+                <a href="https://api.whatsapp.com/send?text=${encodeURIComponent('दवा पर ' + savingPercent + '% बचत! ' + med.brandName + ' जो बाज़ार में ₹' + brandP.toFixed(2) + ' की है, जन औषधि केंद्र पर मात्र ₹' + janP.toFixed(2) + ' में मिल रही है! यहाँ देखें: https://jandawa.pages.dev/')}" target="_blank" class="px-3 bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 border border-slate-200 font-semibold py-2 rounded-xl text-xs transition flex items-center justify-center">
+                  शेयर
                 </a>
               </div>
             </div>
           </div>
         `;
-
-        if ((index + 1) % 6 === 0) {
-          html += `
-            <div class="col-span-1 md:col-span-2 ad-placeholder rounded-2xl p-4 text-center flex flex-col items-center justify-center min-h-[90px] border border-slate-200">
-              <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
-                📢 GOOGLE ADSENSE IN-FEED NATIVE AD UNIT
-              </div>
-              <div class="text-xs text-slate-400">
-                कार्ड्स के बीच में स्वाभाविक विज्ञापन स्लॉट।
-              </div>
-            </div>
-          `;
-        }
       });
 
       grid.innerHTML = html;
@@ -540,14 +688,21 @@
       currentCategory = cat;
       document.querySelectorAll('.cat-pill').forEach(btn => {
         if (btn.getAttribute('data-cat') === cat || (cat === 'All' && btn.innerText.includes('सभी'))) {
-          btn.classList.add('bg-emerald-600', 'text-white');
-          btn.classList.remove('bg-slate-50', 'text-slate-800');
+          btn.classList.add('bg-brand-700', 'text-white');
+          btn.classList.remove('bg-white', 'text-slate-700');
         } else {
-          btn.classList.remove('bg-emerald-600', 'text-white');
-          btn.classList.add('bg-slate-50', 'text-slate-800');
+          btn.classList.remove('bg-brand-700', 'text-white');
+          btn.classList.add('bg-white', 'text-slate-700');
         }
       });
       renderMedicines(true);
+    }
+
+    function quickSearch(val) {
+      document.getElementById('searchInput').value = val;
+      searchQuery = val;
+      renderMedicines(true);
+      window.scrollTo({ top: 320, behavior: 'smooth' });
     }
 
     document.getElementById('searchInput')?.addEventListener('input', (e) => {
@@ -555,31 +710,32 @@
       renderMedicines(true);
     });
 
+    // Modal: Digital Pharmacist Slip
     function openModal(medId) {
       const med = medicinesData.find(m => m.id === medId);
       if (!med) return;
 
       const modalContent = document.getElementById('modalContent');
       modalContent.innerHTML = `
-        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
-          <div class="text-xs text-slate-500">मांगी गई ब्रांडेड दवा:</div>
-          <div class="font-bold text-base text-slate-900">${med.brandName}</div>
+        <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+          <div class="text-[11px] text-slate-500 font-medium">मांगी गई ब्रांडेड दवा:</div>
+          <div class="font-bold text-base text-slate-900 mt-0.5">${med.brandName}</div>
         </div>
 
-        <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200">
-          <div class="text-xs font-semibold text-emerald-800">दुकानदार से यह मांगें:</div>
-          <div class="font-extrabold text-sm md:text-base text-emerald-950 mt-1">
+        <div class="bg-emerald-50/80 p-4 rounded-xl border border-emerald-200">
+          <div class="text-xs font-bold text-emerald-800 uppercase tracking-wide">जन औषधि फार्मासिस्ट को यह मांगें:</div>
+          <div class="font-extrabold text-base text-emerald-950 mt-1">
             ${med.saltName}
           </div>
-          <div class="text-xs text-slate-600 mt-2">
-            <div>• ड्रग कोड: <span class="font-mono font-bold">${med.drugCode}</span></div>
-            <div>• स्ट्रेंथ: <span class="font-semibold">${med.strength}</span></div>
-            <div>• जन औषधि सरकारी दर: <span class="font-bold text-emerald-700">₹${med.janAushadhiPrice.toFixed(2)}</span> (${med.unitSize})</div>
+          <div class="text-xs text-slate-600 mt-3 space-y-1">
+            <div>• ड्रग कोड (Drug Code): <span class="font-mono font-bold text-slate-900">${med.drugCode}</span></div>
+            <div>• स्ट्रेंथ: <span class="font-medium text-slate-800">${med.strength}</span></div>
+            <div>• सरकारी जन औषधि दर: <strong class="text-emerald-700">₹${med.janAushadhiPrice.toFixed(2)}</strong> (${med.unitSize})</div>
           </div>
         </div>
 
-        <div class="text-[11px] text-slate-500 italic">
-          नोट: जन औषधि केंद्र पर ब्रांड नाम से दवा नहीं मिलती, केवल सक्रिय साल्ट नाम (Generic INN) से दवा मिलती है।
+        <div class="text-[11px] text-slate-500 leading-normal">
+          * जन औषधि केंद्र पर दवाएं ब्रांड नाम से नहीं बल्कि सक्रिय रासायनिक साल्ट (Generic INN) के नाम से मिलती हैं।
         </div>
       `;
 
@@ -590,7 +746,7 @@
       document.getElementById('pharmacistModal').classList.add('hidden');
     }
 
-    // AI Prescription Scanner
+    // Modal: AI Prescription Scanner
     function openScanModal() {
       document.getElementById('scanModal').classList.remove('hidden');
       document.getElementById('uploadBox').classList.remove('hidden');
@@ -626,10 +782,10 @@
               <div class="font-bold text-slate-800">${d.name}</div>
               <div class="text-[11px] text-slate-500">ब्रांड: ₹${d.brandPrice} ➔ जन औषधि: ₹${d.janPrice}</div>
             </div>
-            <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">बचत ₹${d.saving}</span>
+            <span class="text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">बचत ₹${d.saving}</span>
           </div>
         `).join('');
-      }, 1500);
+      }, 1400);
     }
 
     function applyDetectedMedicines() {
@@ -637,31 +793,31 @@
       document.getElementById('searchInput').value = 'Telmisartan';
       searchQuery = 'Telmisartan';
       renderMedicines(true);
-      window.scrollTo({ top: 350, behavior: 'smooth' });
+      window.scrollTo({ top: 320, behavior: 'smooth' });
     }
 
-    // Main Tab Switcher
+    // Top Mode Switcher (Medicines vs Kendra Locator)
     function switchMainTab(tab) {
-      const medBtn = document.getElementById('tabMedBtn');
-      const kendraBtn = document.getElementById('tabKendraBtn');
+      const tabMeds = document.getElementById('navTabMeds');
+      const tabKendra = document.getElementById('navTabKendra');
       const medSec = document.getElementById('medicineSection');
       const kendraSec = document.getElementById('kendraSection');
 
       if (tab === 'medicines') {
-        medBtn.className = "px-5 py-2.5 rounded-xl font-bold text-xs md:text-sm bg-emerald-600 text-white shadow-sm transition-all flex items-center gap-2";
-        kendraBtn.className = "px-5 py-2.5 rounded-xl font-bold text-xs md:text-sm bg-white text-slate-700 hover:text-emerald-600 border border-slate-200 shadow-sm transition-all flex items-center gap-2";
+        tabMeds.className = "px-3.5 py-2 rounded-lg transition-colors bg-brand-50 text-brand-800 font-semibold";
+        tabKendra.className = "px-3.5 py-2 rounded-lg transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100 font-semibold";
         medSec.classList.remove('hidden');
         kendraSec.classList.add('hidden');
       } else {
-        kendraBtn.className = "px-5 py-2.5 rounded-xl font-bold text-xs md:text-sm bg-blue-600 text-white shadow-sm transition-all flex items-center gap-2";
-        medBtn.className = "px-5 py-2.5 rounded-xl font-bold text-xs md:text-sm bg-white text-slate-700 hover:text-blue-600 border border-slate-200 shadow-sm transition-all flex items-center gap-2";
+        tabKendra.className = "px-3.5 py-2 rounded-lg transition-colors bg-blue-50 text-blue-700 font-semibold";
+        tabMeds.className = "px-3.5 py-2 rounded-lg transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100 font-semibold";
         medSec.classList.add('hidden');
         kendraSec.classList.remove('hidden');
         renderKendras();
       }
     }
 
-    // KENDRA LOCATOR DATABASE & LOGIC
+    // KENDRA LOCATOR DATA & LOGIC
     const kendrasData = [
       {
         id: 1,
@@ -782,90 +938,6 @@
         contactPerson: "Kavitha R.",
         phone: "+91 98450XXXXX",
         timings: "8:30 AM - 9:30 PM"
-      },
-      {
-        id: 11,
-        storeCode: "PMBJK-WB-021",
-        name: "जन औषधि केंद्र - पार्क सर्कस, कोलकाता",
-        city: "Kolkata",
-        state: "West Bengal",
-        pincode: "700017",
-        address: "Near Chittaranjan National Medical College, Park Circus, Kolkata",
-        contactPerson: "Subhashis Roy",
-        phone: "+91 98300XXXXX",
-        timings: "9:00 AM - 9:00 PM"
-      },
-      {
-        id: 12,
-        storeCode: "PMBJK-TG-044",
-        name: "जन औषधि केंद्र - सिकंदराबाद, हैदराबाद",
-        city: "Hyderabad",
-        state: "Telangana",
-        pincode: "500003",
-        address: "Opp. Gandhi Hospital, Musheerabad Main Road, Secunderabad",
-        contactPerson: "Venkat Rao",
-        phone: "+91 98480XXXXX",
-        timings: "24x7 Emergency"
-      },
-      {
-        id: 13,
-        storeCode: "PMBJK-GJ-088",
-        name: "जन औषधि केंद्र - नवरंगपुरा, अहमदाबाद",
-        city: "Ahmedabad",
-        state: "Gujarat",
-        pincode: "380009",
-        address: "Near Navrangpura Bus Stand, CG Road, Ahmedabad",
-        contactPerson: "Bhavik Patel",
-        phone: "+91 98980XXXXX",
-        timings: "9:00 AM - 9:30 PM"
-      },
-      {
-        id: 14,
-        storeCode: "PMBJK-MH-152",
-        name: "जन औषधि केंद्र - कोथरूड, पुणे",
-        city: "Pune",
-        state: "Maharashtra",
-        pincode: "411038",
-        address: "Near Karve Statue, Karve Road, Kothrud, Pune",
-        contactPerson: "Nilesh Kulkarni",
-        phone: "+91 98220XXXXX",
-        timings: "9:00 AM - 9:00 PM"
-      },
-      {
-        id: 15,
-        storeCode: "PMBJK-CH-005",
-        name: "जन औषधि केंद्र - सेक्टर 17, चंडीगढ़",
-        city: "Chandigarh",
-        state: "Chandigarh",
-        pincode: "160017",
-        address: "Bridge Market, Near Post Office, Sector 17, Chandigarh",
-        contactPerson: "Harpreet Singh",
-        phone: "+91 98140XXXXX",
-        timings: "9:00 AM - 8:30 PM"
-      },
-      {
-        id: 16,
-        storeCode: "PMBJK-MP-042",
-        name: "जन औषधि केंद्र - एमपी नगर, भोपाल",
-        city: "Bhopal",
-        state: "Madhya Pradesh",
-        pincode: "462011",
-        address: "Zone-II, MP Nagar, Near DB Mall, Bhopal",
-        contactPerson: "Deepak Sharma",
-        phone: "+91 98270XXXXX",
-        timings: "9:00 AM - 9:30 PM"
-      },
-      {
-        id: 17,
-        storeCode: "PMBJK-UP-210",
-        name: "जन औषधि केंद्र - बीएचयू लंका, वाराणसी",
-        city: "Varanasi",
-        state: "Uttar Pradesh",
-        pincode: "221005",
-        address: "Near Sir Sunderlal Hospital, BHU Gate, Lanka, Varanasi",
-        contactPerson: "Satish Mishra",
-        phone: "+91 94150XXXXX",
-        timings: "24x7 Emergency"
       }
     ];
 
@@ -888,23 +960,21 @@
       let html = '';
 
       if (filtered.length === 0) {
-        // Universal Smart Fallback for any India Pincode/City!
         const mapsUrl = `https://www.google.com/maps/search/Pradhan+Mantri+Jan+Aushadhi+Kendra+near+${encodeURIComponent(kendraSearchQuery)}`;
         html = `
-          <div class="col-span-1 md:col-span-2 bg-white border border-blue-200 rounded-2xl p-6 text-center space-y-3">
-            <div class="text-3xl">📍</div>
+          <div class="col-span-full bg-white border border-slate-200 rounded-2xl p-8 text-center space-y-3">
             <h3 class="font-bold text-base text-slate-800">
               '${kendraSearchQuery}' के लिए स्थानीय केंद्र खोजें
             </h3>
             <p class="text-xs text-slate-500 max-w-md mx-auto">
-              इस पिनकोड/शहर के सभी नजदीकी जन औषधि केंद्र सीधे गूगल मैप्स या सरकारी पोर्टल पर उपलब्ध हैं:
+              इस पिनकोड/शहर के सभी नजदीकी जन औषधि केंद्र सीधे गूगल मैप्स या आधिकारिक सरकारी पोर्टल पर उपलब्ध हैं:
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-3 pt-2">
-              <a href="${mapsUrl}" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition shadow flex items-center justify-center gap-1.5">
-                <span>🗺️</span> गूगल मैप्स पर '${kendraSearchQuery}' में केंद्र देखें ➔
+              <a href="${mapsUrl}" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2.5 rounded-xl text-xs transition shadow flex items-center justify-center gap-1.5">
+                <span>गूगल मैप्स पर केंद्र देखें ➔</span>
               </a>
               <a href="https://janaushadhi.gov.in/KendraDetails.aspx" target="_blank" class="border border-slate-300 hover:bg-slate-50 font-semibold px-4 py-2.5 rounded-xl text-xs text-slate-700">
-                आधिकारिक सरकारी Sugam डायरेक्टरी देखें
+                आधिकारिक सरकारी Sugam पोर्टल
               </a>
             </div>
           </div>
@@ -916,17 +986,17 @@
             <div class="bg-white border border-slate-200 hover:border-blue-500/50 rounded-2xl p-5 shadow-sm transition-all flex flex-col justify-between">
               <div>
                 <div class="flex items-center justify-between gap-2 mb-2">
-                  <span class="text-xs font-mono font-bold px-2.5 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200">
+                  <span class="text-[11px] font-mono font-bold px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200">
                     ${k.storeCode}
                   </span>
-                  <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">
+                  <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-emerald-50 text-emerald-800">
                     ${k.timings}
                   </span>
                 </div>
 
-                <h3 class="font-bold text-base text-slate-900">${k.name}</h3>
-                <p class="text-xs text-slate-600 mt-1 flex items-start gap-1">
-                  <span>📍</span> <span>${k.address} - <strong class="text-slate-800">${k.pincode}</strong></span>
+                <h3 class="font-bold text-sm sm:text-base text-slate-900">${k.name}</h3>
+                <p class="text-xs text-slate-600 mt-1">
+                  ${k.address} - <strong class="text-slate-800">${k.pincode}</strong>
                 </p>
 
                 <div class="mt-3 p-2.5 rounded-xl bg-slate-50 border border-slate-100 text-xs text-slate-600">
@@ -936,11 +1006,11 @@
               </div>
 
               <div class="mt-4 pt-3 border-t border-slate-100 flex gap-2">
-                <a href="${gmapsLink}" target="_blank" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-xl text-xs transition text-center shadow flex items-center justify-center gap-1.5">
-                  <span>🗺️</span> Google Maps पर रास्ता देखें
+                <a href="${gmapsLink}" target="_blank" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-xl text-xs transition text-center shadow flex items-center justify-center gap-1.5">
+                  <span>Google Maps रास्ता</span>
                 </a>
-                <a href="tel:${k.phone}" class="px-3.5 py-2.5 border border-slate-200 hover:bg-slate-50 rounded-xl text-xs font-bold text-slate-700 flex items-center justify-center">
-                  📞 कॉल
+                <a href="tel:${k.phone}" class="px-3.5 py-2.5 border border-slate-200 hover:bg-slate-50 rounded-xl text-xs font-semibold text-slate-700 flex items-center justify-center">
+                  कॉल
                 </a>
               </div>
             </div>
@@ -980,16 +1050,16 @@
       );
     }
 
-    // Interactive Savings Estimator Logic
+    // Savings Calculator Logic
     let calcMemberCount = 2;
 
     function setCalcMembers(count) {
       calcMemberCount = count;
       document.querySelectorAll('.calc-mem-btn').forEach((btn, idx) => {
         if (idx + 1 === count) {
-          btn.className = "calc-mem-btn active flex-1 py-2 rounded-lg border border-slate-200 bg-emerald-600 text-white font-bold";
+          btn.className = "calc-mem-btn active py-2.5 rounded-xl border border-brand-700 bg-brand-700 text-white font-semibold text-center transition";
         } else {
-          btn.className = "calc-mem-btn flex-1 py-2 rounded-lg border border-slate-200 bg-white hover:border-emerald-500 font-bold";
+          btn.className = "calc-mem-btn py-2.5 rounded-xl border border-slate-200 bg-white hover:border-brand-500 font-semibold text-center transition";
         }
       });
       recalculateSavings();
@@ -1008,7 +1078,14 @@
       document.getElementById('calcMonthlySaving').innerText = 'मासिक बचत: ₹' + Math.round(totalMonthly).toLocaleString('en-IN') + ' (लगभग 80% बचत)';
     }
 
-    renderMedicines();
+    // Initialize display on load
+    window.addEventListener('DOMContentLoaded', () => {
+      renderMedicines();
+    });
+    // In case DOM is already ready
+    if (document.readyState !== 'loading') {
+      renderMedicines();
+    }
   </script>
 </body>
 </html>
