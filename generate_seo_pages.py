@@ -1,6 +1,6 @@
 """
-NewSalt Programmatic SEO Page Generator & Sitemap Updater
-Reads medicines_master.json and generates high-ranking HTML pages for each medicine
+JanDawa Programmatic SEO Page Generator & Sitemap Updater
+Reads medicines_master.json and generates high-ranking HTML pages for top medicines
 with Google Rich Snippets (Schema.org JSON-LD), AdSense slots, Pharmacist slip,
 and automatically updates sitemap.xml!
 """
@@ -12,39 +12,47 @@ SCRATCH_DIR = os.path.dirname(__file__)
 MASTER_JSON_PATH = os.path.join(SCRATCH_DIR, "medicines_master.json")
 OUTPUT_DIR = os.path.join(SCRATCH_DIR, "substitute")
 SITEMAP_PATH = os.path.join(SCRATCH_DIR, "sitemap.xml")
+
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 def generate_page(med):
-    slug = med["slug"]
-    brand_name = med["brand_name"]
-    alt_brands = ", ".join(med["alternative_brands"])
-    active_salt = med["active_salt"]
-    strength = med["strength"]
-    category = med["category"]
-    category_hi = med["category_hi"]
-    brand_mrp = f"{med['brand_mrp']:.2f}"
-    unit_size = med["unit_size"]
-    jan = med["jan_aushadhi"]
-    jan_name = jan["generic_name"]
-    jan_code = jan["drug_code"]
-    jan_mrp = f"{jan['mrp']:.2f}"
-    savings = med["savings"]
-    saving_pct = savings["percentage"]
-    saving_amt = f"{savings['amount']:.2f}"
-    yearly_saving = f"{savings['yearly_saving']:.2f}"
+    slug = med.get("slug", "med-" + str(med.get("id", 1)))
+    brand_name = med.get("brandName") or med.get("brand_name", "Generic Medicine")
+    alt_brands = brand_name
+    active_salt = med.get("activeSalt") or med.get("active_salt", brand_name)
+    strength = med.get("strength", "10s")
+    category = med.get("category", "General")
+    category_hi = med.get("category_hi", "सामान्य")
+    manufacturer = med.get("manufacturer", "भारतीय फार्मास्युटिकल मानक")
+    dosage_form = "Tablets / Capsules"
+    
+    b_mrp = float(med.get("brandPrice") or med.get("brand_mrp", 50))
+    brand_mrp = f"{b_mrp:.2f}"
+    unit_size = med.get("unitSize") or med.get("unit_size", "10s")
+    
+    jan_name = med.get("genericName") or med.get("saltName", brand_name)
+    jan_code = med.get("drugCode") or "PMBJP00001"
+    j_mrp = float(med.get("janAushadhiPrice") or 10.0)
+    jan_mrp = f"{j_mrp:.2f}"
+    
+    saving_pct = med.get("savingPercent", 80)
+    s_amt = b_mrp - j_mrp
+    saving_amt = f"{s_amt:.2f}"
+    yearly_saving_num = s_amt * 12
+    yearly_saving = f"{yearly_saving_num:.2f}"
 
     html_content = f"""<!DOCTYPE html>
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{brand_name} Generic Substitute & Jan Aushadhi Price | {active_salt} - NewSalt</title>
+  <title>{brand_name} Generic Substitute & Jan Aushadhi Price | {active_salt} - JanDawa</title>
   <meta name="description" content="{brand_name} का सस्ता जेनेरिक विकल्प: {jan_name}। जन औषधि केंद्र पर कीमत मात्र ₹{jan_mrp} (सीधी {saving_pct}% की बचत)। साल्ट कंपोजिशन, उपयोग और फार्मेसी पर्चा देखें।">
-  <meta name="keywords" content="{brand_name} substitute, {brand_name} generic alternative, {active_salt} price, jan aushadhi {brand_name}, {alt_brands}">
+  <meta name="keywords" content="{brand_name} substitute, {brand_name} generic alternative, {active_salt} price, jan aushadhi {brand_name}">
   
   <!-- Open Graph for WhatsApp / Social Previews -->
-  <meta property="og:title" content="{brand_name} की जगह जन औषधि में कौन सी दवा लें? ₹{jan_mrp} में उपलब्ध">
-  <meta property="og:description" content="ब्रांडेड कीमत ₹{brand_mrp} के मुकाबले जन औषधि पर मात्र ₹{jan_mrp}। सालाना बचत ₹{yearly_saving}!">
+  <meta property="og:title" content="{brand_name} की जगह जन औषधि की यह दवा लें, बचेंगे ₹{saving_amt}">
+  <meta property="og:description" content="{brand_name} (₹{brand_mrp}) के बदले जन औषधि केंद्र पर {jan_name} मात्र ₹{jan_mrp} में उपलब्ध है।">
   <meta property="og:type" content="article">
 
   <!-- Tailwind CSS -->
@@ -59,7 +67,7 @@ def generate_page(med):
         "@type": "Drug",
         "name": "{brand_name}",
         "activeIngredient": "{active_salt}",
-        "dosageForm": "{med['dosage_form']}",
+        "dosageForm": "{dosage_form}",
         "category": "{category}",
         "proprietaryName": "{brand_name}",
         "nonProprietaryName": "{jan_name}"
@@ -80,7 +88,7 @@ def generate_page(med):
             "name": "जन औषधि केंद्र पर {brand_name} के विकल्प की कीमत क्या है?",
             "acceptedAnswer": {{
               "@type": "Answer",
-              "text": "जन औषधि केंद्र पर यह दवा {jan_name} (ड्रग कोड: {jan_code}) के नाम से मात्र ₹{jan_mrp} प्रति {jan['unit_size']} में मिलती है, जो ब्रांडेड दवा से {saving_pct}% सस्ती है।"
+              "text": "जन औषधि केंद्र पर यह दवा {jan_name} (ड्रग कोड: {jan_code}) के नाम से मात्र ₹{jan_mrp} प्रति {unit_size} में मिलती है, जो ब्रांडेड दवा से {saving_pct}% सस्ती है।"
             }}
           }}
         ]
@@ -122,7 +130,7 @@ def generate_page(med):
         <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
           <div class="text-xs font-semibold text-slate-500 uppercase">ब्रांडेड दवा (Market Brand)</div>
           <h2 class="text-xl font-bold text-slate-800 mt-1">{brand_name}</h2>
-          <p class="text-xs text-slate-500">निर्माता: {med['manufacturer']}</p>
+          <p class="text-xs text-slate-500">निर्माता: {manufacturer}</p>
           <div class="mt-4 flex items-baseline gap-2">
             <span class="text-2xl font-bold text-red-600 line-through">₹{brand_mrp}</span>
             <span class="text-xs text-slate-500">({unit_size})</span>
@@ -142,7 +150,7 @@ def generate_page(med):
           </div>
           <div class="mt-4 flex items-baseline gap-2">
             <span class="text-3xl font-black text-emerald-700">₹{jan_mrp}</span>
-            <span class="text-xs text-emerald-800 font-semibold">({jan['unit_size']})</span>
+            <span class="text-xs text-emerald-800 font-semibold">({unit_size})</span>
           </div>
           <p class="text-xs font-semibold text-emerald-800 mt-1">
             प्रति पैक बचत: ₹{saving_amt} | <strong>सालाना बचत: ₹{yearly_saving}</strong>
@@ -155,88 +163,58 @@ def generate_page(med):
         <button onclick="window.print()" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl text-sm transition shadow flex items-center justify-center gap-2">
           <span>📋</span> जन औषधि केंद्र के लिए पर्चा प्रिंट करें
         </button>
-        <a href="https://janaushadhi.gov.in" target="_blank" class="px-5 py-3 border border-slate-300 hover:bg-slate-50 rounded-xl text-sm font-semibold text-slate-700 text-center">
-          📍 नजदीकी केंद्र खोजें
+        <a href="https://jandawa.pages.dev" class="px-5 py-3 border border-slate-300 hover:bg-slate-50 rounded-xl text-sm font-semibold text-slate-700 text-center">
+          अन्य दवाएं खोजें
         </a>
       </div>
     </div>
 
-    <!-- In-Article Ad Slot -->
-    <div class="p-4 bg-white border border-dashed border-slate-300 rounded-xl text-center text-xs text-slate-400">
-      [ Google AdSense In-Article Native Ad Slot ]
-    </div>
-
-    <!-- Medicine FAQs Section -->
+    <!-- FAQ Section for SEO -->
     <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4">
-      <h3 class="text-lg font-bold text-slate-900 border-b border-slate-100 pb-2">
-        {brand_name} के बारे में अक्सर पूछे जाने वाले सवाल (FAQs)
-      </h3>
-      <div>
-        <h4 class="font-bold text-sm text-slate-800">1. क्या {brand_name} और जन औषधि की दवा में कोई अंतर है?</h4>
-        <p class="text-xs md:text-sm text-slate-600 mt-1">
-          नहीं, दोनों में सक्रिय साल्ट <strong>{active_salt} ({strength})</strong> बिल्कुल समान है। भारत सरकार द्वारा प्रमाणित NABL लैब्स में जांच के बाद ही इसे उपलब्ध कराया जाता है।
-        </p>
-      </div>
-      <div>
-        <h4 class="font-bold text-sm text-slate-800">2. जन औषधि केंद्र पर मैं यह दवा कैसे मांगूं?</h4>
-        <p class="text-xs md:text-sm text-slate-600 mt-1">
-          स्टोर संचालक को बताएं कि आपको <strong>{active_salt} {strength}</strong> (ड्रग कोड: <code>{jan_code}</code>) चाहिए।
-        </p>
+      <h3 class="text-lg font-bold text-slate-900">अक्सर पूछे जाने वाले सवाल (FAQs)</h3>
+      
+      <div class="space-y-3 text-sm">
+        <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+          <p class="font-bold text-slate-800">क्या जन औषधि की {jan_name} ब्रांडेड {brand_name} जितनी ही असरदार है?</p>
+          <p class="text-slate-600 mt-1">हाँ! दोनों दवाओं में एक ही सक्रिय रासायनिक साल्ट ({active_salt}) और क्षमता ({strength}) होती है। भारत सरकार की NABL मान्यता प्राप्त लैब में जांच के बाद ही जन औषधि केंद्र पर दवाएं आती हैं।</p>
+        </div>
+
+        <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+          <p class="font-bold text-slate-800">यह दवा जन औषधि केंद्र पर कैसे मांगें?</p>
+          <p class="text-slate-600 mt-1">दुकानदार को ब्रांड का नाम न बोलकर साल्ट का नाम <strong>"{jan_name}"</strong> या ड्रग कोड <strong>"{jan_code}"</strong> बताएं।</p>
+        </div>
       </div>
     </div>
-
-    <!-- Disclaimer -->
-    <footer class="p-4 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-900">
-      <strong>⚠️ मेडिकल अस्वीकरण:</strong> यह जानकारी केवल जन-जागरूकता के लिए है। किसी भी दवा को बदलने से पहले अपने डॉक्टर से सलाह अवश्य लें।
-    </footer>
   </main>
+
+  <!-- Footer -->
+  <footer class="max-w-4xl mx-auto mt-12 pt-6 border-t border-slate-200 text-center text-xs text-slate-400 space-y-2">
+    <div>© 2026 JanDawa. 100% नि:शुल्क जनहित स्वास्थ्य सेवा।</div>
+    <div>डेटा स्रोत: BPPI (Pharmaceuticals & Medical Devices Bureau of India)</div>
+  </footer>
+
 </body>
-</html>
-"""
+</html>"""
+
     file_path = os.path.join(OUTPUT_DIR, f"{slug}.html")
     with open(file_path, "w", encoding="utf-8") as f:
         f.write(html_content)
+    
     return slug
 
 def update_sitemap(slugs):
+    base_url = "https://jandawa.pages.dev"
     sitemap_lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-        '  <url>',
-        '    <loc>https://jandawa.pages.dev/</loc>',
-        '    <lastmod>2026-11-08</lastmod>',
-        '    <changefreq>daily</changefreq>',
-        '    <priority>1.0</priority>',
-        '  </url>',
-        '  <url>',
-        '    <loc>https://jandawa.pages.dev/about.html</loc>',
-        '    <lastmod>2026-11-08</lastmod>',
-        '    <changefreq>monthly</changefreq>',
-        '    <priority>0.5</priority>',
-        '  </url>',
-        '  <url>',
-        '    <loc>https://jandawa.pages.dev/disclaimer.html</loc>',
-        '    <lastmod>2026-11-08</lastmod>',
-        '    <changefreq>monthly</changefreq>',
-        '    <priority>0.5</priority>',
-        '  </url>',
-        '  <url>',
-        '    <loc>https://jandawa.pages.dev/privacy-policy.html</loc>',
-        '    <lastmod>2026-11-08</lastmod>',
-        '    <changefreq>monthly</changefreq>',
-        '    <priority>0.5</priority>',
-        '  </url>'
+        f'  <url><loc>{base_url}/</loc><priority>1.0</priority><changefreq>daily</changefreq></url>',
+        f'  <url><loc>{base_url}/about.html</loc><priority>0.5</priority></url>',
+        f'  <url><loc>{base_url}/privacy-policy.html</loc><priority>0.5</priority></url>',
+        f'  <url><loc>{base_url}/disclaimer.html</loc><priority>0.5</priority></url>'
     ]
 
     for slug in slugs:
-        sitemap_lines.extend([
-            '  <url>',
-            f'    <loc>https://jandawa.pages.dev/substitute/{slug}.html</loc>',
-            '    <lastmod>2026-11-08</lastmod>',
-            '    <changefreq>weekly</changefreq>',
-            '    <priority>0.9</priority>',
-            '  </url>'
-        ])
+        sitemap_lines.append(f'  <url><loc>{base_url}/substitute/{slug}.html</loc><priority>0.8</priority></url>')
 
     sitemap_lines.append('</urlset>')
 
@@ -252,7 +230,8 @@ def main():
         medicines = json.load(f)
 
     generated = []
-    for med in medicines:
+    # Generate top 100 high volume medicines for SEO
+    for med in medicines[:100]:
         slug = generate_page(med)
         generated.append(slug)
 

@@ -20,6 +20,7 @@
       border: 1px dashed rgba(150, 150, 150, 0.4);
     }
   </style>
+  <script src="medicines_data.js"></script>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased min-h-screen pb-24 p-3 md:p-8">
 
@@ -86,23 +87,40 @@
         <!-- Category Filter Pills -->
         <div class="flex items-center gap-2 overflow-x-auto pb-1 text-xs md:text-sm scrollbar-none">
           <span class="text-slate-500 font-medium shrink-0">कैटेगरी:</span>
-          <button onclick="filterCategory('All')" class="cat-pill active px-3.5 py-1.5 rounded-lg border border-slate-200 bg-emerald-600 text-white font-medium shrink-0 transition-colors">सभी (All)</button>
-          <button onclick="filterCategory('Diabetes')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">मधुमेह (Diabetes)</button>
-          <button onclick="filterCategory('Cardiovascular')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">बीपी व दिल (BP & Heart)</button>
-          <button onclick="filterCategory('Gastrointestinal')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">गैस व पेट (Acidity)</button>
-          <button onclick="filterCategory('Anti-Infective')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">एंटीबायोटिक (Antibiotic)</button>
-          <button onclick="filterCategory('Pain Relief')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">दर्द व बुखार (Pain/Fever)</button>
-          <button onclick="filterCategory('Respiratory')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">सांस व दमा (Asthma)</button>
-          <button onclick="filterCategory('Vitamins')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">विटामिन्स (Vitamins)</button>
-          <button onclick="filterCategory('Thyroid')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">थायरॉइड (Thyroid)</button>
-          <button onclick="filterCategory('Neuro')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">न्यूरो (Neuro)</button>
-          <button onclick="filterCategory('Surgical')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">सर्जिकल व उपकरण (Devices)</button>
+          <button data-cat="All" onclick="filterCategory('All')" class="cat-pill active px-3.5 py-1.5 rounded-lg border border-slate-200 bg-emerald-600 text-white font-medium shrink-0 transition-colors">सभी (All - 2,479)</button>
+          <button data-cat="Cardiovascular" onclick="filterCategory('Cardiovascular')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">बीपी व दिल (Cardio)</button>
+          <button data-cat="Diabetes" onclick="filterCategory('Diabetes')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">मधुमेह (Diabetes)</button>
+          <button data-cat="Gastrointestinal" onclick="filterCategory('Gastrointestinal')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">गैस व पेट (Acidity)</button>
+          <button data-cat="Antibiotics" onclick="filterCategory('Antibiotics')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">एंटीबायोटिक (Antibiotic)</button>
+          <button data-cat="Pain Relief" onclick="filterCategory('Pain Relief')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">दर्द व बुखार (Pain/Fever)</button>
+          <button data-cat="Respiratory" onclick="filterCategory('Respiratory')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">सांस व दमा (Asthma)</button>
+          <button data-cat="Vitamins" onclick="filterCategory('Vitamins')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">विटामिन्स (Vitamins)</button>
+          <button data-cat="Neuro" onclick="filterCategory('Neuro')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">न्यूरो (Neuro)</button>
+          <button data-cat="Dermatology" onclick="filterCategory('Dermatology')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">त्वचा व फंगल (Skin)</button>
+          <button data-cat="Surgical" onclick="filterCategory('Surgical')" class="cat-pill px-3.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-emerald-500 font-medium shrink-0 transition-colors">सर्जिकल व उपकरण (Devices)</button>
+        </div>
+      </div>
+
+      <!-- Results Status Bar -->
+      <div class="flex items-center justify-between text-xs text-slate-600 px-1 py-1 bg-emerald-50/60 rounded-xl px-3 border border-emerald-100">
+        <div>
+          प्रदर्शित दवाएं: <span id="showingCount" class="font-extrabold text-emerald-800">30</span> (कुल <span id="totalResultsCount" class="font-extrabold text-slate-900">2,479</span> परिणाम)
+        </div>
+        <div class="text-[11px] text-emerald-700 font-semibold flex items-center gap-1">
+          <span>✔</span> 100% सरकारी PMBJP कैटलॉग (2,479+ उत्पाद)
         </div>
       </div>
 
       <!-- Live Medicine Cards Grid -->
       <div id="medicineGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <!-- Injected via JS -->
+      </div>
+
+      <!-- Load More Button -->
+      <div id="loadMoreContainer" class="text-center pt-2">
+        <button id="loadMoreBtn" onclick="loadMoreMedicines()" class="bg-white hover:bg-emerald-50 border-2 border-emerald-600 text-emerald-700 font-bold px-8 py-3.5 rounded-xl text-sm transition shadow-sm hover:shadow flex items-center gap-2 mx-auto">
+          <span>⏬</span> और दवाएं देखें (अगली 30 दवाएं लोड करें)
+        </button>
       </div>
 
       <!-- Empty State -->
@@ -367,652 +385,102 @@
   </div>
 
   <script>
-    const medicinesData = [
-  {
-    "id": 1,
-    "slug": "telma-40",
-    "brandName": "Telma 40 / Telmikind 40",
-    "manufacturer": "Glenmark Pharmaceuticals",
-    "saltName": "Telmisartan Tablets IP 40mg",
-    "activeSalt": "Telmisartan",
-    "strength": "40 mg",
-    "category": "Cardiovascular",
-    "unitSize": "10 Tablets (Strip)",
-    "brandPrice": 115.0,
-    "janAushadhiPrice": 12.5,
-    "drugCode": "PMBJP00142"
-  },
-  {
-    "id": 2,
-    "slug": "telma-am",
-    "brandName": "Telma AM / Telmikind-AM",
-    "manufacturer": "Glenmark Pharmaceuticals",
-    "saltName": "Telmisartan 40mg + Amlodipine 5mg Tablets",
-    "activeSalt": "Telmisartan + Amlodipine",
-    "strength": "40 mg + 5 mg",
-    "category": "Cardiovascular",
-    "unitSize": "10 Tablets (Strip)",
-    "brandPrice": 210.0,
-    "janAushadhiPrice": 24.0,
-    "drugCode": "PMBJP00390"
-  },
-  {
-    "id": 3,
-    "slug": "amlong-5",
-    "brandName": "Amlong 5 / Stamlo 5",
-    "manufacturer": "Micro Labs",
-    "saltName": "Amlodipine Tablets IP 5mg",
-    "activeSalt": "Amlodipine Besylate",
-    "strength": "5 mg",
-    "category": "Cardiovascular",
-    "unitSize": "15 Tablets (Strip)",
-    "brandPrice": 42.0,
-    "janAushadhiPrice": 5.5,
-    "drugCode": "PMBJP00008"
-  },
-  {
-    "id": 4,
-    "slug": "atorva-10",
-    "brandName": "Atorva 10 / Storvas 10",
-    "manufacturer": "Zydus Cadila",
-    "saltName": "Atorvastatin Calcium Tablets IP 10mg",
-    "activeSalt": "Atorvastatin Calcium",
-    "strength": "10 mg",
-    "category": "Cardiovascular",
-    "unitSize": "10 Tablets (Strip)",
-    "brandPrice": 95.0,
-    "janAushadhiPrice": 11.5,
-    "drugCode": "PMBJP00112"
-  },
-  {
-    "id": 5,
-    "slug": "rosuvas-10",
-    "brandName": "Rosuvas 10 / Rozavel 10",
-    "manufacturer": "Sun Pharmaceutical",
-    "saltName": "Rosuvastatin Tablets IP 10mg",
-    "activeSalt": "Rosuvastatin Calcium",
-    "strength": "10 mg",
-    "category": "Cardiovascular",
-    "unitSize": "10 Tablets (Strip)",
-    "brandPrice": 215.0,
-    "janAushadhiPrice": 24.0,
-    "drugCode": "PMBJP00892"
-  },
-  {
-    "id": 6,
-    "slug": "clopilet-75",
-    "brandName": "Clopilet 75 / Deplatt 75",
-    "manufacturer": "Sun Pharmaceutical",
-    "saltName": "Clopidogrel Tablets IP 75mg",
-    "activeSalt": "Clopidogrel",
-    "strength": "75 mg",
-    "category": "Cardiovascular",
-    "unitSize": "10 Tablets (Strip)",
-    "brandPrice": 125.0,
-    "janAushadhiPrice": 19.5,
-    "drugCode": "PMBJP00210"
-  },
-  {
-    "id": 7,
-    "slug": "ecosprin-75",
-    "brandName": "Ecosprin 75 / Disprin",
-    "manufacturer": "USV Ltd",
-    "saltName": "Aspirin Gastro-resistant Tablets IP 75mg",
-    "activeSalt": "Aspirin (Acetylsalicylic Acid)",
-    "strength": "75 mg",
-    "category": "Cardiovascular",
-    "unitSize": "14 Tablets (Strip)",
-    "brandPrice": 18.0,
-    "janAushadhiPrice": 4.5,
-    "drugCode": "PMBJP00045"
-  },
-  {
-    "id": 8,
-    "slug": "betaloc-25",
-    "brandName": "Betaloc 25 / Metolar XR 25",
-    "manufacturer": "AstraZeneca",
-    "saltName": "Metoprolol Succinate Extended Release Tablets 25mg",
-    "activeSalt": "Metoprolol Succinate",
-    "strength": "25 mg (ER)",
-    "category": "Cardiovascular",
-    "unitSize": "20 Tablets (Strip)",
-    "brandPrice": 180.0,
-    "janAushadhiPrice": 18.0,
-    "drugCode": "PMBJP00450"
-  },
-  {
-    "id": 9,
-    "slug": "glycomet-500",
-    "brandName": "Glycomet 500 / Gluconorm 500",
-    "manufacturer": "USV Ltd",
-    "saltName": "Metformin Hydrochloride Sustained Release Tablets IP 500mg",
-    "activeSalt": "Metformin Hydrochloride",
-    "strength": "500 mg (SR)",
-    "category": "Diabetes",
-    "unitSize": "10 Tablets (Strip)",
-    "brandPrice": 28.0,
-    "janAushadhiPrice": 5.5,
-    "drugCode": "PMBJP00034"
-  },
-  {
-    "id": 10,
-    "slug": "amaryl-m-1",
-    "brandName": "Amaryl M 1 / Glycomet-GP 1",
-    "manufacturer": "Sanofi India",
-    "saltName": "Glimepiride 1mg + Metformin Hydrochloride 500mg (SR) Tablets",
-    "activeSalt": "Glimepiride + Metformin",
-    "strength": "1 mg + 500 mg",
-    "category": "Diabetes",
-    "unitSize": "10 Tablets (Strip)",
-    "brandPrice": 85.0,
-    "janAushadhiPrice": 17.0,
-    "drugCode": "PMBJP00421"
-  },
-  {
-    "id": 11,
-    "slug": "amaryl-m-2",
-    "brandName": "Amaryl M 2 / Glycomet-GP 2",
-    "manufacturer": "Sanofi India",
-    "saltName": "Glimepiride 2mg + Metformin Hydrochloride 500mg (SR) Tablets",
-    "activeSalt": "Glimepiride + Metformin",
-    "strength": "2 mg + 500 mg",
-    "category": "Diabetes",
-    "unitSize": "10 Tablets (Strip)",
-    "brandPrice": 135.0,
-    "janAushadhiPrice": 19.5,
-    "drugCode": "PMBJP00422"
-  },
-  {
-    "id": 12,
-    "slug": "januvia-100",
-    "brandName": "Januvia 100 / Istavel 100",
-    "manufacturer": "MSD Pharmaceuticals",
-    "saltName": "Sitagliptin Phosphate Tablets IP 100mg",
-    "activeSalt": "Sitagliptin Phosphate",
-    "strength": "100 mg",
-    "category": "Diabetes",
-    "unitSize": "10 Tablets (Strip)",
-    "brandPrice": 360.0,
-    "janAushadhiPrice": 58.0,
-    "drugCode": "PMBJP01530"
-  },
-  {
-    "id": 13,
-    "slug": "ziten-20",
-    "brandName": "Ziten 20 / Dynaglipt 20",
-    "manufacturer": "Glenmark Pharmaceuticals",
-    "saltName": "Teneligliptin Tablets IP 20mg",
-    "activeSalt": "Teneligliptin Hydrobromide",
-    "strength": "20 mg",
-    "category": "Diabetes",
-    "unitSize": "15 Tablets (Strip)",
-    "brandPrice": 150.0,
-    "janAushadhiPrice": 26.0,
-    "drugCode": "PMBJP01210"
-  },
-  {
-    "id": 14,
-    "slug": "forxiga-10",
-    "brandName": "Forxiga 10 / Oxra 10",
-    "manufacturer": "AstraZeneca",
-    "saltName": "Dapagliflozin Tablets 10mg",
-    "activeSalt": "Dapagliflozin",
-    "strength": "10 mg",
-    "category": "Diabetes",
-    "unitSize": "14 Tablets (Strip)",
-    "brandPrice": 580.0,
-    "janAushadhiPrice": 65.0,
-    "drugCode": "PMBJP01740"
-  },
-  {
-    "id": 15,
-    "slug": "volibo-02",
-    "brandName": "Volibo 0.2 / PPG 0.2",
-    "manufacturer": "Sun Pharmaceutical",
-    "saltName": "Voglibose Tablets IP 0.2mg",
-    "activeSalt": "Voglibose",
-    "strength": "0.2 mg",
-    "category": "Diabetes",
-    "unitSize": "10 Tablets (Strip)",
-    "brandPrice": 95.0,
-    "janAushadhiPrice": 12.0,
-    "drugCode": "PMBJP00318"
-  },
-  {
-    "id": 16,
-    "slug": "pan-40",
-    "brandName": "Pan 40 / Pantocid 40",
-    "manufacturer": "Alkem Laboratories",
-    "saltName": "Pantoprazole Gastro-Resistant Tablets IP 40mg",
-    "activeSalt": "Pantoprazole",
-    "strength": "40 mg",
-    "category": "Gastrointestinal",
-    "unitSize": "10 Tablets (Strip)",
-    "brandPrice": 155.0,
-    "janAushadhiPrice": 18.0,
-    "drugCode": "PMBJP00215"
-  },
-  {
-    "id": 17,
-    "slug": "pan-d",
-    "brandName": "Pan D / Pantocid DSR",
-    "manufacturer": "Alkem Laboratories",
-    "saltName": "Pantoprazole 40mg + Domperidone 30mg (SR) Capsules",
-    "activeSalt": "Pantoprazole + Domperidone",
-    "strength": "40 mg + 30 mg (SR)",
-    "category": "Gastrointestinal",
-    "unitSize": "10 Capsules (Strip)",
-    "brandPrice": 195.0,
-    "janAushadhiPrice": 26.0,
-    "drugCode": "PMBJP00325"
-  },
-  {
-    "id": 18,
-    "slug": "rabekind-20",
-    "brandName": "Rabekind 20 / Razo 20",
-    "manufacturer": "Mankind Pharma",
-    "saltName": "Rabeprazole Sodium Gastro-resistant Tablets 20mg",
-    "activeSalt": "Rabeprazole Sodium",
-    "strength": "20 mg",
-    "category": "Gastrointestinal",
-    "unitSize": "10 Tablets (Strip)",
-    "brandPrice": 90.0,
-    "janAushadhiPrice": 14.0,
-    "drugCode": "PMBJP00155"
-  },
-  {
-    "id": 19,
-    "slug": "omez-20",
-    "brandName": "Omez 20 / Omee 20",
-    "manufacturer": "Dr. Reddy's Laboratories",
-    "saltName": "Omeprazole Capsules IP 20mg",
-    "activeSalt": "Omeprazole",
-    "strength": "20 mg",
-    "category": "Gastrointestinal",
-    "unitSize": "20 Capsules (Strip)",
-    "brandPrice": 62.0,
-    "janAushadhiPrice": 8.0,
-    "drugCode": "PMBJP00040"
-  },
-  {
-    "id": 20,
-    "slug": "augmentin-625-duo",
-    "brandName": "Augmentin 625 Duo / Moxikind-CV 625",
-    "manufacturer": "GlaxoSmithKline (GSK)",
-    "saltName": "Amoxycillin and Potassium Clavulanate Tablets IP 625mg",
-    "activeSalt": "Amoxicillin + Potassium Clavulanate",
-    "strength": "500 mg + 125 mg",
-    "category": "Anti-Infective",
-    "unitSize": "6 Tablets (Strip)",
-    "brandPrice": 185.0,
-    "janAushadhiPrice": 52.0,
-    "drugCode": "PMBJP00088"
-  },
-  {
-    "id": 21,
-    "slug": "azithral-500",
-    "brandName": "Azithral 500 / Azee 500",
-    "manufacturer": "Alembic Pharmaceuticals",
-    "saltName": "Azithromycin Tablets IP 500mg",
-    "activeSalt": "Azithromycin",
-    "strength": "500 mg",
-    "category": "Anti-Infective",
-    "unitSize": "3 Tablets (Strip)",
-    "brandPrice": 115.0,
-    "janAushadhiPrice": 30.0,
-    "drugCode": "PMBJP00095"
-  },
-  {
-    "id": 22,
-    "slug": "cefix-200",
-    "brandName": "Cefix 200 / Taxim-O 200 / Zifi 200",
-    "manufacturer": "Alkem Laboratories",
-    "saltName": "Cefixime Dispersible Tablets IP 200mg",
-    "activeSalt": "Cefixime",
-    "strength": "200 mg",
-    "category": "Anti-Infective",
-    "unitSize": "10 Tablets (Strip)",
-    "brandPrice": 110.0,
-    "janAushadhiPrice": 38.0,
-    "drugCode": "PMBJP00055"
-  },
-  {
-    "id": 23,
-    "slug": "ciplox-500",
-    "brandName": "Ciplox 500 / Cifran 500",
-    "manufacturer": "Cipla Ltd",
-    "saltName": "Ciprofloxacin Tablets IP 500mg",
-    "activeSalt": "Ciprofloxacin",
-    "strength": "500 mg",
-    "category": "Anti-Infective",
-    "unitSize": "10 Tablets (Strip)",
-    "brandPrice": 45.0,
-    "janAushadhiPrice": 16.5,
-    "drugCode": "PMBJP00010"
-  },
-  {
-    "id": 24,
-    "slug": "forcan-150",
-    "brandName": "Forcan 150 / Fluka 150",
-    "manufacturer": "Cipla Ltd",
-    "saltName": "Fluconazole Tablets IP 150mg",
-    "activeSalt": "Fluconazole",
-    "strength": "150 mg",
-    "category": "Anti-Infective",
-    "unitSize": "1 Tablet (Strip)",
-    "brandPrice": 42.0,
-    "janAushadhiPrice": 6.0,
-    "drugCode": "PMBJP00105"
-  },
-  {
-    "id": 25,
-    "slug": "dolo-650",
-    "brandName": "Dolo 650 / Calpol 650",
-    "manufacturer": "Micro Labs",
-    "saltName": "Paracetamol Tablets IP 650mg",
-    "activeSalt": "Paracetamol",
-    "strength": "650 mg",
-    "category": "Pain Relief",
-    "unitSize": "15 Tablets (Strip)",
-    "brandPrice": 32.0,
-    "janAushadhiPrice": 13.0,
-    "drugCode": "PMBJP00002"
-  },
-  {
-    "id": 26,
-    "slug": "zerodol-p",
-    "brandName": "Zerodol-P / Hifenac-P",
-    "manufacturer": "Ipca Laboratories",
-    "saltName": "Aceclofenac 100mg + Paracetamol 325mg Tablets",
-    "activeSalt": "Aceclofenac + Paracetamol",
-    "strength": "100 mg + 325 mg",
-    "category": "Pain Relief",
-    "unitSize": "10 Tablets (Strip)",
-    "brandPrice": 75.0,
-    "janAushadhiPrice": 18.0,
-    "drugCode": "PMBJP00180"
-  },
-  {
-    "id": 27,
-    "slug": "voveran-50",
-    "brandName": "Voveran 50 / Dynapar 50",
-    "manufacturer": "Novartis India",
-    "saltName": "Diclofenac Sodium Gastro-resistant Tablets 50mg",
-    "activeSalt": "Diclofenac Sodium",
-    "strength": "50 mg",
-    "category": "Pain Relief",
-    "unitSize": "15 Tablets (Strip)",
-    "brandPrice": 55.0,
-    "janAushadhiPrice": 6.5,
-    "drugCode": "PMBJP00005"
-  },
-  {
-    "id": 28,
-    "slug": "meftal-spas",
-    "brandName": "Meftal Spas / Cyclopam",
-    "manufacturer": "Blue Cross Laboratories",
-    "saltName": "Dicyclomine 10mg + Mefenamic Acid 250mg Tablets",
-    "activeSalt": "Dicyclomine + Mefenamic Acid",
-    "strength": "10 mg + 250 mg",
-    "category": "Pain Relief",
-    "unitSize": "10 Tablets (Strip)",
-    "brandPrice": 55.0,
-    "janAushadhiPrice": 12.0,
-    "drugCode": "PMBJP00060"
-  },
-  {
-    "id": 29,
-    "slug": "montair-lc",
-    "brandName": "Montair LC / Montek-LC",
-    "manufacturer": "Cipla Ltd",
-    "saltName": "Montelukast 10mg + Levocetirizine 5mg Tablets",
-    "activeSalt": "Montelukast + Levocetirizine",
-    "strength": "10 mg + 5 mg",
-    "category": "Respiratory",
-    "unitSize": "10 Tablets (Strip)",
-    "brandPrice": 195.0,
-    "janAushadhiPrice": 28.0,
-    "drugCode": "PMBJP00512"
-  },
-  {
-    "id": 30,
-    "slug": "asthalin-inhaler",
-    "brandName": "Asthalin Inhaler (100 mcg) / Ventorlin Inhaler",
-    "manufacturer": "Cipla Ltd",
-    "saltName": "Salbutamol Inhalation Aerosol IP 100mcg",
-    "activeSalt": "Salbutamol (Albuterol)",
-    "strength": "100 mcg (200 MDI)",
-    "category": "Respiratory",
-    "unitSize": "1 Inhaler (200 Puffs)",
-    "brandPrice": 175.0,
-    "janAushadhiPrice": 65.0,
-    "drugCode": "PMBJP00480"
-  },
-  {
-    "id": 31,
-    "slug": "budecort-respules",
-    "brandName": "Budecort 0.5 Respules / Budate Respules",
-    "manufacturer": "Cipla Ltd",
-    "saltName": "Budesonide Nebuliser Suspension IP 0.5mg/2ml",
-    "activeSalt": "Budesonide",
-    "strength": "0.5 mg / 2 ml",
-    "category": "Respiratory",
-    "unitSize": "5 Respules (Pack)",
-    "brandPrice": 180.0,
-    "janAushadhiPrice": 48.0,
-    "drugCode": "PMBJP00520"
-  },
-  {
-    "id": 32,
-    "slug": "shelcal-500",
-    "brandName": "Shelcal 500 / Cipcal 500",
-    "manufacturer": "Torrent Pharmaceuticals",
-    "saltName": "Calcium Carbonate 500mg + Vitamin D3 250IU Tablets",
-    "activeSalt": "Calcium Carbonate + Vitamin D3",
-    "strength": "500 mg + 250 IU",
-    "category": "Vitamins",
-    "unitSize": "15 Tablets (Strip)",
-    "brandPrice": 140.0,
-    "janAushadhiPrice": 22.0,
-    "drugCode": "PMBJP00160"
-  },
-  {
-    "id": 33,
-    "slug": "becosules",
-    "brandName": "Becosules Capsules / Cobadex Forte",
-    "manufacturer": "Pfizer Ltd",
-    "saltName": "Vitamin B Complex with Vitamin C Capsules",
-    "activeSalt": "B-Complex + Vitamin C",
-    "strength": "Multivitamin Formulation",
-    "category": "Vitamins",
-    "unitSize": "20 Capsules (Strip)",
-    "brandPrice": 55.0,
-    "janAushadhiPrice": 12.0,
-    "drugCode": "PMBJP00018"
-  },
-  {
-    "id": 34,
-    "slug": "neurobion-forte",
-    "brandName": "Neurobion Forte / Optineuron",
-    "manufacturer": "Procter & Gamble (P&G)",
-    "saltName": "Vitamin B1, B6 and B12 Tablets",
-    "activeSalt": "Vitamin B1 + B6 + B12 (Cobalamin)",
-    "strength": "Nerve Rejuvenator Formulation",
-    "category": "Vitamins",
-    "unitSize": "30 Tablets (Strip)",
-    "brandPrice": 45.0,
-    "janAushadhiPrice": 14.0,
-    "drugCode": "PMBJP00078"
-  },
-  {
-    "id": 35,
-    "slug": "limcee-500",
-    "brandName": "Limcee 500 / Celin 500",
-    "manufacturer": "Abbott Healthcare",
-    "saltName": "Ascorbic Acid Chewable Tablets IP 500mg",
-    "activeSalt": "Vitamin C (Ascorbic Acid)",
-    "strength": "500 mg Chewable",
-    "category": "Vitamins",
-    "unitSize": "15 Tablets (Strip)",
-    "brandPrice": 30.0,
-    "janAushadhiPrice": 6.0,
-    "drugCode": "PMBJP00015"
-  },
-  {
-    "id": 36,
-    "slug": "thyronorm-50",
-    "brandName": "Thyronorm 50 / Eltroxin 50",
-    "manufacturer": "Abbott Healthcare",
-    "saltName": "Thyroxine Sodium Tablets IP 50mcg",
-    "activeSalt": "Thyroxine Sodium",
-    "strength": "50 mcg",
-    "category": "Thyroid",
-    "unitSize": "100 Tablets (Bottle)",
-    "brandPrice": 195.0,
-    "janAushadhiPrice": 62.0,
-    "drugCode": "PMBJP00680"
-  },
-  {
-    "id": 37,
-    "slug": "thyronorm-100",
-    "brandName": "Thyronorm 100 / Eltroxin 100",
-    "manufacturer": "Abbott Healthcare",
-    "saltName": "Thyroxine Sodium Tablets IP 100mcg",
-    "activeSalt": "Thyroxine Sodium",
-    "strength": "100 mcg",
-    "category": "Thyroid",
-    "unitSize": "100 Tablets (Bottle)",
-    "brandPrice": 215.0,
-    "janAushadhiPrice": 68.0,
-    "drugCode": "PMBJP00682"
-  },
-  {
-    "id": 38,
-    "slug": "pregabalin-75",
-    "brandName": "Lyrica 75 / Pregabid 75 / Maxgalin 75",
-    "manufacturer": "Pfizer / Torrent",
-    "saltName": "Pregabalin Capsules IP 75mg",
-    "activeSalt": "Pregabalin",
-    "strength": "75 mg",
-    "category": "Neuro",
-    "unitSize": "10 Capsules (Strip)",
-    "brandPrice": 210.0,
-    "janAushadhiPrice": 32.0,
-    "drugCode": "PMBJP00820"
-  },
-  {
-    "id": 39,
-    "slug": "nexito-10",
-    "brandName": "Nexito 10 / Cipralex 10",
-    "manufacturer": "Sun Pharmaceutical",
-    "saltName": "Escitalopram Tablets IP 10mg",
-    "activeSalt": "Escitalopram Oxalate",
-    "strength": "10 mg",
-    "category": "Neuro",
-    "unitSize": "10 Tablets (Strip)",
-    "brandPrice": 120.0,
-    "janAushadhiPrice": 16.0,
-    "drugCode": "PMBJP00360"
-  },
-  {
-    "id": 40,
-    "slug": "suvidha-sanitary-pads",
-    "brandName": "Stayfree / Whisper Ultra / Sofy",
-    "manufacturer": "J&J / P&G",
-    "saltName": "Jan Aushadhi Suvidha Oxo-Biodegradable Sanitary Napkin",
-    "activeSalt": "Oxo-Biodegradable Sanitary Napkin",
-    "strength": "Regular Wings Pad",
-    "category": "Surgical",
-    "unitSize": "Pack of 4 Pads",
-    "brandPrice": 45.0,
-    "janAushadhiPrice": 4.0,
-    "drugCode": "PMBJP00999"
-  },
-  {
-    "id": 41,
-    "slug": "glucometer-device",
-    "brandName": "Accu-Chek / OneTouch Glucometer / Dr. Morepen",
-    "manufacturer": "Roche / LifeScan",
-    "saltName": "Jan Aushadhi Digital Blood Glucose Monitor Kit",
-    "activeSalt": "Blood Glucose Monitoring Device",
-    "strength": "Digital Monitor + 10 Lancets",
-    "category": "Surgical",
-    "unitSize": "1 Complete Kit",
-    "brandPrice": 950.0,
-    "janAushadhiPrice": 380.0,
-    "drugCode": "PMBJP01820"
-  },
-  {
-    "id": 42,
-    "slug": "digital-bp-monitor",
-    "brandName": "Omron Digital BP Monitor / Dr. Morepen BP",
-    "manufacturer": "Omron Healthcare",
-    "saltName": "Jan Aushadhi Digital Upper Arm Blood Pressure Monitor",
-    "activeSalt": "Digital Upper Arm Blood Pressure Monitor",
-    "strength": "Automatic Oscillometric",
-    "category": "Surgical",
-    "unitSize": "1 Monitor with Cuff",
-    "brandPrice": 2100.0,
-    "janAushadhiPrice": 850.0,
-    "drugCode": "PMBJP01850"
-  }
-];
-
+    // Global State
     let currentCategory = 'All';
     let searchQuery = '';
+    let currentLimit = 30;
 
-    function renderMedicines() {
+    function renderMedicines(resetLimit = false) {
+      if (resetLimit) {
+        currentLimit = 30;
+      }
+
       const grid = document.getElementById('medicineGrid');
       const noResults = document.getElementById('noResults');
+      const loadMoreContainer = document.getElementById('loadMoreContainer');
+      const showingCountEl = document.getElementById('showingCount');
+      const totalResultsCountEl = document.getElementById('totalResultsCount');
+
+      if (typeof medicinesData === 'undefined' || !medicinesData || medicinesData.length === 0) {
+        grid.innerHTML = '<div class="col-span-2 text-center py-8 text-slate-500">2,479 दवाइयां लोड हो रही हैं...</div>';
+        return;
+      }
+
+      const q = searchQuery.toLowerCase().trim();
 
       const filtered = medicinesData.filter(item => {
-        const matchesCategory = currentCategory === 'All' || item.category === currentCategory;
-        const matchesSearch = item.brandName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                              item.saltName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                              item.activeSalt.toLowerCase().includes(searchQuery.toLowerCase());
-        return matchesCategory && matchesSearch;
+        const matchesCategory = currentCategory === 'All' || 
+                                item.category === currentCategory || 
+                                (item.category_hi && item.category_hi.includes(currentCategory));
+        
+        if (!matchesCategory) return false;
+        if (!q) return true;
+
+        return (item.brandName && item.brandName.toLowerCase().includes(q)) ||
+               (item.saltName && item.saltName.toLowerCase().includes(q)) ||
+               (item.activeSalt && item.activeSalt.toLowerCase().includes(q)) ||
+               (item.genericName && item.genericName.toLowerCase().includes(q)) ||
+               (item.drugCode && item.drugCode.toLowerCase().includes(q)) ||
+               (item.category_hi && item.category_hi.toLowerCase().includes(q));
       });
+
+      if (totalResultsCountEl) totalResultsCountEl.innerText = filtered.length.toLocaleString('en-IN');
 
       if (filtered.length === 0) {
         grid.innerHTML = '';
         noResults.classList.remove('hidden');
+        if (loadMoreContainer) loadMoreContainer.classList.add('hidden');
+        if (showingCountEl) showingCountEl.innerText = '0';
         return;
       }
 
       noResults.classList.add('hidden');
+
+      const visible = filtered.slice(0, currentLimit);
+      if (showingCountEl) showingCountEl.innerText = visible.length.toLocaleString('en-IN');
+
+      if (loadMoreContainer) {
+        if (currentLimit >= filtered.length) {
+          loadMoreContainer.classList.add('hidden');
+        } else {
+          loadMoreContainer.classList.remove('hidden');
+        }
+      }
       
       let html = '';
-      filtered.forEach((med, index) => {
-        const savingAmount = (med.brandPrice - med.janAushadhiPrice).toFixed(2);
-        const savingPercent = Math.round(((med.brandPrice - med.janAushadhiPrice) / med.brandPrice) * 100);
+      visible.forEach((med, index) => {
+        const brandP = med.brandPrice || 0;
+        const janP = med.janAushadhiPrice || 0;
+        const savingAmount = (brandP - janP).toFixed(2);
+        const savingPercent = med.savingPercent || Math.round(((brandP - janP) / (brandP || 1)) * 100);
 
         html += `
           <div class="bg-white border border-slate-200 hover:border-emerald-500/50 rounded-2xl p-5 shadow-sm transition-all flex flex-col justify-between">
             <div>
               <div class="flex items-start justify-between gap-2 mb-2">
-                <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600">
-                  ${med.category}
+                <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700">
+                  ${med.category_hi || med.category}
                 </span>
                 <span class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">
                   ${savingPercent}% बचत
                 </span>
               </div>
 
-              <a href="/substitute/${med.slug}.html" class="font-bold text-base md:text-lg text-slate-900 hover:text-emerald-600 transition-colors">
-                ${med.brandName} ↗
-              </a>
-              <p class="text-xs text-slate-500">निर्माता: ${med.manufacturer}</p>
+              <div class="font-bold text-base md:text-lg text-slate-900 leading-snug">
+                ${med.brandName}
+              </div>
+              <p class="text-xs text-slate-500 mt-0.5">निर्माता: ${med.manufacturer || 'भारतीय फार्मास्युटिकल मानक'}</p>
 
               <!-- Salt Match Box -->
               <div class="mt-3 p-3 rounded-xl bg-slate-50 border border-slate-100">
                 <div class="text-[11px] font-semibold text-emerald-700 uppercase tracking-wider flex items-center gap-1">
                   <span>✔</span> सटीक जन औषधि साल्ट:
                 </div>
-                <div class="text-xs md:text-sm font-semibold text-slate-900 mt-0.5">
+                <div class="text-xs md:text-sm font-semibold text-slate-900 mt-0.5 leading-snug">
                   ${med.saltName}
                 </div>
-                <div class="text-[11px] text-slate-500 mt-0.5">
-                  ड्रग कोड: <code class="bg-white px-1 py-0.5 rounded border border-slate-200">${med.drugCode}</code> | यूनिट: ${med.unitSize}
+                <div class="text-[11px] text-slate-500 mt-1">
+                  ड्रग कोड: <code class="bg-white px-1.5 py-0.5 rounded border border-slate-200 font-bold font-mono">${med.drugCode}</code> | यूनिट: ${med.unitSize}
                 </div>
               </div>
             </div>
@@ -1022,11 +490,11 @@
               <div class="grid grid-cols-2 gap-2 text-center py-1">
                 <div class="p-2 rounded-lg bg-slate-50">
                   <div class="text-[11px] text-slate-500">ब्रांडेड MRP</div>
-                  <div class="text-sm font-bold text-red-600 line-through">₹${med.brandPrice.toFixed(2)}</div>
+                  <div class="text-sm font-bold text-red-600 line-through">₹${brandP.toFixed(2)}</div>
                 </div>
                 <div class="p-2 rounded-lg bg-emerald-50 border border-emerald-200">
                   <div class="text-[11px] text-emerald-800 font-semibold">जन औषधि MRP</div>
-                  <div class="text-base font-extrabold text-emerald-700">₹${med.janAushadhiPrice.toFixed(2)}</div>
+                  <div class="text-base font-extrabold text-emerald-700">₹${janP.toFixed(2)}</div>
                 </div>
               </div>
 
@@ -1038,7 +506,7 @@
                 <button onclick="openModal(${med.id})" class="flex-1 bg-slate-100 hover:bg-emerald-600 hover:text-white border border-slate-200 text-slate-800 font-medium py-2 rounded-xl text-xs transition-colors flex items-center justify-center gap-1">
                   <span>📋</span> पर्चा बनाएं
                 </button>
-                <a href="https://api.whatsapp.com/send?text=${encodeURIComponent('दवा पर ' + savingPercent + '% बचत! ' + med.brandName + ' जो बाज़ार में ₹' + med.brandPrice.toFixed(2) + ' की है, जन औषधि केंद्र पर मात्र ₹' + med.janAushadhiPrice.toFixed(2) + ' में मिल रही है! यहाँ देखें: https://jandawa.pages.dev/')}" target="_blank" class="px-3 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 font-bold py-2 rounded-xl text-xs transition-colors flex items-center justify-center gap-1">
+                <a href="https://api.whatsapp.com/send?text=${encodeURIComponent('दवा पर ' + savingPercent + '% बचत! ' + med.brandName + ' जो बाज़ार में ₹' + brandP.toFixed(2) + ' की है, जन औषधि केंद्र पर मात्र ₹' + janP.toFixed(2) + ' में मिल रही है! यहाँ देखें: https://jandawa.pages.dev/')}" target="_blank" class="px-3 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 font-bold py-2 rounded-xl text-xs transition-colors flex items-center justify-center gap-1">
                   <span>💬</span> WhatsApp
                 </a>
               </div>
@@ -1046,9 +514,9 @@
           </div>
         `;
 
-        if ((index + 1) % 4 === 0) {
+        if ((index + 1) % 6 === 0) {
           html += `
-            <div class="col-span-1 md:col-span-2 ad-placeholder rounded-2xl p-4 text-center flex flex-col items-center justify-center min-h-[100px] border border-slate-200">
+            <div class="col-span-1 md:col-span-2 ad-placeholder rounded-2xl p-4 text-center flex flex-col items-center justify-center min-h-[90px] border border-slate-200">
               <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
                 📢 GOOGLE ADSENSE IN-FEED NATIVE AD UNIT
               </div>
@@ -1063,79 +531,28 @@
       grid.innerHTML = html;
     }
 
+    function loadMoreMedicines() {
+      currentLimit += 30;
+      renderMedicines(false);
+    }
+
     function filterCategory(cat) {
       currentCategory = cat;
       document.querySelectorAll('.cat-pill').forEach(btn => {
-        if (btn.innerText.includes(cat) || (cat === 'All' && btn.innerText.includes('सभी'))) {
+        if (btn.getAttribute('data-cat') === cat || (cat === 'All' && btn.innerText.includes('सभी'))) {
           btn.classList.add('bg-emerald-600', 'text-white');
-          btn.classList.remove('bg-slate-50');
+          btn.classList.remove('bg-slate-50', 'text-slate-800');
         } else {
           btn.classList.remove('bg-emerald-600', 'text-white');
-          btn.classList.add('bg-slate-50');
+          btn.classList.add('bg-slate-50', 'text-slate-800');
         }
       });
-      // Interactive Savings Estimator Logic
-    let calcMemberCount = 2;
-
-    function setCalcMembers(count) {
-      calcMemberCount = count;
-      document.querySelectorAll('.calc-mem-btn').forEach((btn, idx) => {
-        if (idx + 1 === count) {
-          btn.className = "calc-mem-btn active flex-1 py-2 rounded-lg border border-slate-200 bg-emerald-600 text-white font-bold";
-        } else {
-          btn.className = "calc-mem-btn flex-1 py-2 rounded-lg border border-slate-200 bg-white hover:border-emerald-500 font-bold";
-        }
-      });
-      recalculateSavings();
+      renderMedicines(true);
     }
 
-    function recalculateSavings() {
-      let baseMonthly = 0;
-      document.querySelectorAll('.calc-cond:checked').forEach(cb => {
-        baseMonthly += parseInt(cb.value);
-      });
-
-      const totalMonthly = baseMonthly * (calcMemberCount === 4 ? 3.5 : calcMemberCount);
-      const totalYearly = totalMonthly * 12;
-
-      document.getElementById('calcYearlySaving').innerText = '₹' + Math.round(totalYearly).toLocaleString('en-IN');
-      document.getElementById('calcMonthlySaving').innerText = 'मासिक बचत: ₹' + Math.round(totalMonthly).toLocaleString('en-IN') + ' (लगभग 80% बचत)';
-    }
-
-    renderMedicines();
-    }
-
-    document.getElementById('searchInput').addEventListener('input', (e) => {
-      searchQuery = e.target.value.trim();
-      // Interactive Savings Estimator Logic
-    let calcMemberCount = 2;
-
-    function setCalcMembers(count) {
-      calcMemberCount = count;
-      document.querySelectorAll('.calc-mem-btn').forEach((btn, idx) => {
-        if (idx + 1 === count) {
-          btn.className = "calc-mem-btn active flex-1 py-2 rounded-lg border border-slate-200 bg-emerald-600 text-white font-bold";
-        } else {
-          btn.className = "calc-mem-btn flex-1 py-2 rounded-lg border border-slate-200 bg-white hover:border-emerald-500 font-bold";
-        }
-      });
-      recalculateSavings();
-    }
-
-    function recalculateSavings() {
-      let baseMonthly = 0;
-      document.querySelectorAll('.calc-cond:checked').forEach(cb => {
-        baseMonthly += parseInt(cb.value);
-      });
-
-      const totalMonthly = baseMonthly * (calcMemberCount === 4 ? 3.5 : calcMemberCount);
-      const totalYearly = totalMonthly * 12;
-
-      document.getElementById('calcYearlySaving').innerText = '₹' + Math.round(totalYearly).toLocaleString('en-IN');
-      document.getElementById('calcMonthlySaving').innerText = 'मासिक बचत: ₹' + Math.round(totalMonthly).toLocaleString('en-IN') + ' (लगभग 80% बचत)';
-    }
-
-    renderMedicines();
+    document.getElementById('searchInput')?.addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      renderMedicines(true);
     });
 
     function openModal(medId) {
@@ -1162,7 +579,7 @@
         </div>
 
         <div class="text-[11px] text-slate-500 italic">
-          नोट: जन औषधि केंद्र पर ब्रांड नाम से दवा नहीं मिलती, केवल सक्रिय साल्ट नाम (INN) से दवा मिलती है।
+          नोट: जन औषधि केंद्र पर ब्रांड नाम से दवा नहीं मिलती, केवल सक्रिय साल्ट नाम (Generic INN) से दवा मिलती है।
         </div>
       `;
 
@@ -1173,7 +590,7 @@
       document.getElementById('pharmacistModal').classList.add('hidden');
     }
 
-    // AI Prescription Scanner Modal Functions
+    // AI Prescription Scanner
     function openScanModal() {
       document.getElementById('scanModal').classList.remove('hidden');
       document.getElementById('uploadBox').classList.remove('hidden');
@@ -1196,7 +613,6 @@
         document.getElementById('scanLoading').classList.add('hidden');
         document.getElementById('scanResults').classList.remove('hidden');
 
-        // Detected popular prescription combo: Telma 40, Glycomet 500, Pan 40
         const detected = [
           { name: "Telma 40 (Telmisartan 40mg)", brandPrice: 115, janPrice: 12.5, saving: 102.5 },
           { name: "Glycomet 500 (Metformin 500mg)", brandPrice: 28, janPrice: 5.5, saving: 22.5 },
@@ -1218,41 +634,13 @@
 
     function applyDetectedMedicines() {
       closeScanModal();
-      document.getElementById('searchInput').value = 'Telma';
-      searchQuery = 'Telma';
-      // Interactive Savings Estimator Logic
-    let calcMemberCount = 2;
-
-    function setCalcMembers(count) {
-      calcMemberCount = count;
-      document.querySelectorAll('.calc-mem-btn').forEach((btn, idx) => {
-        if (idx + 1 === count) {
-          btn.className = "calc-mem-btn active flex-1 py-2 rounded-lg border border-slate-200 bg-emerald-600 text-white font-bold";
-        } else {
-          btn.className = "calc-mem-btn flex-1 py-2 rounded-lg border border-slate-200 bg-white hover:border-emerald-500 font-bold";
-        }
-      });
-      recalculateSavings();
-    }
-
-    function recalculateSavings() {
-      let baseMonthly = 0;
-      document.querySelectorAll('.calc-cond:checked').forEach(cb => {
-        baseMonthly += parseInt(cb.value);
-      });
-
-      const totalMonthly = baseMonthly * (calcMemberCount === 4 ? 3.5 : calcMemberCount);
-      const totalYearly = totalMonthly * 12;
-
-      document.getElementById('calcYearlySaving').innerText = '₹' + Math.round(totalYearly).toLocaleString('en-IN');
-      document.getElementById('calcMonthlySaving').innerText = 'मासिक बचत: ₹' + Math.round(totalMonthly).toLocaleString('en-IN') + ' (लगभग 80% बचत)';
-    }
-
-    renderMedicines();
+      document.getElementById('searchInput').value = 'Telmisartan';
+      searchQuery = 'Telmisartan';
+      renderMedicines(true);
       window.scrollTo({ top: 350, behavior: 'smooth' });
     }
 
-    // TAB SWITCHER (Medicines vs Kendra Locator)
+    // Main Tab Switcher
     function switchMainTab(tab) {
       const medBtn = document.getElementById('tabMedBtn');
       const kendraBtn = document.getElementById('tabKendraBtn');
