@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://newsalt.in/sitemap.xml
+Sitemap: https://jandawa.pages.dev/sitemap.xml

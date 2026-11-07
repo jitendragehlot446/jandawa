@@ -10,8 +10,8 @@ import os
 
 SCRATCH_DIR = os.path.dirname(__file__)
 MASTER_JSON_PATH = os.path.join(SCRATCH_DIR, "medicines_master.json")
-OUTPUT_DIR = os.path.join(SCRATCH_DIR, "dist", "substitute")
-SITEMAP_PATH = os.path.join(SCRATCH_DIR, "dist", "sitemap.xml")
+OUTPUT_DIR = os.path.join(SCRATCH_DIR, "substitute")
+SITEMAP_PATH = os.path.join(SCRATCH_DIR, "sitemap.xml")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 def generate_page(med):
@@ -203,26 +203,26 @@ def update_sitemap(slugs):
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
         '  <url>',
-        '    <loc>https://newsalt.in/</loc>',
-        '    <lastmod>2026-11-07</lastmod>',
+        '    <loc>https://jandawa.pages.dev/</loc>',
+        '    <lastmod>2026-11-08</lastmod>',
         '    <changefreq>daily</changefreq>',
         '    <priority>1.0</priority>',
         '  </url>',
         '  <url>',
-        '    <loc>https://newsalt.in/about.html</loc>',
-        '    <lastmod>2026-11-07</lastmod>',
+        '    <loc>https://jandawa.pages.dev/about.html</loc>',
+        '    <lastmod>2026-11-08</lastmod>',
         '    <changefreq>monthly</changefreq>',
         '    <priority>0.5</priority>',
         '  </url>',
         '  <url>',
-        '    <loc>https://newsalt.in/disclaimer.html</loc>',
-        '    <lastmod>2026-11-07</lastmod>',
+        '    <loc>https://jandawa.pages.dev/disclaimer.html</loc>',
+        '    <lastmod>2026-11-08</lastmod>',
         '    <changefreq>monthly</changefreq>',
         '    <priority>0.5</priority>',
         '  </url>',
         '  <url>',
-        '    <loc>https://newsalt.in/privacy-policy.html</loc>',
-        '    <lastmod>2026-11-07</lastmod>',
+        '    <loc>https://jandawa.pages.dev/privacy-policy.html</loc>',
+        '    <lastmod>2026-11-08</lastmod>',
         '    <changefreq>monthly</changefreq>',
         '    <priority>0.5</priority>',
         '  </url>'
@@ -231,8 +231,8 @@ def update_sitemap(slugs):
     for slug in slugs:
         sitemap_lines.extend([
             '  <url>',
-            f'    <loc>https://newsalt.in/substitute/{slug}.html</loc>',
-            '    <lastmod>2026-11-07</lastmod>',
+            f'    <loc>https://jandawa.pages.dev/substitute/{slug}.html</loc>',
+            '    <lastmod>2026-11-08</lastmod>',
             '    <changefreq>weekly</changefreq>',
             '    <priority>0.9</priority>',
             '  </url>'
