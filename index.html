@@ -61,6 +61,7 @@
 
   <!-- Complete 2,479 PMBJP Medicines Master Data -->
   <script src="medicines_data.js?v=3.0"></script>
+  <script src="kendras_data.js?v=1.0"></script>
 </head>
 <body class="flex flex-col min-h-screen text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
 
@@ -268,37 +269,60 @@
           </p>
         </div>
 
-        <!-- Kendra Search Controls -->
-        <div class="max-w-2xl mx-auto flex flex-col sm:flex-row gap-2">
-          <div class="relative flex-1">
-            <svg class="w-5 h-5 absolute left-3.5 top-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            <input 
-              id="kendraSearchInput" 
-              type="text" 
-              placeholder="6 अंकों का पिनकोड या शहर का नाम लिखें (उदा: 110001, Jaipur, Lucknow, Patna)..." 
-              class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition"
-            />
-          </div>
-          <button onclick="useCurrentLocation()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-3 rounded-xl text-sm flex items-center justify-center gap-2 transition shadow-sm">
-            <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span>GPS से खोजें</span>
-          </button>
-        </div>
+        <!-- Sugam App-Style State -> District -> Pincode Multi-Filter -->
+        <div class="max-w-3xl mx-auto space-y-4 pt-2">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            
+            <!-- 1. State Selector -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1.5">1. राज्य चुनें (State):</label>
+              <select id="stateSelect" onchange="onStateSelectChange(this.value)" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+                <option value="All">सभी राज्य (All States)</option>
+              </select>
+            </div>
 
-        <!-- City Quick Links -->
-        <div class="flex flex-wrap items-center justify-center gap-1.5 text-xs text-slate-500 pt-2">
-          <span>प्रमुख शहर:</span>
-          <button onclick="searchKendraByVal('Delhi')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-50 hover:text-blue-700 rounded-md transition">दिल्ली</button>
-          <button onclick="searchKendraByVal('Jaipur')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-50 hover:text-blue-700 rounded-md transition">जयपुर</button>
-          <button onclick="searchKendraByVal('Lucknow')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-50 hover:text-blue-700 rounded-md transition">लखनऊ</button>
-          <button onclick="searchKendraByVal('Patna')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-50 hover:text-blue-700 rounded-md transition">पटना</button>
-          <button onclick="searchKendraByVal('Indore')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-50 hover:text-blue-700 rounded-md transition">इंदौर</button>
-          <button onclick="searchKendraByVal('Mumbai')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-50 hover:text-blue-700 rounded-md transition">मुंबई</button>
+            <!-- 2. District Selector -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1.5">2. ज़िला चुनें (District):</label>
+              <select id="districtSelect" onchange="onDistrictSelectChange(this.value)" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+                <option value="All">सभी ज़िले (All Districts)</option>
+              </select>
+            </div>
+
+            <!-- 3. Direct Pincode Search -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1.5">3. या पिनकोड डालें (Pincode):</label>
+              <div class="relative">
+                <input 
+                  id="kendraSearchInput" 
+                  type="text" 
+                  maxlength="6"
+                  placeholder="6 अंकों का पिनकोड (उदा: 302001)..." 
+                  class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                />
+              </div>
+            </div>
+
+          </div>
+
+          <!-- GPS & Popular City Pills -->
+          <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-100 text-xs">
+            <div class="flex flex-wrap items-center gap-1.5 text-slate-500">
+              <span class="font-semibold text-slate-700">पॉपुलर:</span>
+              <button onclick="selectStateAndCity('Rajasthan', 'Jaipur')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition font-medium">जयपुर</button>
+              <button onclick="selectStateAndCity('Delhi', 'New Delhi')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition font-medium">दिल्ली</button>
+              <button onclick="selectStateAndCity('Uttar Pradesh', 'Lucknow')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition font-medium">लखनऊ</button>
+              <button onclick="selectStateAndCity('Bihar', 'Patna')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition font-medium">पटना</button>
+              <button onclick="selectStateAndCity('Madhya Pradesh', 'Indore')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition font-medium">इंदौर</button>
+              <button onclick="selectStateAndCity('Maharashtra', 'Mumbai')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition font-medium">मुंबई</button>
+            </div>
+            <button onclick="useCurrentLocation()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 transition font-bold text-xs">
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>GPS से नजदीकी केंद्र</span>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -818,164 +842,115 @@
       }
     }
 
-    // KENDRA LOCATOR DATA & LOGIC
-    const kendrasData = [
-      {
-        id: 1,
-        storeCode: "PMBJK-DL-014",
-        name: "जन औषधि केंद्र - एम्स व सफदरजंग रोड",
-        city: "Delhi",
-        state: "Delhi",
-        pincode: "110029",
-        address: "Shop No. 4, Near Safdarjung Hospital Gate No. 2, Ring Road, New Delhi",
-        contactPerson: "Rajesh Kumar (Pharmacist)",
-        phone: "+91 98110XXXXX",
-        timings: "8:00 AM - 10:00 PM (खुला है)"
-      },
-      {
-        id: 2,
-        storeCode: "PMBJK-DL-082",
-        name: "जन औषधि केंद्र - कनॉट प्लेस / सेंट्रल दिल्ली",
-        city: "Delhi",
-        state: "Delhi",
-        pincode: "110001",
-        address: "Super Bazar Building, Outer Circle, Connaught Place, New Delhi",
-        contactPerson: "Amit Sharma",
-        phone: "+91 98712XXXXX",
-        timings: "9:00 AM - 9:00 PM"
-      },
-      {
-        id: 3,
-        storeCode: "PMBJK-RJ-204",
-        name: "जन औषधि केंद्र - एसएमएस हॉस्पिटल चौराहा, जयपुर",
-        city: "Jaipur",
-        state: "Rajasthan",
-        pincode: "302004",
-        address: "Near SMS Hospital Main Gate, JLN Marg, Ashok Nagar, Jaipur",
-        contactPerson: "Mahesh Meena",
-        phone: "+91 94140XXXXX",
-        timings: "24 घंटे खुला (24x7 Emergency)"
-      },
-      {
-        id: 4,
-        storeCode: "PMBJK-RJ-119",
-        name: "जन औषधि केंद्र - वैशाली नगर, जयपुर",
-        city: "Jaipur",
-        state: "Rajasthan",
-        pincode: "302021",
-        address: "Plot 12, Queens Road, Near National Handloom, Vaishali Nagar, Jaipur",
-        contactPerson: "Sunil Verma",
-        phone: "+91 97821XXXXX",
-        timings: "9:00 AM - 9:30 PM"
-      },
-      {
-        id: 5,
-        storeCode: "PMBJK-UP-412",
-        name: "जन औषधि केंद्र - हजरतगंज, लखनऊ",
-        city: "Lucknow",
-        state: "Uttar Pradesh",
-        pincode: "226001",
-        address: "Shop 18, Halwasiya Market, Hazratganj, Lucknow",
-        contactPerson: "Pradeep Yadav",
-        phone: "+91 94500XXXXX",
-        timings: "9:00 AM - 9:00 PM"
-      },
-      {
-        id: 6,
-        storeCode: "PMBJK-UP-550",
-        name: "जन औषधि केंद्र - गोमती नगर, लखनऊ",
-        city: "Lucknow",
-        state: "Uttar Pradesh",
-        pincode: "226010",
-        address: "Patrakar Puram Crossing, Gomti Nagar, Lucknow",
-        contactPerson: "Anurag Singh",
-        phone: "+91 91250XXXXX",
-        timings: "8:30 AM - 9:30 PM"
-      },
-      {
-        id: 7,
-        storeCode: "PMBJK-BR-102",
-        name: "जन औषधि केंद्र - बोरिंग रोड, पटना",
-        city: "Patna",
-        state: "Bihar",
-        pincode: "800001",
-        address: "Near Hartali More, Bailey Road, Patna",
-        contactPerson: "Rameshwar Prasad",
-        phone: "+91 93341XXXXX",
-        timings: "9:00 AM - 9:00 PM"
-      },
-      {
-        id: 8,
-        storeCode: "PMBJK-MP-230",
-        name: "जन औषधि केंद्र - विजय नगर, इंदौर",
-        city: "Indore",
-        state: "Madhya Pradesh",
-        pincode: "452010",
-        address: "Scheme No. 54, Near Medanta Hospital, Vijay Nagar, Indore",
-        contactPerson: "Vikas Joshi",
-        phone: "+91 98260XXXXX",
-        timings: "9:00 AM - 10:00 PM"
-      },
-      {
-        id: 9,
-        storeCode: "PMBJK-MH-011",
-        name: "जन औषधि केंद्र - दादर वेस्ट, मुंबई",
-        city: "Mumbai",
-        state: "Maharashtra",
-        pincode: "400028",
-        address: "Near Dadar Railway Station (West), Ranade Road, Mumbai",
-        contactPerson: "Sanjay Patil",
-        phone: "+91 98200XXXXX",
-        timings: "8:00 AM - 10:00 PM"
-      },
-      {
-        id: 10,
-        storeCode: "PMBJK-KA-105",
-        name: "जन औषधि केंद्र - इंदिरानगर, बेंगलुरु",
-        city: "Bengaluru",
-        state: "Karnataka",
-        pincode: "560038",
-        address: "100 Feet Road, Near CMH Hospital, Indiranagar, Bengaluru",
-        contactPerson: "Kavitha R.",
-        phone: "+91 98450XXXXX",
-        timings: "8:30 AM - 9:30 PM"
-      }
-    ];
-
+    // KENDRA LOCATOR DATA & LOGIC (Sugam App State -> District -> Pincode)
+    let selectedState = 'All';
+    let selectedDistrict = 'All';
     let kendraSearchQuery = '';
+
+    function initKendraDropdowns() {
+      const stateSelect = document.getElementById('stateSelect');
+      if (!stateSelect || typeof stateDistrictsData === 'undefined') return;
+
+      let options = '<option value="All">सभी राज्य (All States)</option>';
+      for (const st in stateDistrictsData) {
+        options += `<option value="${st}">${st}</option>`;
+      }
+      stateSelect.innerHTML = options;
+    }
+
+    function onStateSelectChange(state) {
+      selectedState = state;
+      const distSelect = document.getElementById('districtSelect');
+      
+      if (state === 'All' || !stateDistrictsData[state]) {
+        distSelect.innerHTML = '<option value="All">सभी ज़िले (All Districts)</option>';
+        selectedDistrict = 'All';
+      } else {
+        const dists = stateDistrictsData[state];
+        let dOptions = '';
+        dists.forEach(d => {
+          const val = d === 'All Districts' ? 'All' : d;
+          dOptions += `<option value="${val}">${d}</option>`;
+        });
+        distSelect.innerHTML = dOptions;
+        selectedDistrict = 'All';
+      }
+      renderKendras();
+    }
+
+    function onDistrictSelectChange(district) {
+      selectedDistrict = district;
+      renderKendras();
+    }
+
+    function selectStateAndCity(st, city) {
+      const stateSelect = document.getElementById('stateSelect');
+      if (stateSelect) {
+        stateSelect.value = st;
+        onStateSelectChange(st);
+      }
+      setTimeout(() => {
+        const distSelect = document.getElementById('districtSelect');
+        if (distSelect) {
+          distSelect.value = city;
+          selectedDistrict = city;
+          renderKendras();
+        }
+      }, 50);
+    }
 
     function renderKendras() {
       const grid = document.getElementById('kendraResultsGrid');
-      const query = kendraSearchQuery.trim().toLowerCase();
+      if (!grid) return;
 
-      let filtered = kendrasData;
-      if (query) {
-        filtered = kendrasData.filter(k => 
-          k.pincode.includes(query) ||
-          k.city.toLowerCase().includes(query) ||
-          k.address.toLowerCase().includes(query) ||
-          k.name.toLowerCase().includes(query)
-        );
+      if (typeof kendrasData === 'undefined') {
+        grid.innerHTML = '<div class="col-span-full text-center py-8 text-slate-400">केंद्र डायरेक्टरी लोड हो रही है...</div>';
+        return;
       }
+
+      const q = kendraSearchQuery.trim().toLowerCase();
+
+      let filtered = kendrasData.filter(k => {
+        // State Filter
+        if (selectedState !== 'All' && k.state !== selectedState) {
+          return false;
+        }
+        // District Filter
+        if (selectedDistrict !== 'All') {
+          const distMatch = (k.district && k.district.toLowerCase().includes(selectedDistrict.toLowerCase())) ||
+                            (k.city && k.city.toLowerCase().includes(selectedDistrict.toLowerCase()));
+          if (!distMatch) return false;
+        }
+        // Pincode / Text search
+        if (q) {
+          const textMatch = k.pincode.includes(q) ||
+                            k.name.toLowerCase().includes(q) ||
+                            k.address.toLowerCase().includes(q) ||
+                            k.city.toLowerCase().includes(q);
+          if (!textMatch) return false;
+        }
+        return true;
+      });
 
       let html = '';
 
       if (filtered.length === 0) {
-        const mapsUrl = `https://www.google.com/maps/search/Pradhan+Mantri+Jan+Aushadhi+Kendra+near+${encodeURIComponent(kendraSearchQuery)}`;
+        const targetLoc = (q ? q : (selectedDistrict !== 'All' ? selectedDistrict : selectedState));
+        const mapsUrl = `https://www.google.com/maps/search/Pradhan+Mantri+Jan+Aushadhi+Kendra+near+${encodeURIComponent(targetLoc)}`;
         html = `
           <div class="col-span-full bg-white border border-slate-200 rounded-2xl p-8 text-center space-y-3">
             <h3 class="font-bold text-base text-slate-800">
-              '${kendraSearchQuery}' के लिए स्थानीय केंद्र खोजें
+              '${targetLoc}' के सभी स्थानीय जन औषधि केंद्र देखें
             </h3>
             <p class="text-xs text-slate-500 max-w-md mx-auto">
-              इस पिनकोड/शहर के सभी नजदीकी जन औषधि केंद्र सीधे गूगल मैप्स या आधिकारिक सरकारी पोर्टल पर उपलब्ध हैं:
+              इस क्षेत्र के सभी अधिकृत जन औषधि केंद्र गूगल मैप्स और सरकारी डायरेक्टरी पर उपलब्ध हैं:
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-3 pt-2">
               <a href="${mapsUrl}" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2.5 rounded-xl text-xs transition shadow flex items-center justify-center gap-1.5">
-                <span>गूगल मैप्स पर केंद्र देखें ➔</span>
+                <span>📍 गूगल मैप्स पर '${targetLoc}' के केंद्र देखें ➔</span>
               </a>
               <a href="https://janaushadhi.gov.in/KendraDetails.aspx" target="_blank" class="border border-slate-300 hover:bg-slate-50 font-semibold px-4 py-2.5 rounded-xl text-xs text-slate-700">
-                आधिकारिक सरकारी Sugam पोर्टल
+                आधिकारिक Sugam पोर्टल पर खोजें
               </a>
             </div>
           </div>
@@ -996,8 +971,8 @@
                 </div>
 
                 <h3 class="font-bold text-sm sm:text-base text-slate-900">${k.name}</h3>
-                <p class="text-xs text-slate-600 mt-1">
-                  ${k.address} - <strong class="text-slate-800">${k.pincode}</strong>
+                <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                  ${k.address} - <strong class="text-slate-900 font-bold">${k.pincode}</strong>
                 </p>
 
                 <div class="mt-3 p-2.5 rounded-xl bg-slate-50 border border-slate-100 text-xs text-slate-600">
@@ -1008,6 +983,9 @@
 
               <div class="mt-4 pt-3 border-t border-slate-100 flex gap-2">
                 <a href="${gmapsLink}" target="_blank" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-xl text-xs transition text-center shadow flex items-center justify-center gap-1.5">
+                  <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  </svg>
                   <span>Google Maps रास्ता</span>
                 </a>
                 <a href="tel:${k.phone}" class="px-3.5 py-2.5 border border-slate-200 hover:bg-slate-50 rounded-xl text-xs font-semibold text-slate-700 flex items-center justify-center">
@@ -1026,30 +1004,6 @@
       kendraSearchQuery = e.target.value;
       renderKendras();
     });
-
-    function searchKendraByVal(val) {
-      document.getElementById('kendraSearchInput').value = val;
-      kendraSearchQuery = val;
-      renderKendras();
-    }
-
-    function useCurrentLocation() {
-      if (!navigator.geolocation) {
-        alert("आपके ब्राउज़र में GPS की सुविधा उपलब्ध नहीं है। कृपया पिनकोड या शहर टाइप करें।");
-        return;
-      }
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const lat = position.coords.latitude;
-          const lng = position.coords.longitude;
-          const url = `https://www.google.com/maps/search/Pradhan+Mantri+Jan+Aushadhi+Kendra/@${lat},${lng},14z`;
-          window.open(url, '_blank');
-        },
-        () => {
-          alert("कृपया लोकेशन परमिशन की अनुमति दें या ऊपर सीधे अपना पिनकोड टाइप करें।");
-        }
-      );
-    }
 
     // Savings Calculator Logic
     let calcMemberCount = 2;
@@ -1083,6 +1037,8 @@
     function checkAndRender() {
       if (typeof medicinesData !== 'undefined' && medicinesData && medicinesData.length > 0) {
         renderMedicines();
+        initKendraDropdowns();
+        renderKendras();
       } else {
         setTimeout(checkAndRender, 50);
       }
