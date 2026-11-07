@@ -8,7 +8,7 @@
     "strength": "40 mg",
     "dosage_form": "Tablet",
     "category": "Cardiovascular",
-    "category_hi": "हाई ब्लड प्रेशर व दिल",
+    "category_hi": "बीपी व दिल",
     "indication": "Hypertension (High Blood Pressure) and prevention of heart attacks / strokes.",
     "brand_mrp": 115.00,
     "unit_size": "10 Tablets (Strip)",
@@ -18,116 +18,49 @@
       "unit_size": "10 Tablets",
       "mrp": 12.50
     },
-    "savings": {
-      "amount": 102.50,
-      "percentage": 89,
-      "monthly_saving": 307.50,
-      "yearly_saving": 3690.00
-    }
+    "savings": { "amount": 102.50, "percentage": 89, "monthly_saving": 307.50, "yearly_saving": 3690.00 }
   },
   {
-    "slug": "glycomet-500",
-    "brand_name": "Glycomet 500",
-    "alternative_brands": ["Gluconorm 500", "Cetapin 500", "Metfor 500"],
-    "manufacturer": "USV Ltd",
-    "active_salt": "Metformin Hydrochloride",
-    "strength": "500 mg (SR)",
+    "slug": "telma-am",
+    "brand_name": "Telma AM",
+    "alternative_brands": ["Telmikind-AM", "Telsartan-AM", "Creser-AM"],
+    "manufacturer": "Glenmark Pharmaceuticals",
+    "active_salt": "Telmisartan + Amlodipine",
+    "strength": "40 mg + 5 mg",
     "dosage_form": "Tablet",
-    "category": "Diabetes",
-    "category_hi": "मधुमेह (टाइप-2 शुगर)",
-    "indication": "Type 2 Diabetes Mellitus blood glucose control.",
-    "brand_mrp": 28.00,
+    "category": "Cardiovascular",
+    "category_hi": "बीपी व दिल",
+    "indication": "Dual therapy for uncontrolled High Blood Pressure.",
+    "brand_mrp": 210.00,
     "unit_size": "10 Tablets (Strip)",
     "jan_aushadhi": {
-      "drug_code": "PMBJP00034",
-      "generic_name": "Metformin Hydrochloride Sustained Release Tablets IP 500mg",
+      "drug_code": "PMBJP00390",
+      "generic_name": "Telmisartan 40mg + Amlodipine 5mg Tablets",
+      "unit_size": "10 Tablets",
+      "mrp": 24.00
+    },
+    "savings": { "amount": 186.00, "percentage": 89, "monthly_saving": 558.00, "yearly_saving": 6696.00 }
+  },
+  {
+    "slug": "amlong-5",
+    "brand_name": "Amlong 5",
+    "alternative_brands": ["Stamlo 5", "Amlopin 5", "Amtas 5"],
+    "manufacturer": "Micro Labs",
+    "active_salt": "Amlodipine Besylate",
+    "strength": "5 mg",
+    "dosage_form": "Tablet",
+    "category": "Cardiovascular",
+    "category_hi": "बीपी व दिल",
+    "indication": "High Blood Pressure and angina (chest pain).",
+    "brand_mrp": 42.00,
+    "unit_size": "15 Tablets (Strip)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP00008",
+      "generic_name": "Amlodipine Tablets IP 5mg",
       "unit_size": "10 Tablets",
       "mrp": 5.50
     },
-    "savings": {
-      "amount": 22.50,
-      "percentage": 80,
-      "monthly_saving": 135.00,
-      "yearly_saving": 1620.00
-    }
-  },
-  {
-    "slug": "amaryl-m-1",
-    "brand_name": "Amaryl M 1",
-    "alternative_brands": ["Glycomet-GP 1", "Zoryl-M 1", "Gemer 1"],
-    "manufacturer": "Sanofi India",
-    "active_salt": "Glimepiride + Metformin",
-    "strength": "1 mg + 500 mg",
-    "dosage_form": "Tablet",
-    "category": "Diabetes",
-    "category_hi": "मधुमेह (डबल कॉम्बिनेशन)",
-    "indication": "Dual combination therapy for Type 2 Diabetes.",
-    "brand_mrp": 85.00,
-    "unit_size": "10 Tablets (Strip)",
-    "jan_aushadhi": {
-      "drug_code": "PMBJP00421",
-      "generic_name": "Glimepiride 1mg + Metformin Hydrochloride 500mg (SR) Tablets",
-      "unit_size": "10 Tablets",
-      "mrp": 17.00
-    },
-    "savings": {
-      "amount": 68.00,
-      "percentage": 80,
-      "monthly_saving": 204.00,
-      "yearly_saving": 2448.00
-    }
-  },
-  {
-    "slug": "pan-40",
-    "brand_name": "Pan 40",
-    "alternative_brands": ["Pantocid 40", "Pantodac 40", "Pansec 40"],
-    "manufacturer": "Alkem Laboratories",
-    "active_salt": "Pantoprazole",
-    "strength": "40 mg",
-    "dosage_form": "Tablet",
-    "category": "Gastrointestinal",
-    "category_hi": "गैस, एसिडिटी व सीने में जलन",
-    "indication": "Acidity, GERD, Heartburn, and stomach ulcers.",
-    "brand_mrp": 155.00,
-    "unit_size": "10 Tablets (Strip)",
-    "jan_aushadhi": {
-      "drug_code": "PMBJP00215",
-      "generic_name": "Pantoprazole Gastro-Resistant Tablets IP 40mg",
-      "unit_size": "10 Tablets",
-      "mrp": 18.00
-    },
-    "savings": {
-      "amount": 137.00,
-      "percentage": 88,
-      "monthly_saving": 411.00,
-      "yearly_saving": 4932.00
-    }
-  },
-  {
-    "slug": "augmentin-625-duo",
-    "brand_name": "Augmentin 625 Duo",
-    "alternative_brands": ["Moxikind-CV 625", "Clavam 625", "Polyclav 625"],
-    "manufacturer": "GlaxoSmithKline (GSK)",
-    "active_salt": "Amoxicillin + Potassium Clavulanate",
-    "strength": "500 mg + 125 mg",
-    "dosage_form": "Tablet",
-    "category": "Anti-Infective",
-    "category_hi": "एंटीबायोटिक (बैक्टीरियल इन्फेक्शन)",
-    "indication": "Bacterial respiratory, throat, ear, dental and skin infections.",
-    "brand_mrp": 185.00,
-    "unit_size": "6 Tablets (Strip)",
-    "jan_aushadhi": {
-      "drug_code": "PMBJP00088",
-      "generic_name": "Amoxycillin and Potassium Clavulanate Tablets IP 625mg",
-      "unit_size": "6 Tablets",
-      "mrp": 52.00
-    },
-    "savings": {
-      "amount": 133.00,
-      "percentage": 72,
-      "monthly_saving": 133.00,
-      "yearly_saving": 133.00
-    }
+    "savings": { "amount": 36.50, "percentage": 87, "monthly_saving": 73.00, "yearly_saving": 876.00 }
   },
   {
     "slug": "atorva-10",
@@ -138,8 +71,8 @@
     "strength": "10 mg",
     "dosage_form": "Tablet",
     "category": "Cardiovascular",
-    "category_hi": "कोलेस्ट्रॉल व हृदय सुरक्षा",
-    "indication": "Lowering bad LDL cholesterol and triglycerides, reducing stroke/heart attack risk.",
+    "category_hi": "बीपी व दिल",
+    "indication": "High cholesterol, arterial plaque prevention.",
     "brand_mrp": 95.00,
     "unit_size": "10 Tablets (Strip)",
     "jan_aushadhi": {
@@ -148,168 +81,7 @@
       "unit_size": "10 Tablets",
       "mrp": 11.50
     },
-    "savings": {
-      "amount": 83.50,
-      "percentage": 88,
-      "monthly_saving": 250.50,
-      "yearly_saving": 3006.00
-    }
-  },
-  {
-    "slug": "dolo-650",
-    "brand_name": "Dolo 650",
-    "alternative_brands": ["Calpol 650", "P-650", "Pacimol 650"],
-    "manufacturer": "Micro Labs",
-    "active_salt": "Paracetamol",
-    "strength": "650 mg",
-    "dosage_form": "Tablet",
-    "category": "Pain Relief",
-    "category_hi": "तेज बुखार व बदन दर्द",
-    "indication": "Fever and mild to moderate pain relief.",
-    "brand_mrp": 32.00,
-    "unit_size": "15 Tablets (Strip)",
-    "jan_aushadhi": {
-      "drug_code": "PMBJP00002",
-      "generic_name": "Paracetamol Tablets IP 650mg",
-      "unit_size": "10 Tablets",
-      "mrp": 13.00
-    },
-    "savings": {
-      "amount": 19.00,
-      "percentage": 59,
-      "monthly_saving": 57.00,
-      "yearly_saving": 684.00
-    }
-  },
-  {
-    "slug": "januvia-100",
-    "brand_name": "Januvia 100",
-    "alternative_brands": ["Istavel 100", "Zita 100"],
-    "manufacturer": "MSD Pharmaceuticals",
-    "active_salt": "Sitagliptin Phosphate",
-    "strength": "100 mg",
-    "dosage_form": "Tablet",
-    "category": "Diabetes",
-    "category_hi": "उन्नत टाइप-2 शुगर (DPP-4 Inhibitor)",
-    "indication": "Advanced Type 2 Diabetes treatment without causing hypoglycemia.",
-    "brand_mrp": 360.00,
-    "unit_size": "10 Tablets (Strip)",
-    "jan_aushadhi": {
-      "drug_code": "PMBJP01530",
-      "generic_name": "Sitagliptin Phosphate Tablets IP 100mg",
-      "unit_size": "10 Tablets",
-      "mrp": 58.00
-    },
-    "savings": {
-      "amount": 302.00,
-      "percentage": 84,
-      "monthly_saving": 906.00,
-      "yearly_saving": 10872.00
-    }
-  },
-  {
-    "slug": "thyronorm-50",
-    "brand_name": "Thyronorm 50",
-    "alternative_brands": ["Eltroxin 50", "Thyrox 50"],
-    "manufacturer": "Abbott Healthcare",
-    "active_salt": "Thyroxine Sodium",
-    "strength": "50 mcg",
-    "dosage_form": "Tablet",
-    "category": "Cardiovascular",
-    "category_hi": "थायरॉइड हार्मोन सप्लीमेंट",
-    "indication": "Hypothyroidism (Underactive thyroid gland).",
-    "brand_mrp": 195.00,
-    "unit_size": "100 Tablets (Bottle)",
-    "jan_aushadhi": {
-      "drug_code": "PMBJP00680",
-      "generic_name": "Thyroxine Sodium Tablets IP 50mcg",
-      "unit_size": "100 Tablets",
-      "mrp": 62.00
-    },
-    "savings": {
-      "amount": 133.00,
-      "percentage": 68,
-      "monthly_saving": 40.00,
-      "yearly_saving": 480.00
-    }
-  },
-  {
-    "slug": "azithral-500",
-    "brand_name": "Azithral 500",
-    "alternative_brands": ["Azee 500", "Zithrox 500", "Azimax 500"],
-    "manufacturer": "Alembic Pharmaceuticals",
-    "active_salt": "Azithromycin",
-    "strength": "500 mg",
-    "dosage_form": "Tablet",
-    "category": "Anti-Infective",
-    "category_hi": "गले व फेफड़ों का इन्फेक्शन",
-    "indication": "Throat infections, tonsillitis, sinusitis, bronchitis, and pneumonia.",
-    "brand_mrp": 115.00,
-    "unit_size": "3 Tablets (Strip)",
-    "jan_aushadhi": {
-      "drug_code": "PMBJP00095",
-      "generic_name": "Azithromycin Tablets IP 500mg",
-      "unit_size": "3 Tablets",
-      "mrp": 30.00
-    },
-    "savings": {
-      "amount": 85.00,
-      "percentage": 74,
-      "monthly_saving": 85.00,
-      "yearly_saving": 85.00
-    }
-  },
-  {
-    "slug": "ecosprin-75",
-    "brand_name": "Ecosprin 75",
-    "alternative_brands": ["Disprin", "Delisprin 75", "Loprin 75"],
-    "manufacturer": "USV Ltd",
-    "active_salt": "Aspirin (Acetylsalicylic Acid)",
-    "strength": "75 mg",
-    "dosage_form": "Tablet",
-    "category": "Cardiovascular",
-    "category_hi": "हार्ट अटैक रोकथाम व ब्लड थिनर",
-    "indication": "Blood thinner to prevent blood clots, heart attacks, and stroke.",
-    "brand_mrp": 18.00,
-    "unit_size": "14 Tablets (Strip)",
-    "jan_aushadhi": {
-      "drug_code": "PMBJP00045",
-      "generic_name": "Aspirin Gastro-resistant Tablets IP 75mg",
-      "unit_size": "14 Tablets",
-      "mrp": 4.50
-    },
-    "savings": {
-      "amount": 13.50,
-      "percentage": 75,
-      "monthly_saving": 27.00,
-      "yearly_saving": 324.00
-    }
-  },
-  {
-    "slug": "montair-lc",
-    "brand_name": "Montair LC",
-    "alternative_brands": ["Montek-LC", "Telekast-L", "Levocet-M"],
-    "manufacturer": "Cipla Ltd",
-    "active_salt": "Montelukast + Levocetirizine",
-    "strength": "10 mg + 5 mg",
-    "dosage_form": "Tablet",
-    "category": "Anti-Infective",
-    "category_hi": "एलर्जी, दमा व सांस की तकलीफ",
-    "indication": "Allergic rhinitis, seasonal sneezing, runny nose, and asthma symptoms.",
-    "brand_mrp": 195.00,
-    "unit_size": "10 Tablets (Strip)",
-    "jan_aushadhi": {
-      "drug_code": "PMBJP00512",
-      "generic_name": "Montelukast 10mg + Levocetirizine 5mg Tablets",
-      "unit_size": "10 Tablets",
-      "mrp": 28.00
-    },
-    "savings": {
-      "amount": 167.00,
-      "percentage": 86,
-      "monthly_saving": 501.00,
-      "yearly_saving": 6012.00
-    }
+    "savings": { "amount": 83.50, "percentage": 88, "monthly_saving": 250.50, "yearly_saving": 3006.00 }
   },
   {
     "slug": "rosuvas-10",
@@ -320,8 +92,8 @@
     "strength": "10 mg",
     "dosage_form": "Tablet",
     "category": "Cardiovascular",
-    "category_hi": "कोलेस्ट्रॉल व नसों की रुकावट",
-    "indication": "High cholesterol, arterial plaque reduction, and heart attack prevention.",
+    "category_hi": "बीपी व दिल",
+    "indication": "Cardiovascular risk reduction, lowering LDL bad cholesterol.",
     "brand_mrp": 215.00,
     "unit_size": "10 Tablets (Strip)",
     "jan_aushadhi": {
@@ -330,12 +102,553 @@
       "unit_size": "10 Tablets",
       "mrp": 24.00
     },
-    "savings": {
-      "amount": 191.00,
-      "percentage": 89,
-      "monthly_saving": 573.00,
-      "yearly_saving": 6876.00
-    }
+    "savings": { "amount": 191.00, "percentage": 89, "monthly_saving": 573.00, "yearly_saving": 6876.00 }
+  },
+  {
+    "slug": "clopilet-75",
+    "brand_name": "Clopilet 75",
+    "alternative_brands": ["Deplatt 75", "Plavix 75", "Ceruvin 75"],
+    "manufacturer": "Sun Pharmaceutical",
+    "active_salt": "Clopidogrel",
+    "strength": "75 mg",
+    "dosage_form": "Tablet",
+    "category": "Cardiovascular",
+    "category_hi": "बीपी व दिल",
+    "indication": "Blood clot prevention after heart stent / bypass surgery.",
+    "brand_mrp": 125.00,
+    "unit_size": "10 Tablets (Strip)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP00210",
+      "generic_name": "Clopidogrel Tablets IP 75mg",
+      "unit_size": "10 Tablets",
+      "mrp": 19.50
+    },
+    "savings": { "amount": 105.50, "percentage": 84, "monthly_saving": 316.50, "yearly_saving": 3798.00 }
+  },
+  {
+    "slug": "ecosprin-75",
+    "brand_name": "Ecosprin 75",
+    "alternative_brands": ["Disprin", "Delisprin 75", "Loprin 75"],
+    "manufacturer": "USV Ltd",
+    "active_salt": "Aspirin (Acetylsalicylic Acid)",
+    "strength": "75 mg",
+    "dosage_form": "Tablet",
+    "category": "Cardiovascular",
+    "category_hi": "बीपी व दिल",
+    "indication": "Blood thinner to prevent heart attacks.",
+    "brand_mrp": 18.00,
+    "unit_size": "14 Tablets (Strip)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP00045",
+      "generic_name": "Aspirin Gastro-resistant Tablets IP 75mg",
+      "unit_size": "14 Tablets",
+      "mrp": 4.50
+    },
+    "savings": { "amount": 13.50, "percentage": 75, "monthly_saving": 27.00, "yearly_saving": 324.00 }
+  },
+  {
+    "slug": "betaloc-25",
+    "brand_name": "Betaloc 25",
+    "alternative_brands": ["Metolar XR 25", "Starpress XL 25", "Metpure XL 25"],
+    "manufacturer": "AstraZeneca",
+    "active_salt": "Metoprolol Succinate",
+    "strength": "25 mg (ER)",
+    "dosage_form": "Tablet",
+    "category": "Cardiovascular",
+    "category_hi": "बीपी व दिल",
+    "indication": "Regulating heart rate, angina, and heart failure.",
+    "brand_mrp": 180.00,
+    "unit_size": "20 Tablets (Strip)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP00450",
+      "generic_name": "Metoprolol Succinate Extended Release Tablets 25mg",
+      "unit_size": "10 Tablets",
+      "mrp": 18.00
+    },
+    "savings": { "amount": 162.00, "percentage": 90, "monthly_saving": 486.00, "yearly_saving": 5832.00 }
+  },
+  {
+    "slug": "glycomet-500",
+    "brand_name": "Glycomet 500",
+    "alternative_brands": ["Gluconorm 500", "Cetapin 500", "Metfor 500"],
+    "manufacturer": "USV Ltd",
+    "active_salt": "Metformin Hydrochloride",
+    "strength": "500 mg (SR)",
+    "dosage_form": "Tablet",
+    "category": "Diabetes",
+    "category_hi": "मधुमेह (शुगर)",
+    "indication": "Type 2 Diabetes Mellitus blood glucose control.",
+    "brand_mrp": 28.00,
+    "unit_size": "10 Tablets (Strip)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP00034",
+      "generic_name": "Metformin Hydrochloride Sustained Release Tablets IP 500mg",
+      "unit_size": "10 Tablets",
+      "mrp": 5.50
+    },
+    "savings": { "amount": 22.50, "percentage": 80, "monthly_saving": 135.00, "yearly_saving": 1620.00 }
+  },
+  {
+    "slug": "amaryl-m-1",
+    "brand_name": "Amaryl M 1",
+    "alternative_brands": ["Glycomet-GP 1", "Zoryl-M 1", "Gemer 1"],
+    "manufacturer": "Sanofi India",
+    "active_salt": "Glimepiride + Metformin",
+    "strength": "1 mg + 500 mg",
+    "dosage_form": "Tablet",
+    "category": "Diabetes",
+    "category_hi": "मधुमेह (शुगर)",
+    "indication": "Dual combination therapy for Type 2 Diabetes.",
+    "brand_mrp": 85.00,
+    "unit_size": "10 Tablets (Strip)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP00421",
+      "generic_name": "Glimepiride 1mg + Metformin Hydrochloride 500mg (SR) Tablets",
+      "unit_size": "10 Tablets",
+      "mrp": 17.00
+    },
+    "savings": { "amount": 68.00, "percentage": 80, "monthly_saving": 204.00, "yearly_saving": 2448.00 }
+  },
+  {
+    "slug": "amaryl-m-2",
+    "brand_name": "Amaryl M 2",
+    "alternative_brands": ["Glycomet-GP 2", "Zoryl-M 2", "Gemer 2"],
+    "manufacturer": "Sanofi India",
+    "active_salt": "Glimepiride + Metformin",
+    "strength": "2 mg + 500 mg",
+    "dosage_form": "Tablet",
+    "category": "Diabetes",
+    "category_hi": "मधुमेह (शुगर)",
+    "indication": "Advanced dual diabetes therapy.",
+    "brand_mrp": 135.00,
+    "unit_size": "10 Tablets (Strip)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP00422",
+      "generic_name": "Glimepiride 2mg + Metformin Hydrochloride 500mg (SR) Tablets",
+      "unit_size": "10 Tablets",
+      "mrp": 19.50
+    },
+    "savings": { "amount": 115.50, "percentage": 86, "monthly_saving": 346.50, "yearly_saving": 4158.00 }
+  },
+  {
+    "slug": "januvia-100",
+    "brand_name": "Januvia 100",
+    "alternative_brands": ["Istavel 100", "Zita 100"],
+    "manufacturer": "MSD Pharmaceuticals",
+    "active_salt": "Sitagliptin Phosphate",
+    "strength": "100 mg",
+    "dosage_form": "Tablet",
+    "category": "Diabetes",
+    "category_hi": "मधुमेह (शुगर)",
+    "indication": "Advanced DPP-4 inhibitor for Type 2 Diabetes.",
+    "brand_mrp": 360.00,
+    "unit_size": "10 Tablets (Strip)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP01530",
+      "generic_name": "Sitagliptin Phosphate Tablets IP 100mg",
+      "unit_size": "10 Tablets",
+      "mrp": 58.00
+    },
+    "savings": { "amount": 302.00, "percentage": 84, "monthly_saving": 906.00, "yearly_saving": 10872.00 }
+  },
+  {
+    "slug": "ziten-20",
+    "brand_name": "Ziten 20",
+    "alternative_brands": ["Dynaglipt 20", "Teniva 20", "Tenglyn 20"],
+    "manufacturer": "Glenmark Pharmaceuticals",
+    "active_salt": "Teneligliptin Hydrobromide",
+    "strength": "20 mg",
+    "dosage_form": "Tablet",
+    "category": "Diabetes",
+    "category_hi": "मधुमेह (शुगर)",
+    "indication": "Type 2 Diabetes glucose regulation.",
+    "brand_mrp": 150.00,
+    "unit_size": "15 Tablets (Strip)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP01210",
+      "generic_name": "Teneligliptin Tablets IP 20mg",
+      "unit_size": "10 Tablets",
+      "mrp": 26.00
+    },
+    "savings": { "amount": 124.00, "percentage": 83, "monthly_saving": 248.00, "yearly_saving": 2976.00 }
+  },
+  {
+    "slug": "forxiga-10",
+    "brand_name": "Forxiga 10",
+    "alternative_brands": ["Oxra 10", "Dapaduce 10", "Dapanorm 10"],
+    "manufacturer": "AstraZeneca",
+    "active_salt": "Dapagliflozin",
+    "strength": "10 mg",
+    "dosage_form": "Tablet",
+    "category": "Diabetes",
+    "category_hi": "मधुमेह (शुगर)",
+    "indication": "SGLT-2 inhibitor for diabetes, kidney and heart protection.",
+    "brand_mrp": 580.00,
+    "unit_size": "14 Tablets (Strip)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP01740",
+      "generic_name": "Dapagliflozin Tablets 10mg",
+      "unit_size": "10 Tablets",
+      "mrp": 65.00
+    },
+    "savings": { "amount": 515.00, "percentage": 89, "monthly_saving": 1030.00, "yearly_saving": 12360.00 }
+  },
+  {
+    "slug": "volibo-02",
+    "brand_name": "Volibo 0.2",
+    "alternative_brands": ["PPG 0.2", "Voglistar 0.2", "Vobit 0.2"],
+    "manufacturer": "Sun Pharmaceutical",
+    "active_salt": "Voglibose",
+    "strength": "0.2 mg",
+    "dosage_form": "Tablet",
+    "category": "Diabetes",
+    "category_hi": "मधुमेह (शुगर)",
+    "indication": "Post-prandial mealtime spike control in diabetics.",
+    "brand_mrp": 95.00,
+    "unit_size": "10 Tablets (Strip)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP00318",
+      "generic_name": "Voglibose Tablets IP 0.2mg",
+      "unit_size": "10 Tablets",
+      "mrp": 12.00
+    },
+    "savings": { "amount": 83.00, "percentage": 87, "monthly_saving": 249.00, "yearly_saving": 2988.00 }
+  },
+  {
+    "slug": "pan-40",
+    "brand_name": "Pan 40",
+    "alternative_brands": ["Pantocid 40", "Pantodac 40", "Pansec 40"],
+    "manufacturer": "Alkem Laboratories",
+    "active_salt": "Pantoprazole",
+    "strength": "40 mg",
+    "dosage_form": "Tablet",
+    "category": "Gastrointestinal",
+    "category_hi": "गैस व एसिडिटी",
+    "indication": "Acidity, GERD, Heartburn, and stomach ulcers.",
+    "brand_mrp": 155.00,
+    "unit_size": "10 Tablets (Strip)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP00215",
+      "generic_name": "Pantoprazole Gastro-Resistant Tablets IP 40mg",
+      "unit_size": "10 Tablets",
+      "mrp": 18.00
+    },
+    "savings": { "amount": 137.00, "percentage": 88, "monthly_saving": 411.00, "yearly_saving": 4932.00 }
+  },
+  {
+    "slug": "pan-d",
+    "brand_name": "Pan D",
+    "alternative_brands": ["Pantocid DSR", "Pantop DSR", "Dompan SR"],
+    "manufacturer": "Alkem Laboratories",
+    "active_salt": "Pantoprazole + Domperidone",
+    "strength": "40 mg + 30 mg (SR)",
+    "dosage_form": "Capsule",
+    "category": "Gastrointestinal",
+    "category_hi": "गैस व एसिडिटी",
+    "indication": "Severe acidity, acid reflux, nausea, and vomiting.",
+    "brand_mrp": 195.00,
+    "unit_size": "10 Capsules (Strip)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP00325",
+      "generic_name": "Pantoprazole 40mg + Domperidone 30mg (SR) Capsules",
+      "unit_size": "10 Capsules",
+      "mrp": 26.00
+    },
+    "savings": { "amount": 169.00, "percentage": 87, "monthly_saving": 507.00, "yearly_saving": 6084.00 }
+  },
+  {
+    "slug": "rabekind-20",
+    "brand_name": "Rabekind 20",
+    "alternative_brands": ["Razo 20", "Rablet 20", "Parit 20"],
+    "manufacturer": "Mankind Pharma",
+    "active_salt": "Rabeprazole Sodium",
+    "strength": "20 mg",
+    "dosage_form": "Tablet",
+    "category": "Gastrointestinal",
+    "category_hi": "गैस व एसिडिटी",
+    "indication": "Fast-acting acid reducer for hyperacidity.",
+    "brand_mrp": 90.00,
+    "unit_size": "10 Tablets (Strip)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP00155",
+      "generic_name": "Rabeprazole Sodium Gastro-resistant Tablets 20mg",
+      "unit_size": "10 Tablets",
+      "mrp": 14.00
+    },
+    "savings": { "amount": 76.00, "percentage": 84, "monthly_saving": 228.00, "yearly_saving": 2736.00 }
+  },
+  {
+    "slug": "omez-20",
+    "brand_name": "Omez 20",
+    "alternative_brands": ["Omee 20", "Omecip 20", "Ocid 20"],
+    "manufacturer": "Dr. Reddy's Laboratories",
+    "active_salt": "Omeprazole",
+    "strength": "20 mg",
+    "dosage_form": "Capsule",
+    "category": "Gastrointestinal",
+    "category_hi": "गैस व एसिडिटी",
+    "indication": "Stomach ulcers, reflux esophagitis, indigestion.",
+    "brand_mrp": 62.00,
+    "unit_size": "20 Capsules (Strip)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP00040",
+      "generic_name": "Omeprazole Capsules IP 20mg",
+      "unit_size": "10 Capsules",
+      "mrp": 8.00
+    },
+    "savings": { "amount": 54.00, "percentage": 87, "monthly_saving": 108.00, "yearly_saving": 1296.00 }
+  },
+  {
+    "slug": "augmentin-625-duo",
+    "brand_name": "Augmentin 625 Duo",
+    "alternative_brands": ["Moxikind-CV 625", "Clavam 625", "Polyclav 625"],
+    "manufacturer": "GlaxoSmithKline (GSK)",
+    "active_salt": "Amoxicillin + Potassium Clavulanate",
+    "strength": "500 mg + 125 mg",
+    "dosage_form": "Tablet",
+    "category": "Anti-Infective",
+    "category_hi": "एंटीबायोटिक",
+    "indication": "Bacterial respiratory, throat, ear, dental and skin infections.",
+    "brand_mrp": 185.00,
+    "unit_size": "6 Tablets (Strip)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP00088",
+      "generic_name": "Amoxycillin and Potassium Clavulanate Tablets IP 625mg",
+      "unit_size": "6 Tablets",
+      "mrp": 52.00
+    },
+    "savings": { "amount": 133.00, "percentage": 72, "monthly_saving": 133.00, "yearly_saving": 133.00 }
+  },
+  {
+    "slug": "azithral-500",
+    "brand_name": "Azithral 500",
+    "alternative_brands": ["Azee 500", "Zithrox 500", "Azimax 500"],
+    "manufacturer": "Alembic Pharmaceuticals",
+    "active_salt": "Azithromycin",
+    "strength": "500 mg",
+    "dosage_form": "Tablet",
+    "category": "Anti-Infective",
+    "category_hi": "एंटीबायोटिक",
+    "indication": "Throat infections, tonsillitis, bronchitis, pneumonia.",
+    "brand_mrp": 115.00,
+    "unit_size": "3 Tablets (Strip)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP00095",
+      "generic_name": "Azithromycin Tablets IP 500mg",
+      "unit_size": "3 Tablets",
+      "mrp": 30.00
+    },
+    "savings": { "amount": 85.00, "percentage": 74, "monthly_saving": 85.00, "yearly_saving": 85.00 }
+  },
+  {
+    "slug": "cefix-200",
+    "brand_name": "Cefix 200 / Taxim-O 200",
+    "alternative_brands": ["Zifi 200", "Mahacef 200", "Cefolac 200"],
+    "manufacturer": "Alkem Laboratories",
+    "active_salt": "Cefixime",
+    "strength": "200 mg",
+    "dosage_form": "Tablet",
+    "category": "Anti-Infective",
+    "category_hi": "एंटीबायोटिक",
+    "indication": "Typhoid fever, urinary tract infection, throat infections.",
+    "brand_mrp": 110.00,
+    "unit_size": "10 Tablets (Strip)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP00055",
+      "generic_name": "Cefixime Dispersible Tablets IP 200mg",
+      "unit_size": "10 Tablets",
+      "mrp": 38.00
+    },
+    "savings": { "amount": 72.00, "percentage": 65, "monthly_saving": 72.00, "yearly_saving": 72.00 }
+  },
+  {
+    "slug": "ciplox-500",
+    "brand_name": "Ciplox 500",
+    "alternative_brands": ["Cifran 500", "Alcipro 500", "Ciprobid 500"],
+    "manufacturer": "Cipla Ltd",
+    "active_salt": "Ciprofloxacin",
+    "strength": "500 mg",
+    "dosage_form": "Tablet",
+    "category": "Anti-Infective",
+    "category_hi": "एंटीबायोटिक",
+    "indication": "Bacterial diarrhea, dysentery, bone and joint infections.",
+    "brand_mrp": 45.00,
+    "unit_size": "10 Tablets (Strip)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP00010",
+      "generic_name": "Ciprofloxacin Tablets IP 500mg",
+      "unit_size": "10 Tablets",
+      "mrp": 16.50
+    },
+    "savings": { "amount": 28.50, "percentage": 63, "monthly_saving": 28.50, "yearly_saving": 28.50 }
+  },
+  {
+    "slug": "forcan-150",
+    "brand_name": "Forcan 150",
+    "alternative_brands": ["Fluka 150", "Syscan 150", "Zocon 150"],
+    "manufacturer": "Cipla Ltd",
+    "active_salt": "Fluconazole",
+    "strength": "150 mg",
+    "dosage_form": "Tablet",
+    "category": "Anti-Infective",
+    "category_hi": "एंटीबायोटिक",
+    "indication": "Fungal skin, nail and candidiasis infections.",
+    "brand_mrp": 42.00,
+    "unit_size": "1 Tablet (Strip)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP00105",
+      "generic_name": "Fluconazole Tablets IP 150mg",
+      "unit_size": "1 Tablet",
+      "mrp": 6.00
+    },
+    "savings": { "amount": 36.00, "percentage": 86, "monthly_saving": 36.00, "yearly_saving": 36.00 }
+  },
+  {
+    "slug": "dolo-650",
+    "brand_name": "Dolo 650",
+    "alternative_brands": ["Calpol 650", "P-650", "Pacimol 650"],
+    "manufacturer": "Micro Labs",
+    "active_salt": "Paracetamol",
+    "strength": "650 mg",
+    "dosage_form": "Tablet",
+    "category": "Pain Relief",
+    "category_hi": "दर्द व बुखार",
+    "indication": "Fever and mild to moderate pain relief.",
+    "brand_mrp": 32.00,
+    "unit_size": "15 Tablets (Strip)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP00002",
+      "generic_name": "Paracetamol Tablets IP 650mg",
+      "unit_size": "10 Tablets",
+      "mrp": 13.00
+    },
+    "savings": { "amount": 19.00, "percentage": 59, "monthly_saving": 57.00, "yearly_saving": 684.00 }
+  },
+  {
+    "slug": "zerodol-p",
+    "brand_name": "Zerodol-P",
+    "alternative_brands": ["Hifenac-P", "Aceclo Plus", "Dolokind-P"],
+    "manufacturer": "Ipca Laboratories",
+    "active_salt": "Aceclofenac + Paracetamol",
+    "strength": "100 mg + 325 mg",
+    "dosage_form": "Tablet",
+    "category": "Pain Relief",
+    "category_hi": "दर्द व बुखार",
+    "indication": "Joint pain, osteoarthritis, back pain, and dental pain.",
+    "brand_mrp": 75.00,
+    "unit_size": "10 Tablets (Strip)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP00180",
+      "generic_name": "Aceclofenac 100mg + Paracetamol 325mg Tablets",
+      "unit_size": "10 Tablets",
+      "mrp": 18.00
+    },
+    "savings": { "amount": 57.00, "percentage": 76, "monthly_saving": 171.00, "yearly_saving": 2052.00 }
+  },
+  {
+    "slug": "voveran-50",
+    "brand_name": "Voveran 50",
+    "alternative_brands": ["Dynapar 50", "Dicloran 50", "Jonac 50"],
+    "manufacturer": "Novartis India",
+    "active_salt": "Diclofenac Sodium",
+    "strength": "50 mg",
+    "dosage_form": "Tablet",
+    "category": "Pain Relief",
+    "category_hi": "दर्द व बुखार",
+    "indication": "Severe muscle pain, sprains, swelling, and arthritis.",
+    "brand_mrp": 55.00,
+    "unit_size": "15 Tablets (Strip)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP00005",
+      "generic_name": "Diclofenac Sodium Gastro-resistant Tablets 50mg",
+      "unit_size": "10 Tablets",
+      "mrp": 6.50
+    },
+    "savings": { "amount": 48.50, "percentage": 88, "monthly_saving": 97.00, "yearly_saving": 1164.00 }
+  },
+  {
+    "slug": "meftal-spas",
+    "brand_name": "Meftal Spas",
+    "alternative_brands": ["Cyclopam", "Spasmonil", "Colimex"],
+    "manufacturer": "Blue Cross Laboratories",
+    "active_salt": "Dicyclomine + Mefenamic Acid",
+    "strength": "10 mg + 250 mg",
+    "dosage_form": "Tablet",
+    "category": "Pain Relief",
+    "category_hi": "दर्द व बुखार",
+    "indication": "Menstrual cramps, stomach spasms, and abdominal colic pain.",
+    "brand_mrp": 55.00,
+    "unit_size": "10 Tablets (Strip)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP00060",
+      "generic_name": "Dicyclomine 10mg + Mefenamic Acid 250mg Tablets",
+      "unit_size": "10 Tablets",
+      "mrp": 12.00
+    },
+    "savings": { "amount": 43.00, "percentage": 78, "monthly_saving": 43.00, "yearly_saving": 43.00 }
+  },
+  {
+    "slug": "montair-lc",
+    "brand_name": "Montair LC",
+    "alternative_brands": ["Montek-LC", "Telekast-L", "Levocet-M"],
+    "manufacturer": "Cipla Ltd",
+    "active_salt": "Montelukast + Levocetirizine",
+    "strength": "10 mg + 5 mg",
+    "dosage_form": "Tablet",
+    "category": "Respiratory",
+    "category_hi": "सांस व दमा",
+    "indication": "Allergic sneezing, runny nose, and asthma symptoms.",
+    "brand_mrp": 195.00,
+    "unit_size": "10 Tablets (Strip)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP00512",
+      "generic_name": "Montelukast 10mg + Levocetirizine 5mg Tablets",
+      "unit_size": "10 Tablets",
+      "mrp": 28.00
+    },
+    "savings": { "amount": 167.00, "percentage": 86, "monthly_saving": 501.00, "yearly_saving": 6012.00 }
+  },
+  {
+    "slug": "asthalin-inhaler",
+    "brand_name": "Asthalin Inhaler (100 mcg)",
+    "alternative_brands": ["Ventorlin Inhaler", "Salbair Inhaler"],
+    "manufacturer": "Cipla Ltd",
+    "active_salt": "Salbutamol (Albuterol)",
+    "strength": "100 mcg (200 MDI)",
+    "dosage_form": "Inhaler",
+    "category": "Respiratory",
+    "category_hi": "सांस व दमा",
+    "indication": "Rapid relief from sudden asthma attack and breathing difficulty.",
+    "brand_mrp": 175.00,
+    "unit_size": "1 Inhaler (200 Puffs)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP00480",
+      "generic_name": "Salbutamol Inhalation Aerosol IP 100mcg",
+      "unit_size": "1 Inhaler (200 Puffs)",
+      "mrp": 65.00
+    },
+    "savings": { "amount": 110.00, "percentage": 63, "monthly_saving": 110.00, "yearly_saving": 1320.00 }
+  },
+  {
+    "slug": "budecort-respules",
+    "brand_name": "Budecort 0.5 Respules",
+    "alternative_brands": ["Budate Respules", "Nebicort 0.5"],
+    "manufacturer": "Cipla Ltd",
+    "active_salt": "Budesonide",
+    "strength": "0.5 mg / 2 ml",
+    "dosage_form": "Respule",
+    "category": "Respiratory",
+    "category_hi": "सांस व दमा",
+    "indication": "Nebulization for pediatric & adult acute asthma and cough.",
+    "brand_mrp": 180.00,
+    "unit_size": "5 Respules (Pack)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP00520",
+      "generic_name": "Budesonide Nebuliser Suspension IP 0.5mg/2ml",
+      "unit_size": "5 Respules",
+      "mrp": 48.00
+    },
+    "savings": { "amount": 132.00, "percentage": 73, "monthly_saving": 264.00, "yearly_saving": 3168.00 }
   },
   {
     "slug": "shelcal-500",
@@ -345,9 +658,9 @@
     "active_salt": "Calcium Carbonate + Vitamin D3",
     "strength": "500 mg + 250 IU",
     "dosage_form": "Tablet",
-    "category": "Pain Relief",
-    "category_hi": "हड्डियों की कमजोरी व कैल्शियम",
-    "indication": "Calcium deficiency, osteoporosis, bone and joint strength.",
+    "category": "Vitamins",
+    "category_hi": "विटामिन्स व सप्लीमेंट्स",
+    "indication": "Bone density, osteoporosis, and joint strength.",
     "brand_mrp": 140.00,
     "unit_size": "15 Tablets (Strip)",
     "jan_aushadhi": {
@@ -356,24 +669,19 @@
       "unit_size": "15 Tablets",
       "mrp": 22.00
     },
-    "savings": {
-      "amount": 118.00,
-      "percentage": 84,
-      "monthly_saving": 236.00,
-      "yearly_saving": 2832.00
-    }
+    "savings": { "amount": 118.00, "percentage": 84, "monthly_saving": 236.00, "yearly_saving": 2832.00 }
   },
   {
     "slug": "becosules",
     "brand_name": "Becosules Capsules",
-    "alternative_brands": ["Cobadex Forte", "B-Plex", "Neurobion Forte"],
+    "alternative_brands": ["Cobadex Forte", "B-Plex", "Surbex-T"],
     "manufacturer": "Pfizer Ltd",
     "active_salt": "B-Complex + Vitamin C",
     "strength": "Multivitamin Formulation",
     "dosage_form": "Capsule",
-    "category": "Pain Relief",
-    "category_hi": "कमजोरी, मुँह के छाले व विटामिन्स",
-    "indication": "Mouth ulcers, physical weakness, nervous health, and vitamin deficiency.",
+    "category": "Vitamins",
+    "category_hi": "विटामिन्स व सप्लीमेंट्स",
+    "indication": "Mouth ulcers, physical weakness, nervous stamina.",
     "brand_mrp": 55.00,
     "unit_size": "20 Capsules (Strip)",
     "jan_aushadhi": {
@@ -382,11 +690,195 @@
       "unit_size": "20 Capsules",
       "mrp": 12.00
     },
-    "savings": {
-      "amount": 43.00,
-      "percentage": 78,
-      "monthly_saving": 64.50,
-      "yearly_saving": 774.00
-    }
+    "savings": { "amount": 43.00, "percentage": 78, "monthly_saving": 64.50, "yearly_saving": 774.00 }
+  },
+  {
+    "slug": "neurobion-forte",
+    "brand_name": "Neurobion Forte",
+    "alternative_brands": ["Optineuron", "Meganeuron", "Nurokind-LC"],
+    "manufacturer": "Procter & Gamble (P&G)",
+    "active_salt": "Vitamin B1 + B6 + B12 (Cobalamin)",
+    "strength": "Nerve Rejuvenator Formulation",
+    "dosage_form": "Tablet",
+    "category": "Vitamins",
+    "category_hi": "विटामिन्स व सप्लीमेंट्स",
+    "indication": "Nerve numbness, tingling in hands/feet, neuropathic weakness.",
+    "brand_mrp": 45.00,
+    "unit_size": "30 Tablets (Strip)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP00078",
+      "generic_name": "Vitamin B1, B6 and B12 Tablets",
+      "unit_size": "30 Tablets",
+      "mrp": 14.00
+    },
+    "savings": { "amount": 31.00, "percentage": 69, "monthly_saving": 31.00, "yearly_saving": 372.00 }
+  },
+  {
+    "slug": "limcee-500",
+    "brand_name": "Limcee 500",
+    "alternative_brands": ["Celin 500", "Sukcee 500", "Chewcee 500"],
+    "manufacturer": "Abbott Healthcare",
+    "active_salt": "Vitamin C (Ascorbic Acid)",
+    "strength": "500 mg Chewable",
+    "dosage_form": "Tablet",
+    "category": "Vitamins",
+    "category_hi": "विटामिन्स व सप्लीमेंट्स",
+    "indication": "Immunity builder, collagen synthesis, skin health.",
+    "brand_mrp": 30.00,
+    "unit_size": "15 Tablets (Strip)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP00015",
+      "generic_name": "Ascorbic Acid Chewable Tablets IP 500mg",
+      "unit_size": "10 Tablets",
+      "mrp": 6.00
+    },
+    "savings": { "amount": 24.00, "percentage": 80, "monthly_saving": 48.00, "yearly_saving": 576.00 }
+  },
+  {
+    "slug": "thyronorm-50",
+    "brand_name": "Thyronorm 50",
+    "alternative_brands": ["Eltroxin 50", "Thyrox 50"],
+    "manufacturer": "Abbott Healthcare",
+    "active_salt": "Thyroxine Sodium",
+    "strength": "50 mcg",
+    "dosage_form": "Tablet",
+    "category": "Thyroid",
+    "category_hi": "थायरॉइड",
+    "indication": "Hypothyroidism (Underactive thyroid gland).",
+    "brand_mrp": 195.00,
+    "unit_size": "100 Tablets (Bottle)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP00680",
+      "generic_name": "Thyroxine Sodium Tablets IP 50mcg",
+      "unit_size": "100 Tablets",
+      "mrp": 62.00
+    },
+    "savings": { "amount": 133.00, "percentage": 68, "monthly_saving": 40.00, "yearly_saving": 480.00 }
+  },
+  {
+    "slug": "thyronorm-100",
+    "brand_name": "Thyronorm 100",
+    "alternative_brands": ["Eltroxin 100", "Thyrox 100"],
+    "manufacturer": "Abbott Healthcare",
+    "active_salt": "Thyroxine Sodium",
+    "strength": "100 mcg",
+    "dosage_form": "Tablet",
+    "category": "Thyroid",
+    "category_hi": "थायरॉइड",
+    "indication": "Hypothyroidism replacement therapy.",
+    "brand_mrp": 215.00,
+    "unit_size": "100 Tablets (Bottle)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP00682",
+      "generic_name": "Thyroxine Sodium Tablets IP 100mcg",
+      "unit_size": "100 Tablets",
+      "mrp": 68.00
+    },
+    "savings": { "amount": 147.00, "percentage": 68, "monthly_saving": 44.00, "yearly_saving": 528.00 }
+  },
+  {
+    "slug": "pregabalin-75",
+    "brand_name": "Lyrica 75 / Pregabid 75",
+    "alternative_brands": ["Maxgalin 75", "Pregeb 75", "Pregalin 75"],
+    "manufacturer": "Pfizer / Torrent",
+    "active_salt": "Pregabalin",
+    "strength": "75 mg",
+    "dosage_form": "Capsule",
+    "category": "Neuro",
+    "category_hi": "न्यूरो व मानसिक स्वास्थ्य",
+    "indication": "Neuropathic pain, diabetic nerve pain, fibromyalgia.",
+    "brand_mrp": 210.00,
+    "unit_size": "10 Capsules (Strip)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP00820",
+      "generic_name": "Pregabalin Capsules IP 75mg",
+      "unit_size": "10 Capsules",
+      "mrp": 32.00
+    },
+    "savings": { "amount": 178.00, "percentage": 85, "monthly_saving": 534.00, "yearly_saving": 6408.00 }
+  },
+  {
+    "slug": "nexito-10",
+    "brand_name": "Nexito 10",
+    "alternative_brands": ["Cipralex 10", "Stalopam 10", "S-Citadep 10"],
+    "manufacturer": "Sun Pharmaceutical",
+    "active_salt": "Escitalopram Oxalate",
+    "strength": "10 mg",
+    "dosage_form": "Tablet",
+    "category": "Neuro",
+    "category_hi": "न्यूरो व मानसिक स्वास्थ्य",
+    "indication": "Anxiety disorders, panic attacks, depression.",
+    "brand_mrp": 120.00,
+    "unit_size": "10 Tablets (Strip)",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP00360",
+      "generic_name": "Escitalopram Tablets IP 10mg",
+      "unit_size": "10 Tablets",
+      "mrp": 16.00
+    },
+    "savings": { "amount": 104.00, "percentage": 87, "monthly_saving": 312.00, "yearly_saving": 3744.00 }
+  },
+  {
+    "slug": "suvidha-sanitary-pads",
+    "brand_name": "Stayfree / Whisper Ultra",
+    "alternative_brands": ["Sofy", "Kotex", "Stayfree Secure"],
+    "manufacturer": "J&J / P&G",
+    "active_salt": "Oxo-Biodegradable Sanitary Napkin",
+    "strength": "Regular Wings Pad",
+    "dosage_form": "Sanitary Pad",
+    "category": "Surgical",
+    "category_hi": "सर्जिकल व उपकरण",
+    "indication": "Menstrual hygiene for women, eco-friendly oxo-biodegradable.",
+    "brand_mrp": 45.00,
+    "unit_size": "Pack of 4 Pads",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP00999",
+      "generic_name": "Jan Aushadhi Suvidha Oxo-Biodegradable Sanitary Napkin",
+      "unit_size": "Pack of 4 Pads (₹1/pad)",
+      "mrp": 4.00
+    },
+    "savings": { "amount": 41.00, "percentage": 91, "monthly_saving": 82.00, "yearly_saving": 984.00 }
+  },
+  {
+    "slug": "glucometer-device",
+    "brand_name": "Accu-Chek / OneTouch Glucometer",
+    "alternative_brands": ["Dr. Morepen", "Contour Plus", "BeatO"],
+    "manufacturer": "Roche / LifeScan",
+    "active_salt": "Blood Glucose Monitoring Device",
+    "strength": "Digital Monitor + 10 Lancets",
+    "dosage_form": "Medical Device",
+    "category": "Surgical",
+    "category_hi": "सर्जिकल व उपकरण",
+    "indication": "Self blood sugar testing at home with 5-second reading.",
+    "brand_mrp": 950.00,
+    "unit_size": "1 Complete Kit",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP01820",
+      "generic_name": "Jan Aushadhi Digital Blood Glucose Monitor Kit",
+      "unit_size": "1 Kit",
+      "mrp": 380.00
+    },
+    "savings": { "amount": 570.00, "percentage": 60, "monthly_saving": 570.00, "yearly_saving": 570.00 }
+  },
+  {
+    "slug": "digital-bp-monitor",
+    "brand_name": "Omron Digital BP Monitor",
+    "alternative_brands": ["Dr. Morepen BP", "Beurer", "Citizen"],
+    "manufacturer": "Omron Healthcare",
+    "active_salt": "Digital Upper Arm Blood Pressure Monitor",
+    "strength": "Automatic Oscillometric",
+    "dosage_form": "Medical Device",
+    "category": "Surgical",
+    "category_hi": "सर्जिकल व उपकरण",
+    "indication": "Accurate home blood pressure and pulse rate tracking.",
+    "brand_mrp": 2100.00,
+    "unit_size": "1 Monitor with Cuff",
+    "jan_aushadhi": {
+      "drug_code": "PMBJP01850",
+      "generic_name": "Jan Aushadhi Digital Upper Arm Blood Pressure Monitor",
+      "unit_size": "1 Unit",
+      "mrp": 850.00
+    },
+    "savings": { "amount": 1250.00, "percentage": 60, "monthly_saving": 1250.00, "yearly_saving": 1250.00 }
   }
 ]
