@@ -2,7 +2,7 @@
 JanDawa Programmatic Local SEO Generator for 777 Districts
 Generates dedicated, high-ranking Kendra directory pages for every district in India,
 with LocalBusiness / Pharmacy Schema.org JSON-LD, Google Maps links, search filter,
-and updates sitemap.xml!
+an interactive Master Directory with instant District/Pincode search, and updates sitemap.xml!
 """
 
 import json
@@ -33,6 +33,7 @@ def main():
         kendras = json.load(f)
 
     # Normalize state & district
+    pin_map = {}
     for k in kendras:
         st = k['state'].strip()
         if 'Jammu' in st:
@@ -44,7 +45,13 @@ def main():
         else:
             st = st.title()
         k['state'] = st
-        k['district'] = k['district'].strip().title()
+        dist = k['district'].strip().title()
+        k['district'] = dist
+
+        pin = k.get('pincode', '').strip()
+        if re.match(r'^\d{6}$', pin):
+            slug = f"{slugify(st)}-{slugify(dist)}"
+            pin_map[pin] = {'d': dist, 's': st, 'u': f"/kendra/{slug}.html"}
 
     by_state_dist = defaultdict(lambda: defaultdict(list))
     for k in kendras:
@@ -53,6 +60,7 @@ def main():
     print(f"Total States: {len(by_state_dist)}")
     total_districts = sum(len(d) for d in by_state_dist.values())
     print(f"Total Districts: {total_districts}")
+    print(f"Total Mapped Pincodes: {len(pin_map)}")
 
     generated_slugs = []
 
@@ -69,7 +77,7 @@ def main():
 
             store_count = len(store_list)
 
-            # Build Schema.org ItemList with Pharmacy items (top 20 for JSON-LD)
+            # Build Schema.org ItemList with Pharmacy items
             schema_items = []
             for idx, s in enumerate(store_list[:25]):
                 schema_items.append({
@@ -190,7 +198,7 @@ def main():
       </a>
       <div class="flex items-center gap-2">
         <a href="/" class="text-xs font-semibold px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100 transition">दवा खोजक (2,513 दवाएं)</a>
-        <a href="/kendra/" class="text-xs font-semibold px-3.5 py-2 rounded-xl bg-blue-50 text-blue-700 border border-blue-200 transition">सभी ज़िले</a>
+        <a href="/kendra/" class="text-xs font-semibold px-3.5 py-2 rounded-xl bg-blue-50 text-blue-700 border border-blue-200 transition">सभी 777 ज़िले</a>
       </div>
     </div>
   </header>
@@ -313,7 +321,7 @@ def main():
 
     print(f"Generated {len(generated_slugs)} district pages in {OUTPUT_DIR}")
 
-    # 2. Generate Master Kendra Directory Index Page (kendra/index.html)
+    # 2. Generate Master Kendra Directory Index Page with Interactive Search (kendra/index.html)
     directory_html_sections = []
     for state_name, districts in sorted(by_state_dist.items()):
         state_slug = slugify(state_name)
@@ -322,14 +330,14 @@ def main():
         for dist_name in sorted(districts.keys()):
             dist_slug = slugify(dist_name)
             count = len(districts[dist_name])
-            dist_links.append(f'<a href="/kendra/{state_slug}-{dist_slug}.html" class="px-2.5 py-1.5 rounded-xl bg-slate-50 hover:bg-blue-50 hover:text-blue-700 border border-slate-200 text-xs font-semibold text-slate-800 transition flex items-center justify-between gap-2"><span>{dist_name}</span> <span class="text-[10px] bg-white px-1.5 py-0.5 rounded border border-slate-200 text-slate-500 font-mono">{count}</span></a>')
+            dist_links.append(f'<a href="/kendra/{state_slug}-{dist_slug}.html" class="dist-link px-2.5 py-1.5 rounded-xl bg-slate-50 hover:bg-blue-50 hover:text-blue-700 border border-slate-200 text-xs font-semibold text-slate-800 transition flex items-center justify-between gap-2" data-name="{dist_name.lower()}" data-state="{state_name.lower()}" data-slug="/kendra/{state_slug}-{dist_slug}.html"><span>{dist_name}</span> <span class="text-[10px] bg-white px-1.5 py-0.5 rounded border border-slate-200 text-slate-500 font-mono">{count}</span></a>')
         
         links_block = "\n".join(dist_links)
         directory_html_sections.append(f"""
-        <div class="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 space-y-4">
+        <div class="state-block bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 space-y-4" data-state="{state_name.lower()}">
           <div class="flex items-center justify-between border-b border-slate-100 pb-3">
             <h2 class="text-base sm:text-lg font-bold text-slate-900">{state_name}</h2>
-            <span class="text-xs font-extrabold text-blue-700 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full">{total_state_stores.toLocaleString('en-IN') if hasattr(total_state_stores, 'toLocaleString') else total_state_stores} केंद्र</span>
+            <span class="text-xs font-extrabold text-blue-700 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full">{total_state_stores:,} केंद्र</span>
           </div>
           <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
             {links_block}
@@ -338,6 +346,7 @@ def main():
         """)
 
     all_sections_rendered = "\n".join(directory_html_sections)
+    pin_map_json = json.dumps(pin_map, ensure_ascii=False)
 
     index_page_html = f"""<!DOCTYPE html>
 <html lang="hi">
@@ -345,7 +354,7 @@ def main():
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>All India Jan Aushadhi Kendra Directory - 21,745 Stores in 777 Districts | JanDawa</title>
-  <meta name="description" content="पूरे भारत के 36 राज्यों और 777 ज़िलों के सभी 21,745 प्रधानमंत्री जन औषधि केंद्रों की आधिकारिक डायरेक्टरी। अपने ज़िले का चुनाव करें और केंद्र का पता व गूगल मैप्स देखें।">
+  <meta name="description" content="पूरे भारत के 36 राज्यों और 777 ज़िलों के सभी 21,745 प्रधानमंत्री जन औषधि केंद्रों की आधिकारिक डायरेक्टरी। ज़िला, शहर या पिनकोड डालकर तुरंत केंद्र का पता व गूगल मैप्स रास्ता देखें।">
   <link rel="canonical" href="https://jandawa.pages.dev/kendra/">
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
 </head>
@@ -365,7 +374,8 @@ def main():
     </div>
   </header>
 
-  <div class="bg-gradient-to-b from-white to-slate-50 border-b border-slate-200/80 py-8 px-4 text-center space-y-3">
+  <!-- Hero with Master Search Bar -->
+  <div class="bg-gradient-to-b from-white to-slate-50 border-b border-slate-200/80 py-8 px-4 text-center space-y-4">
     <div class="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-bold">
       <span>🇮🇳</span> अखिल भारतीय जन औषधि केंद्र डायरेक्टरी
     </div>
@@ -373,12 +383,68 @@ def main():
       देशभर के 21,745 केंद्र (777 ज़िले)
     </h1>
     <p class="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto">
-      नीचे अपने राज्य और ज़िले का चुनाव करें और अपने नजदीकी अधिकृत केंद्र का पता, पिनकोड और दिशा-निर्देश देखें:
+      अपना ज़िला, शहर या 6-अंकीय पिनकोड डालें और सीधे अपने नजदीकी केंद्रों का पता और गूगल मैप्स रास्ता देखें:
     </p>
+
+    <!-- Master Search Bar with Search Button -->
+    <div class="max-w-2xl mx-auto pt-2">
+      <div class="bg-white rounded-2xl shadow-md border-2 border-slate-300 focus-within:border-blue-600 p-2 flex gap-2 transition-all">
+        <div class="relative flex-1 flex items-center">
+          <svg class="w-5 h-5 absolute left-3 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <input 
+            id="kendraMasterSearch" 
+            type="text" 
+            autocomplete="off"
+            placeholder="ज़िले का नाम (उदा: Jodhpur), शहर, राज्य या 6-अंकीय पिनकोड..." 
+            class="w-full pl-10 pr-3 py-3 text-sm sm:text-base text-slate-900 placeholder-slate-400 focus:outline-none bg-transparent"
+          />
+        </div>
+        <button id="searchDirectoryBtn" onclick="runMasterDirectorySearch()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-1.5 shadow">
+          <span>खोजें</span>
+        </button>
+      </div>
+
+      <!-- Live Pincode / Direct Match Result Banner -->
+      <div id="pincodeMatchBanner" class="hidden mt-3 p-4 bg-emerald-50 border border-emerald-200 rounded-2xl text-left flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm">
+        <div>
+          <div class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider">🎯 सटीक पिनकोड मैच</div>
+          <div id="pincodeMatchText" class="text-sm font-extrabold text-emerald-950 mt-0.5"></div>
+          <div class="text-xs text-emerald-700 mt-0.5">इस ज़िले के सभी अधिकृत केंद्र, पता और गूगल मैप्स देखें</div>
+        </div>
+        <a id="pincodeMatchLink" href="#" class="shrink-0 bg-emerald-700 hover:bg-emerald-800 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition shadow flex items-center gap-1">
+          <span>केंद्र सूची खोलें ➔</span>
+        </a>
+      </div>
+
+      <!-- Quick Popular City Chips -->
+      <div class="flex flex-wrap items-center justify-center gap-1.5 text-xs text-slate-500 mt-3">
+        <span class="font-medium text-slate-400">अक्सर खोजे जाने वाले:</span>
+        <button onclick="setDirectorySearch('Jodhpur')" class="px-2.5 py-1 rounded-lg bg-white border border-slate-200 hover:border-blue-500 hover:text-blue-700 font-semibold transition">जोधपुर</button>
+        <button onclick="setDirectorySearch('Jaipur')" class="px-2.5 py-1 rounded-lg bg-white border border-slate-200 hover:border-blue-500 hover:text-blue-700 font-semibold transition">जयपुर</button>
+        <button onclick="setDirectorySearch('Lucknow')" class="px-2.5 py-1 rounded-lg bg-white border border-slate-200 hover:border-blue-500 hover:text-blue-700 font-semibold transition">लखनऊ</button>
+        <button onclick="setDirectorySearch('Patna')" class="px-2.5 py-1 rounded-lg bg-white border border-slate-200 hover:border-blue-500 hover:text-blue-700 font-semibold transition">पटना</button>
+        <button onclick="setDirectorySearch('Indore')" class="px-2.5 py-1 rounded-lg bg-white border border-slate-200 hover:border-blue-500 hover:text-blue-700 font-semibold transition">इंदौर</button>
+        <button onclick="setDirectorySearch('Bhopal')" class="px-2.5 py-1 rounded-lg bg-white border border-slate-200 hover:border-blue-500 hover:text-blue-700 font-semibold transition">भोपाल</button>
+        <button onclick="setDirectorySearch('Delhi')" class="px-2.5 py-1 rounded-lg bg-white border border-slate-200 hover:border-blue-500 hover:text-blue-700 font-semibold transition">दिल्ली</button>
+        <button onclick="setDirectorySearch('Mumbai')" class="px-2.5 py-1 rounded-lg bg-white border border-slate-200 hover:border-blue-500 hover:text-blue-700 font-semibold transition">मुंबई</button>
+      </div>
+    </div>
   </div>
 
   <main class="max-w-6xl mx-auto px-4 py-8 flex-1 w-full space-y-6">
-    {all_sections_rendered}
+    <div id="noMatchBox" class="hidden bg-white border border-slate-200 rounded-2xl p-8 text-center space-y-3">
+      <h3 class="font-bold text-base text-slate-800">कोई ज़िला या केंद्र नहीं मिला</h3>
+      <p class="text-xs text-slate-500">कृपया ज़िले की स्पेलिंग जांचें या 6-अंकीय पिनकोड डालकर देखें।</p>
+      <button onclick="setDirectorySearch('')" class="text-xs font-bold text-blue-700 bg-blue-50 px-4 py-2 rounded-xl border border-blue-200 hover:bg-blue-100 transition">
+        सभी ज़िले दोबारा दिखाएं
+      </button>
+    </div>
+
+    <div id="directoryContainer" class="space-y-6">
+      {all_sections_rendered}
+    </div>
   </main>
 
   <footer class="bg-white border-t border-slate-200 py-8 px-4 text-xs text-slate-500 text-center space-y-2 mt-auto">
@@ -389,16 +455,130 @@ def main():
       <a href="/disclaimer.html" class="hover:text-emerald-700">Disclaimer</a>
     </div>
   </footer>
+
+  <!-- Search & Pincode Filter Script -->
+  <script>
+    const pinMap = {pin_map_json};
+    const searchInput = document.getElementById('kendraMasterSearch');
+    const stateBlocks = document.querySelectorAll('.state-block');
+    const distLinks = document.querySelectorAll('.dist-link');
+    const pincodeBanner = document.getElementById('pincodeMatchBanner');
+    const pincodeText = document.getElementById('pincodeMatchText');
+    const pincodeLink = document.getElementById('pincodeMatchLink');
+    const noMatchBox = document.getElementById('noMatchBox');
+
+    function filterDirectory(q) {{
+      q = q.trim().toLowerCase();
+
+      // Check if 6-digit pincode
+      if (/^\\d{{6}}$/.test(q)) {{
+        if (pinMap[q]) {{
+          const item = pinMap[q];
+          pincodeText.innerText = 'पिनकोड ' + q + ' ➔ ' + item.d + ' (' + item.s + ')';
+          pincodeLink.href = item.u;
+          pincodeBanner.classList.remove('hidden');
+          // Filter to that district
+          q = item.d.toLowerCase();
+        }} else {{
+          pincodeBanner.classList.add('hidden');
+        }}
+      }} else {{
+        pincodeBanner.classList.add('hidden');
+      }}
+
+      let visibleStates = 0;
+      let matchedDistricts = 0;
+
+      stateBlocks.forEach(sb => {{
+        const stateName = sb.getAttribute('data-state') || '';
+        const stateMatches = stateName.includes(q);
+        const links = sb.querySelectorAll('.dist-link');
+        let visibleLinksInState = 0;
+
+        links.forEach(l => {{
+          const dName = l.getAttribute('data-name') || '';
+          if (!q || stateMatches || dName.includes(q)) {{
+            l.classList.remove('hidden');
+            visibleLinksInState++;
+            matchedDistricts++;
+          }} else {{
+            l.classList.add('hidden');
+          }}
+        }});
+
+        if (!q || visibleLinksInState > 0) {{
+          sb.classList.remove('hidden');
+          visibleStates++;
+        }} else {{
+          sb.classList.add('hidden');
+        }}
+      }});
+
+      if (noMatchBox) {{
+        if (visibleStates === 0 && matchedDistricts === 0) {{
+          noMatchBox.classList.remove('hidden');
+        }} else {{
+          noMatchBox.classList.add('hidden');
+        }}
+      }}
+    }}
+
+    function runMasterDirectorySearch() {{
+      const q = searchInput.value.trim().toLowerCase();
+      if (!q) return;
+
+      // If 6-digit pin matches, directly navigate
+      if (/^\\d{{6}}$/.test(q) && pinMap[q]) {{
+        window.location.href = pinMap[q].u;
+        return;
+      }}
+
+      // Check if exact 1 district matches
+      const visibleLinks = document.querySelectorAll('.dist-link:not(.hidden)');
+      if (visibleLinks.length === 1) {{
+        window.location.href = visibleLinks[0].href;
+        return;
+      }}
+
+      // Otherwise scroll down to results
+      const firstVisible = document.querySelector('.state-block:not(.hidden)');
+      if (firstVisible) {{
+        firstVisible.scrollIntoView({{ behavior: 'smooth', block: 'start' }});
+      }}
+    }}
+
+    function setDirectorySearch(val) {{
+      if (searchInput) {{
+        searchInput.value = val;
+        filterDirectory(val);
+        if (val) {{
+          const firstVisible = document.querySelector('.state-block:not(.hidden)');
+          if (firstVisible) {{
+            firstVisible.scrollIntoView({{ behavior: 'smooth', block: 'start' }});
+          }}
+        }}
+      }}
+    }}
+
+    searchInput?.addEventListener('input', (e) => {{
+      filterDirectory(e.target.value);
+    }});
+
+    searchInput?.addEventListener('keydown', (e) => {{
+      if (e.key === 'Enter') {{
+        runMasterDirectorySearch();
+      }}
+    }});
+  </script>
 </body>
 </html>
 """
     with open(os.path.join(OUTPUT_DIR, "index.html"), "w", encoding="utf-8") as f:
         f.write(index_page_html)
 
-    print("Generated Master Directory at kendra/index.html")
+    print("Generated Master Directory with Search at kendra/index.html")
 
-    # 3. Update Sitemap with All 777 Kendra Pages + Directory
-    # Read existing sitemap lines or rebuild
+    # 3. Update Sitemap
     base_url = "https://jandawa.pages.dev"
     sitemap_lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
@@ -410,14 +590,12 @@ def main():
         f'  <url><loc>{base_url}/kendra/</loc><priority>0.9</priority></url>'
     ]
 
-    # Add substitute pages
     sub_dir = os.path.join(SCRATCH_DIR, "substitute")
     if os.path.exists(sub_dir):
         for fname in sorted(os.listdir(sub_dir)):
             if fname.endswith(".html"):
                 sitemap_lines.append(f'  <url><loc>{base_url}/substitute/{fname}</loc><priority>0.8</priority></url>')
 
-    # Add all 777 Kendra district pages
     for kslug in sorted(generated_slugs):
         sitemap_lines.append(f'  <url><loc>{base_url}/{kslug}</loc><priority>0.85</priority></url>')
 
