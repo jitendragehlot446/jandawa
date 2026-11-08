@@ -15,7 +15,7 @@ var skincareData = [
     "savingPercent": 88,
     "benefits": "जिद्दी कील-मुहांसे (Pimples), ब्लैकहेड्स और चेहरे का अतिरिक्त तेल गहराई से साफ करता है।",
     "usage": "चेहरे पर पानी लगाकर हल्के हाथों से 1 मिनट झाग बनाएं और धो लें। दिन में 2 बार इस्तेमाल करें।",
-    "img": "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&auto=format&fit=crop&q=80",
+    "img": "images/products/salicylic_facewash.png",
     "tag": "सबसे लोकप्रिय फेस वॉश"
   },
   {
@@ -33,7 +33,7 @@ var skincareData = [
     "savingPercent": 80,
     "benefits": "मृत त्वचा (Dead Skin) हटाकर चेहरे पर प्राकृतिक निखार लाता है और धूप से टैनिंग दूर करता है।",
     "usage": "रोजाना सुबह और रात को चेहरा धोने के लिए उपयुक्त। सभी प्रकार की त्वचा हेतु सुरक्षित।",
-    "img": "https://images.unsplash.com/photo-1608248597359-0097486e9a65?w=500&auto=format&fit=crop&q=80",
+    "img": "images/products/glycolic_facewash.png",
     "tag": "ग्लो व टैन रिमूवल"
   },
   {
@@ -51,7 +51,7 @@ var skincareData = [
     "savingPercent": 91,
     "benefits": "डर्मेटोलॉजिस्ट द्वारा सबसे ज्यादा लिखा जाने वाला मुहांसे व बंद पोर्स (Clogged Pores) का फॉर्मूला।",
     "usage": "केवल रात को सोने से पहले मुहांसों पर लगाएं। दिन में धूप से बचाव रखें।",
-    "img": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&auto=format&fit=crop&q=80",
+    "img": "images/products/adapalene_gel.png",
     "tag": "डॉक्टरों की पहली पसंद"
   },
   {
@@ -69,7 +69,7 @@ var skincareData = [
     "savingPercent": 82,
     "benefits": "पिंपल्स पैदा करने वाले बैक्टीरिया को 48 घंटे में खत्म कर सूजन और लाली कम करता है।",
     "usage": "साफ चेहरे पर केवल मुहांसों वाली जगह पर लगाएं।",
-    "img": "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=500&auto=format&fit=crop&q=80",
+    "img": "images/products/benzoyl_peroxide.jpg",
     "tag": "पिंपल्स तुरंत सुखाए"
   },
   {
@@ -87,7 +87,7 @@ var skincareData = [
     "savingPercent": 87,
     "benefits": "मुहांसों के काले निशान, झाइयां (Melasma) और लालिमा ठीक करने के लिए बेहतरीन एक्टिव।",
     "usage": "दिन में या रात को चेहरे पर प्रभावित हिस्से पर पतली परत लगाएं।",
-    "img": "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=500&auto=format&fit=crop&q=80",
+    "img": "images/products/azelaic_acid.jpg",
     "tag": "काले दाग व झाइयां"
   },
   {
@@ -105,7 +105,7 @@ var skincareData = [
     "savingPercent": 88,
     "benefits": "गहरे दाग-धब्बे, पिगमेंटेशन और झाइयों को तेजी से हल्का करने हेतु ट्रिपल कॉम्बिनेशन।",
     "usage": "रात को सोने से पहले लगाएं। डॉक्टर की सलाह पर ही उपयोग करें।",
-    "img": "https://images.unsplash.com/photo-1556228722-d0b719468925?w=500&auto=format&fit=crop&q=80",
+    "img": "images/products/skin_brightening.jpg",
     "tag": "झाइयों का इलाज"
   },
   {
@@ -123,7 +123,7 @@ var skincareData = [
     "savingPercent": 80,
     "benefits": "हठीली रूसी (Dandruff), स्कैल्प की खुजली और फंगस को जड़ से खत्म करने वाला मेडिकल शैम्पू।",
     "usage": "गीले बालों में लगाकर 5 मिनट तक स्कैल्प पर छोड़ें, फिर पानी से धो लें। हफ्ते में 2 बार लगाएं।",
-    "img": "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?w=500&auto=format&fit=crop&q=80",
+    "img": "images/products/ketoconazole_shampoo.jpg",
     "tag": "100% रूसी खत्म"
   },
   {
@@ -141,7 +141,7 @@ var skincareData = [
     "savingPercent": 79,
     "benefits": "दोहरे एक्शन वाला क्लिनिकल शैम्पू — रूसी को तुरंत रोके और बालों का झड़ना कम करे।",
     "usage": "बालों की जड़ों में लगाकर 3 से 5 मिनट रखें और धो लें।",
-    "img": "https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=500&auto=format&fit=crop&q=80",
+    "img": "images/products/ketoconazole_soap.jpg",
     "tag": "डबल एक्शन शैम्पू"
   },
   {
@@ -159,7 +159,7 @@ var skincareData = [
     "savingPercent": 81,
     "benefits": "गंजेपन, गिरते बालों और हेयर थिनिंग को रोककर नए बाल उगाने के लिए FDA-प्रमाणित फॉर्मूला।",
     "usage": "ड्रॉपर से रोजाना 1ml सिर के खाली हिस्से पर दिन में 2 बार हल्के से लगाएं।",
-    "img": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=500&auto=format&fit=crop&q=80",
+    "img": "images/products/minoxidil_5.png",
     "tag": "नए बाल उगाने का फॉर्मूला"
   },
   {
@@ -177,7 +177,7 @@ var skincareData = [
     "savingPercent": 76,
     "benefits": "DHT हॉर्मोन को ब्लॉक करके पुरुषों में वंशानुगत गंजापन रोकने और बालों को घना बनाने हेतु।",
     "usage": "रात को 1ml स्कैल्प पर लगाएं। केवल वयस्कों हेतु।",
-    "img": "https://images.unsplash.com/photo-1608248597359-0097486e9a65?w=500&auto=format&fit=crop&q=80",
+    "img": "images/products/minoxidil_finasteride.png",
     "tag": "घने बालों के लिए"
   },
   {
@@ -195,7 +195,7 @@ var skincareData = [
     "savingPercent": 81,
     "benefits": "सूखी और बेजान त्वचा को 24 घंटे नमी प्रदान करती है, त्वचा को कोमल और चमकदार बनाती है।",
     "usage": "नहाने के बाद या चेहरा धोने के बाद पूरे चेहरे और शरीर पर लगाएं।",
-    "img": "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=500&auto=format&fit=crop&q=80",
+    "img": "images/products/moisturizing_cream.png",
     "tag": "24 घंटे स्किन हाइड्रेशन"
   },
   {
@@ -213,7 +213,7 @@ var skincareData = [
     "savingPercent": 84,
     "benefits": "घमौरियां, धूप से जलन (Sunburn), खुजली और ऑयली स्किन के लिए अचूक सरकारी लोशन।",
     "usage": "हिलाकर चेहरे, गर्दन या शरीर के प्रभावित हिस्से पर कॉटन से लगाएं।",
-    "img": "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&auto=format&fit=crop&q=80",
+    "img": "images/products/calamine_lotion.png",
     "tag": "घमौरियां व जलन शांत करे"
   },
   {
@@ -231,7 +231,7 @@ var skincareData = [
     "savingPercent": 48,
     "benefits": "चेहरे के ग्लो, डार्क सर्कल्स और बालों के तेल में मिलाकर लगाने के लिए देश का सबसे लोकप्रिय सप्लीमेंट।",
     "usage": "डॉक्टर की सलाह से खाएं या कैप्सूल काटकर तेल चेहरे/बालों पर सीधे लगाएं।",
-    "img": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=500&auto=format&fit=crop&q=80",
+    "img": "images/products/vitamin_e_capsules.jpg",
     "tag": "चेहरे की चमक व बाल"
   },
   {
@@ -249,7 +249,7 @@ var skincareData = [
     "savingPercent": 65,
     "benefits": "फटे होंठ, फटी एड़ियां और सर्दियों में रूखी त्वचा के लिए शुद्ध 100% प्राकृतिक नमी।",
     "usage": "गुलाब जल में मिलाकर रात को चेहरे या होंठों पर लगाएं।",
-    "img": "https://images.unsplash.com/photo-1563178406-4cdc2923acbc?w=500&auto=format&fit=crop&q=80",
+    "img": "images/products/glycerin_ip.jpg",
     "tag": "फटे होंठ व एड़ियां"
   },
   {
@@ -267,7 +267,7 @@ var skincareData = [
     "savingPercent": 91,
     "benefits": "भारत सरकार की क्रांतिकारी पहल — 100% पर्यावरण-अनुकूल, रेशमी मुलायम और मात्र ₹1 में 1 पैड!",
     "usage": "माहवारी के दिनों में उपयोग करें। आसानी से नष्ट होने वाला इको-फ्रेंडली पैड।",
-    "img": "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=500&auto=format&fit=crop&q=80",
+    "img": "images/products/suvidha_sanitary_pad.jpg",
     "tag": "देश का सबसे सस्ता पैड (₹1)"
   },
   {
@@ -285,7 +285,7 @@ var skincareData = [
     "savingPercent": 89,
     "benefits": "पूरी माहवारी के लिए 10 पैड्स का पूरा पैक सिर्फ ₹10 में! सूखापन और दुर्गंध से सुरक्षित।",
     "usage": "मासिक धर्म के दौरान सुरक्षित स्वास्थ्य रक्षा हेतु।",
-    "img": "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=500&auto=format&fit=crop&q=80",
+    "img": "images/products/suvidha_napkins_pack.jpg",
     "tag": "10 पैड सिर्फ ₹10 में"
   },
   {
@@ -303,7 +303,7 @@ var skincareData = [
     "savingPercent": 81,
     "benefits": "हैवी फ्लो (भारी रक्तस्राव) और रात के समय रिसाव से बचने के लिए एक्स्ट्रा लंबा साइज।",
     "usage": "रात के समय या हैवी फ्लो वाले दिनों में उपयोग करें।",
-    "img": "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=500&auto=format&fit=crop&q=80",
+    "img": "images/products/suvidha_sanitary_pad.jpg",
     "tag": "हैवी फ्लो सुरक्षा"
   },
   {
@@ -321,7 +321,7 @@ var skincareData = [
     "savingPercent": 64,
     "benefits": "शिशु की नाजुक त्वचा के लिए कॉटन जैसा मुलायम, रैश-फ्री और 12 घंटे तक सूखा रखने वाला डायपर।",
     "usage": "3 से 8 किलो तक के छोटे बच्चों के लिए।",
-    "img": "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=500&auto=format&fit=crop&q=80",
+    "img": "images/products/baby_diaper.png",
     "tag": "रैश-फ्री बेबी डायपर"
   },
   {
@@ -339,7 +339,7 @@ var skincareData = [
     "savingPercent": 61,
     "benefits": "बिना अल्कोहल और केमिकल के — शिशु के हाथ, मुंह और डायपर एरिया साफ करने के लिए 100% सुरक्षित।",
     "usage": "डायपर बदलने के समय या सफर में बच्चे की त्वचा साफ करने के लिए।",
-    "img": "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=500&auto=format&fit=crop&q=80",
+    "img": "images/products/baby_care_wipes.png",
     "tag": "केमिकल-फ्री वाइप्स"
   },
   {
@@ -357,7 +357,7 @@ var skincareData = [
     "savingPercent": 82,
     "benefits": "बीपीए-फ्री और एंटी-कोलिक निप्पल युक्त बोतल जो बच्चे के पेट में गैस नहीं बनने देती।",
     "usage": "दूध या पानी पिलाने के लिए। उबालकर आसानी से स्टरलाइज़ की जा सकती है।",
-    "img": "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=500&auto=format&fit=crop&q=80",
+    "img": "images/products/baby_feeding_bottle.jpg",
     "tag": "BPA-Free सुरक्षित बोतल"
   },
   {
@@ -375,7 +375,7 @@ var skincareData = [
     "savingPercent": 83,
     "benefits": "मसूड़ों से खून आना, मुंह की बदबू, पायरिया और दांतों के बैक्टीरिया को पूरी तरह खत्म करता है।",
     "usage": "10ml माउथवॉश से 30 सेकंड तक कुल्ला करें और थूक दें। पानी न मिलाएं।",
-    "img": "https://images.unsplash.com/photo-1559599101-f09722fb4948?w=500&auto=format&fit=crop&q=80",
+    "img": "images/products/chlorhexidine_mouthwash.jpg",
     "tag": "मसूड़ों की सूजन व बदबू"
   },
   {
@@ -393,7 +393,7 @@ var skincareData = [
     "savingPercent": 84,
     "benefits": "मुंह, जीभ और गालों के छालों का दर्द 2 मिनट में सुन्न करके तुरंत खाना खाने योग्य बनाता है।",
     "usage": "साफ उंगली से दिन में 3-4 बार छालों पर लगाएं।",
-    "img": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=500&auto=format&fit=crop&q=80",
+    "img": "images/products/mouth_ulcer_gel.jpg",
     "tag": "2 मिनट में छाले का दर्द दूर"
   },
   {
@@ -411,7 +411,7 @@ var skincareData = [
     "savingPercent": 77,
     "benefits": "ठंडा-गर्म पानी लगने, झनझनाहट और कमजोर इनेमल से दांतों को संपूर्ण सुरक्षा।",
     "usage": "रोजाना सुबह और रात को ब्रश करें।",
-    "img": "https://images.unsplash.com/photo-1559599101-f09722fb4948?w=500&auto=format&fit=crop&q=80",
+    "img": "images/products/medicated_toothpaste.jpg",
     "tag": "झनझनाहट से तुरंत राहत"
   },
   {
@@ -429,7 +429,7 @@ var skincareData = [
     "savingPercent": 84,
     "benefits": "दाद (Ringworm), जांघों व पसीने की खुजली और फंगल इन्फेक्शन को जड़ से मिटाने हेतु।",
     "usage": "प्रभावित जगह को सुखाकर दिन में 2 बार हल्के से लगाएं।",
-    "img": "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&auto=format&fit=crop&q=80",
+    "img": "images/products/clotrimazole_powder.png",
     "tag": "दाद-खाज-खुजली का इलाज"
   },
   {
@@ -447,7 +447,7 @@ var skincareData = [
     "savingPercent": 69,
     "benefits": "घाव में मवाद, बालतोड़ (Boils), कटना-छिलना और स्किन इन्फेक्शन को तेजी से सुखाने वाली दवा।",
     "usage": "घाव पर साफ कॉटन से दिन में 2-3 बार लगाएं।",
-    "img": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&auto=format&fit=crop&q=80",
+    "img": "images/products/mupirocin_ointment.jpg",
     "tag": "घाव व बालतोड़ के लिए"
   }
 ];
