@@ -303,7 +303,7 @@ var skincareData = [
     "savingPercent": 81,
     "benefits": "हैवी फ्लो (भारी रक्तस्राव) और रात के समय रिसाव से बचने के लिए एक्स्ट्रा लंबा साइज।",
     "usage": "रात के समय या हैवी फ्लो वाले दिनों में उपयोग करें।",
-    "img": "images/products/suvidha_sanitary_pad.jpg",
+    "img": "images/products/suvidha_xl_pack.jpg",
     "tag": "हैवी फ्लो सुरक्षा"
   },
   {
