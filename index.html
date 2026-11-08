@@ -62,6 +62,7 @@
   <!-- Complete 2,513 PMBJP Medicines Master Data & 21,745 Kendras -->
   <script src="medicines_data.js?v=4.0" defer></script>
   <script src="kendras_data.js?v=4.0" defer></script>
+  <script src="skincare_data.js?v=1.0" defer></script>
 </head>
 <body class="flex flex-col min-h-screen text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
 
@@ -86,6 +87,11 @@
       <nav class="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm font-semibold">
         <button id="navTabMeds" onclick="switchMainTab('medicines')" class="px-3.5 py-2 rounded-lg transition-colors bg-brand-50 text-brand-800">
           दवा खोजक
+        </button>
+        <button id="navTabSkincare" onclick="switchMainTab('skincare')" class="px-3.5 py-2 rounded-lg transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100 flex items-center gap-1.5 shrink-0">
+          <span>🌸</span>
+          <span>स्किनकेयर व ब्यूटी</span>
+          <span class="px-1.5 py-0.5 rounded-full text-[10px] font-extrabold bg-rose-100 text-rose-700">नया</span>
         </button>
         <button id="navTabKendra" onclick="switchMainTab('kendra')" class="px-3.5 py-2 rounded-lg transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100">
           नजदीकी केंद्र
@@ -277,67 +283,199 @@
           </div>
         </div>
 
-        <!-- Sugam App-Style State -> District -> Pincode Multi-Filter -->
-        <div class="max-w-3xl mx-auto space-y-4 pt-2">
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            
-            <!-- 1. State Selector -->
-            <div>
-              <label class="block text-xs font-bold text-slate-700 mb-1.5">1. राज्य चुनें (State):</label>
-              <select id="stateSelect" onchange="onStateSelectChange(this.value)" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
-                <option value="All">सभी राज्य (All States)</option>
-              </select>
-            </div>
-
-            <!-- 2. District Selector -->
-            <div>
-              <label class="block text-xs font-bold text-slate-700 mb-1.5">2. ज़िला चुनें (District):</label>
-              <select id="districtSelect" onchange="onDistrictSelectChange(this.value)" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
-                <option value="All">सभी ज़िले (All Districts)</option>
-              </select>
-            </div>
-
-            <!-- 3. Direct Pincode Search -->
-            <div>
-              <label class="block text-xs font-bold text-slate-700 mb-1.5">3. या पिनकोड डालें (Pincode):</label>
-              <div class="relative">
-                <input 
-                  id="kendraSearchInput" 
-                  type="text" 
-                  maxlength="6"
-                  placeholder="6 अंकों का पिनकोड (उदा: 302001)..." 
-                  class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                />
-              </div>
-            </div>
-
-          </div>
-
-          <!-- GPS & Popular City Pills -->
-          <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-100 text-xs">
-            <div class="flex flex-wrap items-center gap-1.5 text-slate-500">
-              <span class="font-semibold text-slate-700">पॉपुलर:</span>
-              <button onclick="selectStateAndCity('Rajasthan', 'Jodhpur')" class="px-2.5 py-1 bg-blue-50 text-blue-700 hover:bg-blue-100 rounded-lg transition font-bold">जोधपुर</button>
-              <button onclick="selectStateAndCity('Rajasthan', 'Jaipur')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition font-medium">जयपुर</button>
-              <button onclick="selectStateAndCity('Delhi', 'New Delhi')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition font-medium">दिल्ली</button>
-              <button onclick="selectStateAndCity('Uttar Pradesh', 'Lucknow')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition font-medium">लखनऊ</button>
-              <button onclick="selectStateAndCity('Bihar', 'Patna')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition font-medium">पटना</button>
-              <button onclick="selectStateAndCity('Madhya Pradesh', 'Indore')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition font-medium">इंदौर</button>
-              <button onclick="selectStateAndCity('Maharashtra', 'Mumbai')" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition font-medium">मुंबई</button>
-            </div>
-            <button onclick="useCurrentLocation()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 transition font-bold text-xs">
-              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        <!-- Kendra Universal Search Bar with Search Button -->
+        <div class="max-w-2xl mx-auto space-y-3 pt-2">
+          <div class="bg-white rounded-2xl shadow-sm border-2 border-slate-300 focus-within:border-blue-600 p-1.5 flex gap-2 transition-all">
+            <div class="relative flex-1 flex items-center">
+              <svg class="w-5 h-5 absolute left-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
-              <span>GPS से नजदीकी केंद्र</span>
+              <input 
+                id="kendraSearchInput" 
+                type="text" 
+                autocomplete="off"
+                placeholder="ज़िला (उदा: Jodhpur), शहर, इलाका या 6-अंकीय पिनकोड लिखें..." 
+                class="w-full pl-11 pr-3 py-3 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none bg-transparent font-medium"
+              />
+            </div>
+            <button id="searchKendraBtn" onclick="runKendraSearch()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 sm:px-7 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-1.5 shadow">
+              <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <span>खोजें</span>
             </button>
           </div>
+
+          <!-- Quick Popular City Chips -->
+          <div class="flex flex-wrap items-center justify-center gap-1.5 text-xs text-slate-500 pt-1">
+            <span class="font-semibold text-slate-600">अक्सर खोजे जाने वाले:</span>
+            <button onclick="setKendraCitySearch('Jodhpur')" class="px-2.5 py-1 bg-white border border-slate-200 hover:border-blue-500 hover:text-blue-700 rounded-lg transition font-bold shadow-2xs">जोधपुर</button>
+            <button onclick="setKendraCitySearch('Jaipur')" class="px-2.5 py-1 bg-white border border-slate-200 hover:border-blue-500 hover:text-blue-700 rounded-lg transition font-medium shadow-2xs">जयपुर</button>
+            <button onclick="setKendraCitySearch('Lucknow')" class="px-2.5 py-1 bg-white border border-slate-200 hover:border-blue-500 hover:text-blue-700 rounded-lg transition font-medium shadow-2xs">लखनऊ</button>
+            <button onclick="setKendraCitySearch('Patna')" class="px-2.5 py-1 bg-white border border-slate-200 hover:border-blue-500 hover:text-blue-700 rounded-lg transition font-medium shadow-2xs">पटना</button>
+            <button onclick="setKendraCitySearch('Indore')" class="px-2.5 py-1 bg-white border border-slate-200 hover:border-blue-500 hover:text-blue-700 rounded-lg transition font-medium shadow-2xs">इंदौर</button>
+            <button onclick="setKendraCitySearch('Bhopal')" class="px-2.5 py-1 bg-white border border-slate-200 hover:border-blue-500 hover:text-blue-700 rounded-lg transition font-medium shadow-2xs">भोपाल</button>
+            <button onclick="setKendraCitySearch('Delhi')" class="px-2.5 py-1 bg-white border border-slate-200 hover:border-blue-500 hover:text-blue-700 rounded-lg transition font-medium shadow-2xs">दिल्ली</button>
+            <button onclick="setKendraCitySearch('Mumbai')" class="px-2.5 py-1 bg-white border border-slate-200 hover:border-blue-500 hover:text-blue-700 rounded-lg transition font-medium shadow-2xs">मुंबई</button>
+          </div>
+
+          <!-- Secondary Dropdowns (Optional filters) -->
+          <details class="text-xs pt-1">
+            <summary class="cursor-pointer text-slate-500 hover:text-blue-700 font-semibold select-none flex items-center justify-center gap-1">
+              <span>या राज्य और ज़िला ड्रॉपडाउन से चुनें</span>
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3 p-4 bg-slate-50 rounded-xl border border-slate-200">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">राज्य चुनें (State):</label>
+                <select id="stateSelect" onchange="onStateSelectChange(this.value)" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs font-semibold text-slate-800">
+                  <option value="All">सभी राज्य (All States)</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">ज़िला चुनें (District):</label>
+                <select id="districtSelect" onchange="onDistrictSelectChange(this.value)" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs font-semibold text-slate-800">
+                  <option value="All">सभी ज़िले (All Districts)</option>
+                </select>
+              </div>
+            </div>
+          </details>
+
         </div>
       </div>
 
       <!-- Kendra Cards Grid -->
       <div id="kendraResultsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         <!-- Rendered dynamically via JavaScript -->
+      </div>
+
+    </div>
+
+    
+    <!-- SECTION 2.5: SKINCARE, HAIRCARE & PERSONAL CARE -->
+    <div id="skincareSection" class="hidden space-y-6">
+
+      <!-- Skincare Hero Card -->
+      <div class="bg-gradient-to-r from-rose-50 via-pink-50 to-amber-50 border border-rose-200/80 rounded-2xl p-6 sm:p-8 space-y-5">
+        <div class="max-w-2xl mx-auto text-center space-y-2.5">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-white text-rose-700 border border-rose-200 shadow-sm">
+            <span>🌸</span> जन औषधि स्किनकेयर, हेयर केयर व पर्सनल केयर
+          </div>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+            महंगे ब्यूटी ब्रांड्स जैसे सक्रिय फॉर्मूले, <span class="text-rose-600">80% कम दाम</span> में
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-xl mx-auto">
+            सैलिसिलिक फेस वॉश, केटोकोनाज़ोल एंटी-डैंड्रफ शैम्पू, मिनोक्सिडिल, सेरामाइड मॉइस्चराइज़र और सुविधा सैनिटरी पैड्स — सब कुछ NABL लैब प्रमाणित और जन औषधि केंद्रों पर उपलब्ध।
+          </p>
+        </div>
+
+        <!-- Skincare Search Bar -->
+        <div class="max-w-2xl mx-auto pt-1">
+          <div class="bg-white rounded-2xl shadow-sm border-2 border-rose-200 focus-within:border-rose-500 p-1.5 flex gap-2 transition-all">
+            <div class="relative flex-1 flex items-center">
+              <svg class="w-5 h-5 absolute left-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <input 
+                id="skincareSearchInput" 
+                type="text" 
+                autocomplete="off"
+                oninput="onSkincareSearch(this.value)"
+                placeholder="प्रोडक्ट खोजें (उदा: फेस वॉश, मिनोक्सिडिल, डैंड्रफ, सुविधा पैड, डायपर)..." 
+                class="w-full pl-11 pr-3 py-3 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none bg-transparent"
+              />
+            </div>
+            <button onclick="onSkincareSearch(document.getElementById('skincareSearchInput').value)" class="bg-rose-600 hover:bg-rose-700 text-white font-bold px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-1.5 shadow">
+              <span>खोजें</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Trust Highlights Banner -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 text-center text-xs">
+          <div class="bg-white/80 backdrop-blur rounded-xl p-3 border border-rose-100">
+            <div class="text-base font-extrabold text-rose-600">₹50</div>
+            <div class="text-[11px] text-slate-600 font-medium">सैलिसिलिक फेस वॉश (बाजार: ₹420)</div>
+          </div>
+          <div class="bg-white/80 backdrop-blur rounded-xl p-3 border border-rose-100">
+            <div class="text-base font-extrabold text-rose-600">₹63.94</div>
+            <div class="text-[11px] text-slate-600 font-medium">कीटोकोनाज़ोल शैम्पू (बाजार: ₹320)</div>
+          </div>
+          <div class="bg-white/80 backdrop-blur rounded-xl p-3 border border-rose-100">
+            <div class="text-base font-extrabold text-rose-600">₹1 / पैड</div>
+            <div class="text-[11px] text-slate-600 font-medium">सुविधा बायोडिग्रेडेबल नैपकिन्स</div>
+          </div>
+          <div class="bg-white/80 backdrop-blur rounded-xl p-3 border border-rose-100">
+            <div class="text-base font-extrabold text-rose-600">100% NABL</div>
+            <div class="text-[11px] text-slate-600 font-medium">सर्टिफाइड गुणवत्ता व शुद्धि</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skincare Subcategory Filter Tabs -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none text-xs sm:text-sm">
+        <button data-skincare-cat="All" onclick="filterSkincareCat('All')" class="skincare-cat-pill active px-4 py-2 rounded-xl font-semibold bg-rose-600 text-white shrink-0 transition-colors shadow-sm">
+          सभी उत्पाद (25)
+        </button>
+        <button data-skincare-cat="face" onclick="filterSkincareCat('face')" class="skincare-cat-pill px-4 py-2 rounded-xl font-medium bg-white text-slate-700 border border-slate-200 hover:border-rose-400 shrink-0 transition-colors">
+          🫧 फेस वॉश व मुहांसे (6)
+        </button>
+        <button data-skincare-cat="hair" onclick="filterSkincareCat('hair')" class="skincare-cat-pill px-4 py-2 rounded-xl font-medium bg-white text-slate-700 border border-slate-200 hover:border-rose-400 shrink-0 transition-colors">
+          💆 बाल व डैंड्रफ (4)
+        </button>
+        <button data-skincare-cat="moisturizer" onclick="filterSkincareCat('moisturizer')" class="skincare-cat-pill px-4 py-2 rounded-xl font-medium bg-white text-slate-700 border border-slate-200 hover:border-rose-400 shrink-0 transition-colors">
+          🧴 मॉइस्चराइज़र व लोशन (4)
+        </button>
+        <button data-skincare-cat="women" onclick="filterSkincareCat('women')" class="skincare-cat-pill px-4 py-2 rounded-xl font-medium bg-white text-slate-700 border border-slate-200 hover:border-rose-400 shrink-0 transition-colors">
+          🌸 सुविधा सैनिटरी पैड्स (3)
+        </button>
+        <button data-skincare-cat="baby" onclick="filterSkincareCat('baby')" class="skincare-cat-pill px-4 py-2 rounded-xl font-medium bg-white text-slate-700 border border-slate-200 hover:border-rose-400 shrink-0 transition-colors">
+          👶 शिशु देखभाल (3)
+        </button>
+        <button data-skincare-cat="oral" onclick="filterSkincareCat('oral')" class="skincare-cat-pill px-4 py-2 rounded-xl font-medium bg-white text-slate-700 border border-slate-200 hover:border-rose-400 shrink-0 transition-colors">
+          🪥 दांत व ओरल केयर (3)
+        </button>
+        <button data-skincare-cat="derma" onclick="filterSkincareCat('derma')" class="skincare-cat-pill px-4 py-2 rounded-xl font-medium bg-white text-slate-700 border border-slate-200 hover:border-rose-400 shrink-0 transition-colors">
+          🩹 स्किन इन्फेक्शन (2)
+        </button>
+      </div>
+
+      <!-- Result Count Bar -->
+      <div class="flex items-center justify-between text-xs text-slate-500 px-1">
+        <span id="skincareCountLabel">कुल 25 प्रमाणित जन औषधि उत्पाद</span>
+        <span class="text-emerald-700 font-semibold bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+          औसत 80% बचत
+        </span>
+      </div>
+
+      <!-- Skincare Product Cards Grid -->
+      <div id="skincareGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Rendered dynamically via JavaScript -->
+      </div>
+
+      <!-- Skincare Educational & FAQ Guide -->
+      <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-4">
+        <h3 class="text-lg font-bold text-slate-900 border-b border-slate-100 pb-3">
+          अक्सर पूछे जाने वाले सवाल (FAQ) - जन औषधि स्किनकेयर व पर्सनल केयर
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-slate-600">
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 space-y-1.5">
+            <h4 class="font-bold text-slate-800 text-sm">Q1. क्या जन औषधि का फेस वॉश और शैम्पू महंगे ब्रांड्स जितने ही असरदार हैं?</h4>
+            <p class="leading-relaxed">हाँ, बिल्कुल। त्वचा और बालों की समस्या में ब्रांड का नाम नहीं बल्कि सक्रिय रासायनिक तत्व (Active Ingredients) जैसे Salicylic Acid 2%, Glycolic Acid 1%, या Ketoconazole 2% काम करते हैं। जन औषधि में वही सक्रिय तत्व समान शक्ति में होते हैं।</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 space-y-1.5">
+            <h4 class="font-bold text-slate-800 text-sm">Q2. क्या 'सुविधा' सैनिटरी पैड्स सुरक्षित और आरामदायक हैं?</h4>
+            <p class="leading-relaxed">हाँ, प्रधानमंत्री भारतीय जन औषधि परियोजना के 'सुविधा' सैनिटरी नैपकिन्स 100% ऑक्सो-बायोडिग्रेडेबल हैं, जो त्वचा के लिए सुरक्षित और पर्यावरण के अनुकूल हैं। 4 पैड्स का पैक मात्र ₹4 (यानी ₹1 प्रति पैड) में उपलब्ध है।</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 space-y-1.5">
+            <h4 class="font-bold text-slate-800 text-sm">Q3. क्या इन ब्यूटी व पर्सनल केयर उत्पादों के लिए डॉक्टर की पर्ची चाहिए?</h4>
+            <p class="leading-relaxed">अधिकांश उत्पाद जैसे फेस वॉश, मॉइस्चराइज़र, सुविधा पैड्स, बेबी डायपर्स और टूथपेस्ट ओवर-द-काउंटर (OTC) हैं जिन्हें आप बिना पर्ची के किसी भी नजदीकी केंद्र से सीधे खरीद सकते हैं।</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 space-y-1.5">
+            <h4 class="font-bold text-slate-800 text-sm">Q4. ये उत्पाद साधारण मेडिकल स्टोर या कॉस्मेटिक दुकानों पर क्यों नहीं मिलते?</h4>
+            <p class="leading-relaxed">ये उत्पाद भारत सरकार के फार्मास्यूटिकल्स एंड मेडिकल डिवाइसेस ब्यूरो (PMBI) द्वारा विशेष रूप से केवल अधिकृत प्रधानमंत्री भारतीय जन औषधि केंद्रों के माध्यम से जनता तक पहुंचाए जाते हैं ताकि बीच के बिचौलियों का भारी मुनाफा खत्म किया जा सके।</p>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -897,21 +1035,40 @@
     // Top Mode Switcher (Medicines vs Kendra Locator)
     function switchMainTab(tab) {
       const tabMeds = document.getElementById('navTabMeds');
+      const tabSkincare = document.getElementById('navTabSkincare');
       const tabKendra = document.getElementById('navTabKendra');
+      
       const medSec = document.getElementById('medicineSection');
+      const skincareSec = document.getElementById('skincareSection');
       const kendraSec = document.getElementById('kendraSection');
 
+      const inactiveCls = "px-3.5 py-2 rounded-lg transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100 font-semibold";
+      if (tabMeds) tabMeds.className = inactiveCls;
+      if (tabSkincare) tabSkincare.className = inactiveCls + " flex items-center gap-1.5";
+      if (tabKendra) tabKendra.className = inactiveCls;
+
+      if (medSec) medSec.classList.add('hidden');
+      if (skincareSec) skincareSec.classList.add('hidden');
+      if (kendraSec) kendraSec.classList.add('hidden');
+
       if (tab === 'medicines') {
-        tabMeds.className = "px-3.5 py-2 rounded-lg transition-colors bg-brand-50 text-brand-800 font-semibold";
-        tabKendra.className = "px-3.5 py-2 rounded-lg transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100 font-semibold";
-        medSec.classList.remove('hidden');
-        kendraSec.classList.add('hidden');
-      } else {
-        tabKendra.className = "px-3.5 py-2 rounded-lg transition-colors bg-blue-50 text-blue-700 font-semibold";
-        tabMeds.className = "px-3.5 py-2 rounded-lg transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100 font-semibold";
-        medSec.classList.add('hidden');
-        kendraSec.classList.remove('hidden');
-        renderKendras();
+        if (tabMeds) tabMeds.className = "px-3.5 py-2 rounded-lg transition-colors bg-brand-50 text-brand-800 font-semibold";
+        if (medSec) medSec.classList.remove('hidden');
+        window.history.replaceState(null, '', window.location.pathname);
+      } else if (tab === 'skincare') {
+        if (tabSkincare) tabSkincare.className = "px-3.5 py-2 rounded-lg transition-colors bg-rose-50 text-rose-700 font-semibold border border-rose-200 flex items-center gap-1.5";
+        if (skincareSec) {
+          skincareSec.classList.remove('hidden');
+          renderSkincare();
+        }
+        window.history.replaceState(null, '', '#skincare');
+      } else if (tab === 'kendra') {
+        if (tabKendra) tabKendra.className = "px-3.5 py-2 rounded-lg transition-colors bg-blue-50 text-blue-700 font-semibold";
+        if (kendraSec) {
+          kendraSec.classList.remove('hidden');
+          renderKendras();
+        }
+        window.history.replaceState(null, '', '#kendra');
       }
     }
 
@@ -1174,10 +1331,195 @@
       }
     }
 
-    if (document.readyState === 'loading') {
-      window.addEventListener('DOMContentLoaded', checkAndRender);
-    } else {
+    // ==========================================
+    // KENDRA QUICK SEARCH HELPER
+    // ==========================================
+    function setKendraCitySearch(city) {
+      const input = document.getElementById('kendraSearchInput');
+      if (input) input.value = city;
+      kendraSearchQuery = city;
+      selectedState = 'All';
+      selectedDistrict = 'All';
+      const stSel = document.getElementById('stateSelect');
+      const distSel = document.getElementById('districtSelect');
+      if (stSel) stSel.value = 'All';
+      if (distSel) distSel.value = 'All';
+      renderKendras();
+      document.getElementById('kendraResultsGrid')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function runKendraSearch() {
+      const input = document.getElementById('kendraSearchInput');
+      if (input) {
+        kendraSearchQuery = input.value.trim();
+        renderKendras();
+        document.getElementById('kendraResultsGrid')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    // ==========================================
+    // SKINCARE & PERSONAL CARE STATE & RENDERING
+    // ==========================================
+    let selectedSkincareCat = 'All';
+    let skincareSearchQuery = '';
+
+    function filterSkincareCat(cat) {
+      selectedSkincareCat = cat;
+      document.querySelectorAll('.skincare-cat-pill').forEach(btn => {
+        if (btn.getAttribute('data-skincare-cat') === cat) {
+          btn.className = 'skincare-cat-pill active px-4 py-2 rounded-xl font-semibold bg-rose-600 text-white shrink-0 transition-colors shadow-sm';
+        } else {
+          btn.className = 'skincare-cat-pill px-4 py-2 rounded-xl font-medium bg-white text-slate-700 border border-slate-200 hover:border-rose-400 shrink-0 transition-colors';
+        }
+      });
+      renderSkincare();
+    }
+
+    function onSkincareSearch(val) {
+      skincareSearchQuery = val;
+      renderSkincare();
+    }
+
+    function renderSkincare() {
+      const grid = document.getElementById('skincareGrid');
+      if (!grid) return;
+      if (typeof skincareData === 'undefined') {
+        grid.innerHTML = '<div class="col-span-full text-center py-8 text-slate-400">स्किनकेयर उत्पाद लोड हो रहे हैं...</div>';
+        return;
+      }
+
+      const q = (skincareSearchQuery || '').trim().toLowerCase();
+      
+      const filtered = skincareData.filter(p => {
+        if (selectedSkincareCat !== 'All') {
+          if (p.category !== selectedSkincareCat) return false;
+        }
+        if (q) {
+          const match = (p.title || '').toLowerCase().includes(q) ||
+                        (p.subTitle || '').toLowerCase().includes(q) ||
+                        (p.formulation || '').toLowerCase().includes(q) ||
+                        (p.marketBrand || '').toLowerCase().includes(q) ||
+                        (p.benefits || '').toLowerCase().includes(q) ||
+                        (p.category_name || '').toLowerCase().includes(q) ||
+                        (p.code || '').toLowerCase().includes(q);
+          if (!match) return false;
+        }
+        return true;
+      });
+
+      const countLabel = document.getElementById('skincareCountLabel');
+      if (countLabel) {
+        countLabel.innerText = `कुल ${filtered.length} उत्पाद उपलब्ध`;
+      }
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full text-center py-12 bg-white rounded-2xl border border-slate-200 p-8 space-y-3">
+            <div class="text-3xl">🔍</div>
+            <h4 class="font-bold text-slate-800">कोई उत्पाद नहीं मिला</h4>
+            <p class="text-xs text-slate-500">कृपया दूसरा नाम लिखकर खोजें या 'सभी उत्पाद' पर क्लिक करें।</p>
+            <button onclick="filterSkincareCat('All')" class="px-4 py-2 bg-rose-50 text-rose-700 font-bold rounded-xl text-xs hover:bg-rose-100 transition">सभी उत्पाद देखें</button>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(p => {
+        const diff = (p.marketPrice - p.janPrice).toFixed(2);
+        const shareText = encodeURIComponent(`🌸 जन औषधि पर ${p.title} (${p.unit}) सिर्फ ₹${p.janPrice} में उपलब्ध है!\nबाजार में यही ${p.marketBrand} ₹${p.marketPrice} की आती है। सीधी ₹${diff} (${p.savingPercent}%) की बचत!\nयहाँ देखें: https://jandawa.pages.dev/#skincare`);
+
+        return `
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all overflow-hidden flex flex-col group">
+            <div class="relative h-48 w-full bg-slate-100 overflow-hidden">
+              <img 
+                src="${p.img}" 
+                alt="${p.title}" 
+                loading="lazy"
+                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&auto=format&fit=crop&q=80'"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
+                <span class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-white/95 backdrop-blur text-slate-800 shadow-sm border border-slate-200/50">
+                  ${p.category_name}
+                </span>
+                ${p.tag ? `<span class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-rose-600 text-white shadow-sm">${p.tag}</span>` : ''}
+              </div>
+              <div class="absolute bottom-3 right-3">
+                <span class="px-2.5 py-1 rounded-lg text-xs font-black bg-emerald-600 text-white shadow-md">
+                  ${p.savingPercent}% बचत
+                </span>
+              </div>
+            </div>
+
+            <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between gap-2 text-[11px] text-slate-400 font-mono">
+                  <span>कोड: ${p.code}</span>
+                  <span class="font-semibold text-slate-600">${p.unit}</span>
+                </div>
+                
+                <h3 class="font-extrabold text-base text-slate-900 group-hover:text-rose-600 transition leading-snug">
+                  ${p.title}
+                </h3>
+                
+                <p class="text-xs text-slate-500 font-medium leading-relaxed">
+                  ${p.formulation}
+                </p>
+
+                <div class="bg-rose-50/70 border border-rose-100 rounded-xl p-2.5 text-xs text-rose-950 leading-relaxed">
+                  <span class="font-bold text-rose-900">✨ फायदे:</span> ${p.benefits}
+                </div>
+
+                <div class="text-[11px] text-slate-500 flex items-start gap-1">
+                  <span class="font-semibold text-slate-700 shrink-0">उपयोग:</span>
+                  <span>${p.usage}</span>
+                </div>
+              </div>
+
+              <div class="space-y-3 pt-2 border-t border-slate-100">
+                <div class="bg-slate-50 rounded-xl p-3 border border-slate-100 space-y-1.5">
+                  <div class="flex items-center justify-between text-xs">
+                    <span class="text-slate-500">मार्केट ब्रांड (${(p.marketBrand || '').split('/')[0].trim()}):</span>
+                    <span class="line-through text-slate-400 font-semibold">₹${p.marketPrice.toFixed(2)}</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-emerald-800">जन औषधि सरकारी मूल्य:</span>
+                    <span class="text-lg font-black text-emerald-700">₹${p.janPrice.toFixed(2)}</span>
+                  </div>
+                  <div class="text-[11px] font-bold text-emerald-700 flex items-center justify-between pt-1 border-t border-slate-200/60">
+                    <span>आपकी सीधी बचत:</span>
+                    <span>₹${diff} (${p.savingPercent}% कम)</span>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2 text-xs font-bold">
+                  <button onclick="switchMainTab('kendra')" class="py-2.5 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white transition flex items-center justify-center gap-1 shadow-sm">
+                    <span>📍 नजदीकी केंद्र</span>
+                  </button>
+                  <a href="https://api.whatsapp.com/send?text=${shareText}" target="_blank" rel="noopener noreferrer" class="py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white transition flex items-center justify-center gap-1 shadow-sm">
+                    <span>📲 शेयर करें</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function onAppReady() {
       checkAndRender();
+      if (window.location.hash === '#skincare' || window.location.search.includes('tab=skincare')) {
+        switchMainTab('skincare');
+      } else if (window.location.hash === '#kendra' || window.location.search.includes('tab=kendra')) {
+        switchMainTab('kendra');
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      window.addEventListener('DOMContentLoaded', onAppReady);
+    } else {
+      onAppReady();
     }
   </script>
 </body>
