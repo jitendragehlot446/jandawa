@@ -1189,69 +1189,38 @@
     let kendraDisplayLimit = 30;
 
     function renderKendras(resetLimit = true) {
-      if (resetLimit) {
-        kendraDisplayLimit = 30;
-      }
-
-      const grid = document.getElementById('kendraResultsGrid');
+      const isEn = (typeof window.getLanguage === 'function' && window.getLanguage() === 'en');
+      if (resetLimit) kendraDisplayLimit = 30;
+      const grid = document.getElementById('kendrasGrid');
       if (!grid) return;
 
-      if (typeof kendrasData === 'undefined') {
-        grid.innerHTML = '<div class="col-span-full text-center py-8 text-slate-400">केंद्र डायरेक्टरी (21,745 केंद्र) लोड हो रही है...</div>';
-        return;
-      }
-
-      const q = kendraSearchQuery.trim().toLowerCase();
-
-      let filtered = kendrasData.filter(k => {
-        const kState = k.s || k.state || '';
-        const kDistrict = k.d || k.district || '';
-        const kPincode = k.p || k.pincode || '';
-        const kName = k.n || k.name || '';
-        const kAddress = k.a || k.address || '';
-        const kCode = k.c || k.storeCode || '';
-
-        // State Filter
-        if (selectedState !== 'All' && kState !== selectedState) {
-          return false;
-        }
-        // District Filter
-        if (selectedDistrict !== 'All') {
-          if (!kDistrict.toLowerCase().includes(selectedDistrict.toLowerCase())) {
-            return false;
-          }
-        }
-        // Pincode / Text search
-        if (q) {
-          const textMatch = kPincode.includes(q) ||
-                            kName.toLowerCase().includes(q) ||
-                            kAddress.toLowerCase().includes(q) ||
-                            kDistrict.toLowerCase().includes(q) ||
-                            kCode.toLowerCase().includes(q);
-          if (!textMatch) return false;
-        }
-        return true;
-      });
-
+      const filtered = getFilteredKendras();
       let html = '';
 
       if (filtered.length === 0) {
-        const targetLoc = (q ? q : (selectedDistrict !== 'All' ? selectedDistrict : selectedState));
-        const mapsUrl = `https://www.google.com/maps/search/Pradhan+Mantri+Jan+Aushadhi+Kendra+near+${encodeURIComponent(targetLoc)}`;
+        const targetLoc = (selectedDistrict !== 'All' ? selectedDistrict : (selectedState !== 'All' ? selectedState : kendraSearchQuery));
+        const gmapsSearchUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Pradhan Mantri Jan Aushadhi Kendra ' + targetLoc);
+
         html = `
-          <div class="col-span-full bg-white border border-slate-200 rounded-2xl p-8 text-center space-y-3">
-            <h3 class="font-bold text-base text-slate-800">
-              '${targetLoc}' के सभी स्थानीय जन औषधि केंद्र देखें
+          <div class="col-span-full py-12 px-4 text-center bg-white rounded-2xl border border-slate-200">
+            <div class="w-12 h-12 mx-auto rounded-full bg-blue-50 text-blue-600 flex items-center justify-center mb-3">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <h3 class="font-bold text-slate-800 text-base sm:text-lg mb-1">
+              ${isEn ? 'No direct Kendra found in local directory' : 'लोकल डायरेक्टरी में कोई सीधा केंद्र नहीं मिला'}
             </h3>
-            <p class="text-xs text-slate-500 max-w-md mx-auto">
-              इस क्षेत्र के सभी अधिकृत जन औषधि केंद्र गूगल मैप्स और सरकारी डायरेक्टरी पर उपलब्ध हैं:
+            <p class="text-xs sm:text-sm text-slate-500 max-w-md mx-auto mb-5">
+              ${isEn ? 'Please check district spelling or open Google Maps directly:' : 'कृपया ज़िले की स्पेलिंग जांचें या सीधे गूगल मैप्स पर देखें:'}
             </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-3 pt-2">
-              <a href="${mapsUrl}" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2.5 rounded-xl text-xs transition shadow flex items-center justify-center gap-1.5">
-                <span>गूगल मैप्स पर '${targetLoc}' के केंद्र देखें ➔</span>
+            <div class="flex flex-wrap items-center justify-center gap-3">
+              <a href="${gmapsSearchUrl}" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2.5 rounded-xl text-xs flex items-center gap-2 shadow-sm transition">
+                <span>${isEn ? ("View Kendras in '" + targetLoc + "' on Google Maps ➔") : ("गूगल मैप्स पर '" + targetLoc + "' के केंद्र देखें ➔")}</span>
               </a>
               <a href="https://janaushadhi.gov.in/KendraDetails.aspx" target="_blank" class="border border-slate-300 hover:bg-slate-50 font-semibold px-4 py-2.5 rounded-xl text-xs text-slate-700">
-                आधिकारिक Sugam पोर्टल पर खोजें
+                ${isEn ? 'Search Official Sugam Portal' : 'आधिकारिक Sugam पोर्टल पर खोजें'}
               </a>
             </div>
           </div>
@@ -1260,7 +1229,7 @@
         const visible = filtered.slice(0, kendraDisplayLimit);
         const countHeader = `
           <div class="col-span-full flex items-center justify-between text-xs text-slate-600 font-semibold pb-2 border-b border-slate-100">
-            <span>कुल <strong>${filtered.length.toLocaleString('en-IN')}</strong> केंद्र उपलब्ध (${Math.min(filtered.length, kendraDisplayLimit)} दिखाए जा रहे हैं)</span>
+            <span>${isEn ? 'Total <strong>' + filtered.length.toLocaleString('en-IN') + '</strong> Kendras Available (' + Math.min(filtered.length, kendraDisplayLimit) + ' showing)' : 'कुल <strong>' + filtered.length.toLocaleString('en-IN') + '</strong> केंद्र उपलब्ध (' + Math.min(filtered.length, kendraDisplayLimit) + ' दिखाए जा रहे हैं)'}</span>
             ${selectedState !== 'All' ? '<span class="text-blue-700 bg-blue-50 px-2 py-0.5 rounded text-[11px]">' + selectedState + (selectedDistrict !== 'All' ? ' > ' + selectedDistrict : '') + '</span>' : ''}
           </div>
         `;
@@ -1272,7 +1241,7 @@
           const pincode = k.p || k.pincode || '';
           const state = k.s || k.state || '';
           const district = k.d || k.district || '';
-          const timings = k.timings || "सुबह 9:00 - रात 9:00 (अधिकृत)";
+          const timings = isEn ? "9:00 AM - 9:00 PM (Authorized)" : "सुबह 9:00 - रात 9:00 (अधिकृत)";
           const gmapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent("Pradhan Mantri Jan Aushadhi Kendra " + name + " " + address + " " + pincode)}`;
 
           return `
@@ -1293,8 +1262,8 @@
                 </p>
 
                 <div class="mt-3 p-2.5 rounded-xl bg-slate-50 border border-slate-100 text-xs text-slate-600">
-                  <div>स्थान: <strong class="text-slate-800">${district}, ${state}</strong></div>
-                  <div class="text-slate-500 mt-0.5">PMBJP हेल्पलाइन: <strong>1800-180-8080</strong></div>
+                  <div>${isEn ? 'Location:' : 'स्थान:'} <strong class="text-slate-800">${district}, ${state}</strong></div>
+                  <div class="text-slate-500 mt-0.5">${isEn ? 'PMBJP Helpline:' : 'PMBJP हेल्पलाइन:'} <strong>1800-180-8080</strong></div>
                 </div>
               </div>
 
@@ -1303,10 +1272,10 @@
                   <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   </svg>
-                  <span>Google Maps रास्ता</span>
+                  <span>${isEn ? 'Google Maps Directions' : 'Google Maps रास्ता'}</span>
                 </a>
-                <a href="tel:18001808080" class="px-3.5 py-2.5 border border-slate-200 hover:bg-slate-50 rounded-xl text-xs font-semibold text-slate-700 flex items-center justify-center" title="राष्ट्रीय PMBJP हेल्पलाइन">
-                  हेल्पलाइन
+                <a href="tel:18001808080" class="px-3.5 py-2.5 border border-slate-200 hover:bg-slate-50 rounded-xl text-xs font-semibold text-slate-700 flex items-center justify-center" title="National PMBJP Helpline">
+                  ${isEn ? 'Helpline' : 'हेल्पलाइन'}
                 </a>
               </div>
             </div>
@@ -1319,7 +1288,7 @@
           loadMoreBtn = `
             <div class="col-span-full text-center pt-4">
               <button onclick="loadMoreKendras()" class="bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold px-6 py-3 rounded-xl text-xs sm:text-sm transition border border-blue-200 shadow-sm inline-flex items-center gap-2">
-                <span>और केंद्र लोड करें (+${Math.min(30, remaining)} और देखें, ${remaining.toLocaleString('en-IN')} शेष) ➔</span>
+                <span>${isEn ? ('Load More Kendras (+' + Math.min(30, remaining) + ' more, ' + remaining.toLocaleString('en-IN') + ' remaining) ➔') : ('और केंद्र लोड करें (+' + Math.min(30, remaining) + ' और देखें, ' + remaining.toLocaleString('en-IN') + ' शेष) ➔')}</span>
               </button>
             </div>
           `;
@@ -1327,7 +1296,6 @@
 
         html = countHeader + cards + loadMoreBtn;
       }
-
       grid.innerHTML = html;
     }
 

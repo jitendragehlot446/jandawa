@@ -327,25 +327,59 @@
   }
 
   // Deep recursive text walker to translate ANY text node
-  function translateFullDOM(targetLang) {
+    function translateFullDOM(targetLang) {
     const map = (targetLang === 'en') ? PHRASE_MAP : REVERSE_PHRASE_MAP;
 
     function walk(node) {
       if (!node) return;
       if (node.nodeType === Node.TEXT_NODE) {
         const text = node.nodeValue.trim();
-        if (text && map[text]) {
-          // Preserve surrounding whitespace
-          const leadingWs = node.nodeValue.match(/^\s*/)[0];
-          const trailingWs = node.nodeValue.match(/\s*$/)[0];
+        if (!text) return;
+        const leadingWs = node.nodeValue.match(/^\s*/)[0];
+        const trailingWs = node.nodeValue.match(/\s*$/)[0];
+
+        // 1. Direct dictionary match
+        if (map[text]) {
           node.nodeValue = leadingWs + map[text] + trailingWs;
+          return;
+        }
+
+        // 2. Regex translations for dynamic counts and prices
+        if (targetLang === 'en') {
+          // X केंद्र -> X Kendras
+          if (/^[\d,]+\s*केंद्र$/.test(text)) {
+            node.nodeValue = leadingWs + text.replace(/^([\d,]+)\s*केंद्र$/, function(m, g) { return g + ' Kendras'; }) + trailingWs;
+            return;
+          }
+          // मात्र ₹X (जन औषधि) -> Only ₹X (Jan Aushadhi)
+          if (/^मात्र\s*(₹[\d.]+)\s*\(जन औषधि\)$/.test(text)) {
+            node.nodeValue = leadingWs + text.replace(/^मात्र\s*(₹[\d.]+)\s*\(जन औषधि\)$/, function(m, g) { return 'Only ' + g + ' (Jan Aushadhi)'; }) + trailingWs;
+            return;
+          }
+          // कुल X केंद्र -> Total X Kendras
+          if (/^कुल\s*([\d,]+)\s*केंद्र/.test(text)) {
+            node.nodeValue = leadingWs + text.replace(/^कुल\s*([\d,]+)\s*केंद्र/, function(m, g) { return 'Total ' + g + ' Kendras'; }) + trailingWs;
+            return;
+          }
+        } else {
+          // Revert back to Hindi
+          if (/^[\d,]+\s*Kendras$/.test(text)) {
+            node.nodeValue = leadingWs + text.replace(/^([\d,]+)\s*Kendras$/, function(m, g) { return g + ' केंद्र'; }) + trailingWs;
+            return;
+          }
+          if (/^Only\s*(₹[\d.]+)\s*\(Jan Aushadhi\)$/.test(text)) {
+            node.nodeValue = leadingWs + text.replace(/^Only\s*(₹[\d.]+)\s*\(Jan Aushadhi\)$/, function(m, g) { return 'मात्र ' + g + ' (जन औषधि)'; }) + trailingWs;
+            return;
+          }
+          if (/^Total\s*([\d,]+)\s*Kendras/.test(text)) {
+            node.nodeValue = leadingWs + text.replace(/^Total\s*([\d,]+)\s*Kendras/, function(m, g) { return 'कुल ' + g + ' केंद्र'; }) + trailingWs;
+            return;
+          }
         }
       } else if (node.nodeType === Node.ELEMENT_NODE) {
-        // Skip script and style tags
         const tag = node.tagName.toLowerCase();
         if (tag === 'script' || tag === 'style') return;
 
-        // Translate placeholders
         if (node.hasAttribute('placeholder')) {
           const ph = node.getAttribute('placeholder').trim();
           if (map[ph]) {
@@ -353,7 +387,6 @@
           }
         }
 
-        // Walk children
         for (let child = node.firstChild; child; child = child.nextSibling) {
           walk(child);
         }
@@ -396,6 +429,9 @@
     // 5. Trigger dynamic re-renders
     if (typeof window.renderMedicines === 'function') {
       window.renderMedicines();
+    }
+    if (typeof window.renderKendras === 'function') {
+      window.renderKendras(false);
     }
     if (typeof window.renderSkincare === 'function') {
       window.renderSkincare();
