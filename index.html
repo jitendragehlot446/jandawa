@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hi" class="h-full bg-slate-50">
+<html lang="hi" class="h-full bg-slate-50 overflow-x-hidden w-full max-w-full">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -64,50 +64,80 @@
   <script src="kendras_data.js?v=4.0" defer></script>
   <script src="skincare_data.js?v=3.0" defer></script>
 </head>
-<body class="flex flex-col min-h-screen text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
+<body class="overflow-x-hidden w-full max-w-full flex flex-col min-h-screen text-slate-800 antialiased selection:bg-brand-500 selection:text-white pb-20 md:pb-0">
 
-  <!-- Top Navbar -->
-  <header class="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-slate-200">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+  <!-- Top Navbar (100% Mobile Responsive + App-Style Segmented Navigation) -->
+  <header class="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-2xs">
+    <div class="max-w-6xl mx-auto px-3 sm:px-6">
       
-      <!-- Brand Logo -->
-      <a href="/" class="flex items-center gap-2.5 shrink-0">
-        <div class="w-9 h-9 rounded-xl bg-brand-700 text-white flex items-center justify-center font-bold text-lg shadow-sm">
-          <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" />
-          </svg>
-        </div>
-        <div>
-          <span class="font-display font-extrabold text-xl tracking-tight text-slate-900">Jan<span class="text-brand-700">Dawa</span></span>
-          <span class="hidden sm:inline-block ml-1.5 px-2 py-0.5 rounded text-[10px] font-semibold bg-brand-50 text-brand-800 border border-brand-200">जन औषधि</span>
-        </div>
-      </a>
-
-      <!-- Navigation Tabs -->
-      <nav class="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm font-semibold">
-        <button id="navTabMeds" onclick="switchMainTab('medicines')" class="px-3.5 py-2 rounded-lg transition-colors bg-brand-50 text-brand-800">
-          दवा खोजक
-        </button>
-        <button id="navTabSkincare" onclick="switchMainTab('skincare')" class="px-3.5 py-2 rounded-lg transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100 flex items-center gap-1.5 shrink-0">
-          <span>🌸</span>
-          <span>स्किनकेयर व ब्यूटी</span>
-          <span class="px-1.5 py-0.5 rounded-full text-[10px] font-extrabold bg-rose-100 text-rose-700">नया</span>
-        </button>
-        <button id="navTabKendra" onclick="switchMainTab('kendra')" class="px-3.5 py-2 rounded-lg transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100">
-          नजदीकी केंद्र
-        </button>
-        <a href="/kendra/" class="px-3.5 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition">
-          सभी 777 ज़िले
+      <!-- Top Row: Logo, Direct Actions, Desktop Nav -->
+      <div class="h-14 sm:h-16 flex items-center justify-between gap-2 sm:gap-4">
+        
+        <!-- Brand Logo -->
+        <a href="/" class="flex items-center gap-2 shrink-0">
+          <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-brand-700 text-white flex items-center justify-center font-bold text-base sm:text-lg shadow-sm">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" />
+            </svg>
+          </div>
+          <div class="flex items-center">
+            <span class="font-display font-extrabold text-lg sm:text-xl tracking-tight text-slate-900">Jan<span class="text-brand-700">Dawa</span></span>
+            <span class="ml-1 px-1.5 py-0.5 rounded text-[9px] sm:text-[10px] font-semibold bg-brand-50 text-brand-800 border border-brand-200">जन औषधि</span>
+          </div>
         </a>
-        <a href="#savings-calculator" onclick="document.getElementById('savings-calculator')?.scrollIntoView({behavior: 'smooth'})" class="hidden md:inline-flex px-3.5 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100">
-          बचत कैलकुलेटर
-        </a>
-      </nav>
 
-      <!-- Verified Indicator -->
-      <div class="hidden lg:flex items-center gap-2 text-xs text-slate-500 font-medium">
-        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-        <span>2,513 सरकारी दवाएं सत्यापित</span>
+        <!-- Desktop Navigation Tabs (Hidden on mobile screens) -->
+        <nav class="hidden md:flex items-center gap-1.5 text-xs sm:text-sm font-semibold">
+          <button id="navTabMeds" onclick="switchMainTab('medicines')" class="px-3.5 py-2 rounded-lg transition-colors bg-brand-50 text-brand-800">
+            दवा खोजक
+          </button>
+          <button id="navTabSkincare" onclick="switchMainTab('skincare')" class="px-3.5 py-2 rounded-lg transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100 flex items-center gap-1.5 shrink-0">
+            <span>🌸</span>
+            <span>स्किनकेयर व ब्यूटी</span>
+            <span class="px-1.5 py-0.5 rounded-full text-[10px] font-extrabold bg-rose-100 text-rose-700">नया</span>
+          </button>
+          <button id="navTabKendra" onclick="switchMainTab('kendra')" class="px-3.5 py-2 rounded-lg transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100">
+            नजदीकी केंद्र
+          </button>
+          <a href="/kendra/" class="px-3.5 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition">
+            सभी 777 ज़िले
+          </a>
+          <a href="#savings-calculator" onclick="document.getElementById('savings-calculator')?.scrollIntoView({behavior: 'smooth'})" class="hidden md:inline-flex px-3.5 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100">
+            बचत कैलकुलेटर
+          </a>
+        </nav>
+
+        <!-- Right Quick Action (Mobile: direct link to 777 districts / Desktop: verified badge) -->
+        <div class="flex items-center gap-1.5">
+          <a href="/kendra/" class="md:hidden text-[11px] font-bold px-2.5 py-1.5 rounded-lg bg-blue-50 text-blue-700 border border-blue-200 flex items-center gap-1 shrink-0">
+            <span>🏪</span> 777 ज़िले
+          </a>
+          <div class="hidden lg:flex items-center gap-2 text-xs text-slate-500 font-medium">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>2,513 सरकारी दवाएं सत्यापित</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Mobile Top Segmented Tab Scroller (Visible on mobile only, smoothly swipeable) -->
+      <div class="md:hidden flex items-center gap-1.5 overflow-x-auto scrollbar-none pb-2 pt-0.5 -mx-3 px-3 text-xs font-semibold select-none border-t border-slate-100">
+        <button id="mobileTabMeds" onclick="switchMainTab('medicines')" class="mobile-tab-btn active px-3 py-1.5 rounded-lg shrink-0 transition-colors bg-brand-50 text-brand-800 border border-brand-200 flex items-center gap-1">
+          <span>💊</span> दवा खोजक
+        </button>
+        <button id="mobileTabSkincare" onclick="switchMainTab('skincare')" class="mobile-tab-btn px-3 py-1.5 rounded-lg shrink-0 transition-colors text-slate-600 hover:bg-slate-100 border border-transparent flex items-center gap-1">
+          <span>🌸</span> स्किनकेयर
+          <span class="px-1 py-0.2 rounded-full text-[9px] font-bold bg-rose-100 text-rose-700">New</span>
+        </button>
+        <button id="mobileTabKendra" onclick="switchMainTab('kendra')" class="mobile-tab-btn px-3 py-1.5 rounded-lg shrink-0 transition-colors text-slate-600 hover:bg-slate-100 border border-transparent flex items-center gap-1">
+          <span>📍</span> नजदीकी केंद्र
+        </button>
+        <a href="/kendra/" class="px-3 py-1.5 rounded-lg shrink-0 transition-colors text-slate-600 hover:bg-slate-100 border border-transparent flex items-center gap-1">
+          <span>🗺️</span> 777 ज़िले
+        </a>
+        <a href="#savings-calculator" onclick="document.getElementById('savings-calculator')?.scrollIntoView({behavior: 'smooth'})" class="px-3 py-1.5 rounded-lg shrink-0 transition-colors text-slate-600 hover:bg-slate-100 border border-transparent flex items-center gap-1">
+          <span>💰</span> बचत कैलकुलेटर
+        </a>
       </div>
 
     </div>
@@ -124,7 +154,7 @@
         <span>प्रधानमंत्री भारतीय जन औषधि परियोजना (PMBJP) डेटाबेस</span>
       </div>
 
-      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+      <h1 class="text-2xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
         ब्रांडेड दवाओं का <span class="text-brand-700">सटीक सरकारी विकल्प</span> खोजें
       </h1>
       
@@ -183,7 +213,7 @@
     <div id="medicineSection" class="space-y-6">
 
       <!-- Category Filter Tabs -->
-      <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none text-xs sm:text-sm">
+      <div class="flex items-center gap-2 overflow-x-auto pb-1.5 pt-0.5 scrollbar-none text-xs sm:text-sm -mx-3 px-3 sm:mx-0 sm:px-0">
         <button data-cat="All" onclick="filterCategory('All')" class="cat-pill active px-4 py-2 rounded-xl font-semibold bg-brand-700 text-white shrink-0 transition-colors">
           सभी दवाएं (2,513)
         </button>
@@ -283,9 +313,9 @@
           </div>
         </div>
 
-        <!-- Kendra Universal Search Bar with Search Button -->
+        <!-- Kendra Universal Search Bar with Search Button (Fully Mobile Responsive) -->
         <div class="max-w-2xl mx-auto space-y-3 pt-2">
-          <div class="bg-white rounded-2xl shadow-sm border-2 border-slate-300 focus-within:border-blue-600 p-1.5 flex gap-2 transition-all">
+          <div class="bg-white rounded-2xl shadow-sm border-2 border-slate-300 focus-within:border-blue-600 p-2 sm:p-1.5 flex flex-col sm:flex-row gap-2 transition-all">
             <div class="relative flex-1 flex items-center">
               <svg class="w-5 h-5 absolute left-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -294,15 +324,15 @@
                 id="kendraSearchInput" 
                 type="text" 
                 autocomplete="off"
-                placeholder="ज़िला (उदा: Jodhpur), शहर, इलाका या 6-अंकीय पिनकोड लिखें..." 
-                class="w-full pl-11 pr-3 py-3 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none bg-transparent font-medium"
+                placeholder="ज़िला (उदा: Jodhpur), शहर या 6-अंकीय पिनकोड..." 
+                class="w-full pl-11 pr-3 py-3 text-base sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none bg-transparent font-medium"
               />
             </div>
-            <button id="searchKendraBtn" onclick="runKendraSearch()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 sm:px-7 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-1.5 shadow">
+            <button id="searchKendraBtn" onclick="runKendraSearch()" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3 rounded-xl text-sm transition flex items-center justify-center gap-1.5 shadow shrink-0">
               <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
-              <span>खोजें</span>
+              <span>केंद्र खोजें</span>
             </button>
           </div>
 
@@ -369,9 +399,9 @@
           </p>
         </div>
 
-        <!-- Skincare Search Bar -->
+        <!-- Skincare Search Bar (Mobile Responsive) -->
         <div class="max-w-2xl mx-auto pt-1">
-          <div class="bg-white rounded-2xl shadow-sm border-2 border-rose-200 focus-within:border-rose-500 p-1.5 flex gap-2 transition-all">
+          <div class="bg-white rounded-2xl shadow-sm border-2 border-rose-200 focus-within:border-rose-500 p-2 sm:p-1.5 flex flex-col sm:flex-row gap-2 transition-all">
             <div class="relative flex-1 flex items-center">
               <svg class="w-5 h-5 absolute left-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -381,11 +411,11 @@
                 type="text" 
                 autocomplete="off"
                 oninput="onSkincareSearch(this.value)"
-                placeholder="प्रोडक्ट खोजें (उदा: फेस वॉश, मिनोक्सिडिल, डैंड्रफ, सुविधा पैड, डायपर)..." 
-                class="w-full pl-11 pr-3 py-3 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none bg-transparent"
+                placeholder="प्रोडक्ट खोजें (उदा: फेस वॉश, मिनोक्सिडिल, सुविधा पैड)..." 
+                class="w-full pl-11 pr-3 py-3 text-base sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none bg-transparent"
               />
             </div>
-            <button onclick="onSkincareSearch(document.getElementById('skincareSearchInput').value)" class="bg-rose-600 hover:bg-rose-700 text-white font-bold px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm transition flex items-center justify-center gap-1.5 shadow">
+            <button onclick="onSkincareSearch(document.getElementById('skincareSearchInput').value)" class="w-full sm:w-auto bg-rose-600 hover:bg-rose-700 text-white font-bold px-6 py-3 rounded-xl text-sm transition flex items-center justify-center gap-1.5 shadow shrink-0">
               <span>खोजें</span>
             </button>
           </div>
@@ -413,7 +443,7 @@
       </div>
 
       <!-- Skincare Subcategory Filter Tabs -->
-      <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none text-xs sm:text-sm">
+      <div class="flex items-center gap-2 overflow-x-auto pb-1.5 pt-0.5 scrollbar-none text-xs sm:text-sm -mx-3 px-3 sm:mx-0 sm:px-0">
         <button data-skincare-cat="All" onclick="filterSkincareCat('All')" class="skincare-cat-pill active px-4 py-2 rounded-xl font-semibold bg-rose-600 text-white shrink-0 transition-colors shadow-sm">
           सभी उत्पाद (25)
         </button>
@@ -1034,29 +1064,60 @@
 
     // Top Mode Switcher (Medicines vs Kendra Locator)
     function switchMainTab(tab) {
+      // Desktop Nav
       const tabMeds = document.getElementById('navTabMeds');
       const tabSkincare = document.getElementById('navTabSkincare');
       const tabKendra = document.getElementById('navTabKendra');
+
+      // Mobile Top Tabs
+      const mTabMeds = document.getElementById('mobileTabMeds');
+      const mTabSkincare = document.getElementById('mobileTabSkincare');
+      const mTabKendra = document.getElementById('mobileTabKendra');
+
+      // Mobile Bottom Bar
+      const bNavMeds = document.getElementById('bottomNavMeds');
+      const bNavSkincare = document.getElementById('bottomNavSkincare');
+      const bNavKendra = document.getElementById('bottomNavKendra');
       
       const medSec = document.getElementById('medicineSection');
       const skincareSec = document.getElementById('skincareSection');
       const kendraSec = document.getElementById('kendraSection');
 
-      const inactiveCls = "px-3.5 py-2 rounded-lg transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100 font-semibold";
-      if (tabMeds) tabMeds.className = inactiveCls;
-      if (tabSkincare) tabSkincare.className = inactiveCls + " flex items-center gap-1.5";
-      if (tabKendra) tabKendra.className = inactiveCls;
+      // Inactive classes
+      const dInactive = "px-3.5 py-2 rounded-lg transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100 font-semibold";
+      const mInactive = "mobile-tab-btn px-3 py-1.5 rounded-lg shrink-0 transition-colors text-slate-600 hover:bg-slate-100 border border-transparent flex items-center gap-1";
+      const bInactive = "flex flex-col items-center justify-center py-1 px-3 text-slate-500 font-medium transition";
 
+      // Reset desktop
+      if (tabMeds) tabMeds.className = dInactive;
+      if (tabSkincare) tabSkincare.className = dInactive + " flex items-center gap-1.5 shrink-0";
+      if (tabKendra) tabKendra.className = dInactive;
+
+      // Reset mobile top
+      if (mTabMeds) mTabMeds.className = mInactive;
+      if (mTabSkincare) mTabSkincare.className = mInactive;
+      if (mTabKendra) mTabKendra.className = mInactive;
+
+      // Reset mobile bottom
+      if (bNavMeds) bNavMeds.className = bInactive;
+      if (bNavSkincare) bNavSkincare.className = bInactive + " relative";
+      if (bNavKendra) bNavKendra.className = bInactive;
+
+      // Hide all sections
       if (medSec) medSec.classList.add('hidden');
       if (skincareSec) skincareSec.classList.add('hidden');
       if (kendraSec) kendraSec.classList.add('hidden');
 
       if (tab === 'medicines') {
         if (tabMeds) tabMeds.className = "px-3.5 py-2 rounded-lg transition-colors bg-brand-50 text-brand-800 font-semibold";
+        if (mTabMeds) mTabMeds.className = "mobile-tab-btn active px-3 py-1.5 rounded-lg shrink-0 transition-colors bg-brand-50 text-brand-800 border border-brand-200 flex items-center gap-1";
+        if (bNavMeds) bNavMeds.className = "flex flex-col items-center justify-center py-1 px-3 text-brand-700 font-bold transition";
         if (medSec) medSec.classList.remove('hidden');
         window.history.replaceState(null, '', window.location.pathname);
       } else if (tab === 'skincare') {
-        if (tabSkincare) tabSkincare.className = "px-3.5 py-2 rounded-lg transition-colors bg-rose-50 text-rose-700 font-semibold border border-rose-200 flex items-center gap-1.5";
+        if (tabSkincare) tabSkincare.className = "px-3.5 py-2 rounded-lg transition-colors bg-rose-50 text-rose-700 font-semibold border border-rose-200 flex items-center gap-1.5 shrink-0";
+        if (mTabSkincare) mTabSkincare.className = "mobile-tab-btn active px-3 py-1.5 rounded-lg shrink-0 transition-colors bg-rose-50 text-rose-700 border border-rose-200 flex items-center gap-1";
+        if (bNavSkincare) bNavSkincare.className = "flex flex-col items-center justify-center py-1 px-3 text-rose-600 font-bold transition relative";
         if (skincareSec) {
           skincareSec.classList.remove('hidden');
           renderSkincare();
@@ -1064,6 +1125,8 @@
         window.history.replaceState(null, '', '#skincare');
       } else if (tab === 'kendra') {
         if (tabKendra) tabKendra.className = "px-3.5 py-2 rounded-lg transition-colors bg-blue-50 text-blue-700 font-semibold";
+        if (mTabKendra) mTabKendra.className = "mobile-tab-btn active px-3 py-1.5 rounded-lg shrink-0 transition-colors bg-blue-50 text-blue-700 border border-blue-200 flex items-center gap-1";
+        if (bNavKendra) bNavKendra.className = "flex flex-col items-center justify-center py-1 px-3 text-blue-600 font-bold transition";
         if (kendraSec) {
           kendraSec.classList.remove('hidden');
           renderKendras();
@@ -1430,7 +1493,7 @@
 
         return `
           <div class="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all overflow-hidden flex flex-col group">
-            <div class="relative h-56 w-full bg-slate-50/90 p-3 flex items-center justify-center overflow-hidden border-b border-slate-100">
+            <div class="relative h-44 sm:h-56 w-full bg-slate-50/90 p-2.5 sm:p-3 flex items-center justify-center overflow-hidden border-b border-slate-100">
               <img 
                 src="${p.img}" 
                 alt="${p.title}" 
@@ -1522,5 +1585,26 @@
       onAppReady();
     }
   </script>
+  <!-- Mobile Sticky Bottom App Navigation Bar (Native Mobile App Experience) -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 px-3 py-1.5 flex items-center justify-around shadow-xl">
+    <button id="bottomNavMeds" onclick="switchMainTab('medicines')" class="flex flex-col items-center justify-center py-1 px-3 text-brand-700 font-bold transition">
+      <span class="text-lg leading-none">💊</span>
+      <span class="text-[10px] mt-1">दवा खोजें</span>
+    </button>
+    <button id="bottomNavSkincare" onclick="switchMainTab('skincare')" class="flex flex-col items-center justify-center py-1 px-3 text-slate-500 font-medium transition relative">
+      <span class="text-lg leading-none">🌸</span>
+      <span class="text-[10px] mt-1">स्किनकेयर</span>
+      <span class="absolute top-1 right-2 w-2 h-2 rounded-full bg-rose-500"></span>
+    </button>
+    <button id="bottomNavKendra" onclick="switchMainTab('kendra')" class="flex flex-col items-center justify-center py-1 px-3 text-slate-500 font-medium transition">
+      <span class="text-lg leading-none">📍</span>
+      <span class="text-[10px] mt-1">केंद्र खोजें</span>
+    </button>
+    <a href="/kendra/" class="flex flex-col items-center justify-center py-1 px-3 text-slate-500 font-medium transition">
+      <span class="text-lg leading-none">🗺️</span>
+      <span class="text-[10px] mt-1">777 ज़िले</span>
+    </a>
+  </nav>
+
 </body>
 </html>
