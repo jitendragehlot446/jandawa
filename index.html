@@ -88,56 +88,31 @@
 
         <!-- Desktop Navigation Tabs (Hidden on mobile screens) -->
         <nav class="hidden md:flex items-center gap-1.5 text-xs sm:text-sm font-semibold">
-          <button id="navTabMeds" onclick="switchMainTab('medicines')" class="px-3.5 py-2 rounded-lg transition-colors bg-brand-50 text-brand-800">
-            दवा खोजक
-          </button>
+          <a href="/" class="px-3.5 py-2 rounded-lg transition-colors bg-brand-50 text-brand-800 font-bold border border-brand-200">
+            💊 दवा खोजक
+          </a>
           <a href="/skincare/" class="px-3.5 py-2 rounded-lg transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100 flex items-center gap-1.5 shrink-0">
             <span>🌸</span>
             <span>स्किनकेयर व ब्यूटी</span>
-            <span class="px-1.5 py-0.5 rounded-full text-[10px] font-extrabold bg-rose-100 text-rose-700">नया</span>
+            <span class="px-1.5 py-0.5 rounded-full text-[10px] font-extrabold bg-rose-100 text-rose-700">25 उत्पाद</span>
           </a>
-          <button id="navTabKendra" onclick="switchMainTab('kendra')" class="px-3.5 py-2 rounded-lg transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100">
-            नजदीकी केंद्र
-          </button>
-          <a href="/kendra/" class="px-3.5 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition">
-            सभी 777 ज़िले
+          <a href="/kendra/" class="px-3.5 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition flex items-center gap-1.5">
+            <span>📍</span>
+            <span>केंद्र डायरेक्टरी (777 ज़िले)</span>
           </a>
-          <a href="#savings-calculator" onclick="document.getElementById('savings-calculator')?.scrollIntoView({behavior: 'smooth'})" class="hidden md:inline-flex px-3.5 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100">
-            बचत कैलकुलेटर
+          <a href="#savings-calculator" onclick="document.getElementById('savings-calculator')?.scrollIntoView({behavior: 'smooth'})" class="hidden lg:inline-flex px-3.5 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100">
+            💰 बचत कैलकुलेटर
           </a>
         </nav>
 
-        <!-- Right Quick Action (Mobile: direct link to 777 districts / Desktop: verified badge) -->
-        <div class="flex items-center gap-1.5">
-          <a href="/kendra/" class="md:hidden text-[11px] font-bold px-2.5 py-1.5 rounded-lg bg-blue-50 text-blue-700 border border-blue-200 flex items-center gap-1 shrink-0">
-            <span>🏪</span> 777 ज़िले
+        <!-- Right Quick Action -->
+        <div class="flex items-center gap-2">
+          <a href="/kendra/" class="text-xs font-bold px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white shadow-sm flex items-center gap-1.5 transition">
+            <span>🏪</span>
+            <span>21,745 केंद्र खोजें</span>
           </a>
-          <div class="hidden lg:flex items-center gap-2 text-xs text-slate-500 font-medium">
-            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span>2,513 सरकारी दवाएं सत्यापित</span>
-          </div>
         </div>
 
-      </div>
-
-      <!-- Mobile Top Segmented Tab Scroller (Visible on mobile only, smoothly swipeable) -->
-      <div class="md:hidden flex items-center gap-1.5 overflow-x-auto scrollbar-none pb-2 pt-0.5 -mx-3 px-3 text-xs font-semibold select-none border-t border-slate-100">
-        <button id="mobileTabMeds" onclick="switchMainTab('medicines')" class="mobile-tab-btn active px-3 py-1.5 rounded-lg shrink-0 transition-colors bg-brand-50 text-brand-800 border border-brand-200 flex items-center gap-1">
-          <span>💊</span> दवा खोजक
-        </button>
-        <a href="/skincare/" class="mobile-tab-btn px-3 py-1.5 rounded-lg shrink-0 transition-colors text-slate-600 hover:bg-slate-100 border border-transparent flex items-center gap-1">
-          <span>🌸</span> स्किनकेयर
-          <span class="px-1 py-0.2 rounded-full text-[9px] font-bold bg-rose-100 text-rose-700">New</span>
-        </a>
-        <button id="mobileTabKendra" onclick="switchMainTab('kendra')" class="mobile-tab-btn px-3 py-1.5 rounded-lg shrink-0 transition-colors text-slate-600 hover:bg-slate-100 border border-transparent flex items-center gap-1">
-          <span>📍</span> नजदीकी केंद्र
-        </button>
-        <a href="/kendra/" class="px-3 py-1.5 rounded-lg shrink-0 transition-colors text-slate-600 hover:bg-slate-100 border border-transparent flex items-center gap-1">
-          <span>🗺️</span> 777 ज़िले
-        </a>
-        <a href="#savings-calculator" onclick="document.getElementById('savings-calculator')?.scrollIntoView({behavior: 'smooth'})" class="px-3 py-1.5 rounded-lg shrink-0 transition-colors text-slate-600 hover:bg-slate-100 border border-transparent flex items-center gap-1">
-          <span>💰</span> बचत कैलकुलेटर
-        </a>
       </div>
 
     </div>
@@ -1587,23 +1562,23 @@
     }
   </script>
   <!-- Mobile Sticky Bottom App Navigation Bar (Native Mobile App Experience) -->
-  <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 px-3 py-1.5 flex items-center justify-around shadow-xl">
-    <button id="bottomNavMeds" onclick="switchMainTab('medicines')" class="flex flex-col items-center justify-center py-1 px-3 text-brand-700 font-bold transition">
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-slate-200 px-2 py-1.5 flex items-center justify-around shadow-2xl">
+    <a href="/" class="flex flex-col items-center justify-center py-1 px-3 text-brand-700 font-bold bg-brand-50/70 rounded-xl transition">
       <span class="text-lg leading-none">💊</span>
-      <span class="text-[10px] mt-1">दवा खोजें</span>
-    </button>
-    <a href="/skincare/" class="flex flex-col items-center justify-center py-1 px-3 text-slate-500 font-medium transition relative">
+      <span class="text-[10px] mt-1">दवाएं</span>
+    </a>
+    <a href="/skincare/" class="flex flex-col items-center justify-center py-1 px-3 text-slate-500 hover:text-rose-600 font-medium transition relative">
       <span class="text-lg leading-none">🌸</span>
       <span class="text-[10px] mt-1">स्किनकेयर</span>
       <span class="absolute top-1 right-2 w-2 h-2 rounded-full bg-rose-500"></span>
     </a>
-    <button id="bottomNavKendra" onclick="switchMainTab('kendra')" class="flex flex-col items-center justify-center py-1 px-3 text-slate-500 font-medium transition">
+    <a href="/kendra/" class="flex flex-col items-center justify-center py-1 px-3 text-slate-500 hover:text-blue-600 font-medium transition">
       <span class="text-lg leading-none">📍</span>
-      <span class="text-[10px] mt-1">केंद्र खोजें</span>
-    </button>
-    <a href="/kendra/" class="flex flex-col items-center justify-center py-1 px-3 text-slate-500 font-medium transition">
-      <span class="text-lg leading-none">🗺️</span>
       <span class="text-[10px] mt-1">777 ज़िले</span>
+    </a>
+    <a href="#savings-calculator" onclick="document.getElementById('savings-calculator')?.scrollIntoView({behavior: 'smooth'})" class="flex flex-col items-center justify-center py-1 px-3 text-slate-500 hover:text-emerald-600 font-medium transition">
+      <span class="text-lg leading-none">💰</span>
+      <span class="text-[10px] mt-1">बचत</span>
     </a>
   </nav>
 

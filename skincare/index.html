@@ -71,50 +71,32 @@
 
         <!-- Desktop Navigation Tabs -->
         <nav class="hidden md:flex items-center gap-1.5 text-xs sm:text-sm font-semibold">
-          <a href="/" class="px-3.5 py-2 rounded-lg transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100">
-            दवा खोजक
+          <a href="/" class="px-3.5 py-2 rounded-lg transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100 flex items-center gap-1.5">
+            <span>💊</span>
+            <span>दवा खोजक</span>
           </a>
-          <a href="/skincare/" class="px-3.5 py-2 rounded-lg transition-colors bg-rose-50 text-rose-700 font-semibold border border-rose-200 flex items-center gap-1.5 shrink-0">
+          <a href="/skincare/" class="px-3.5 py-2 rounded-lg transition-colors bg-rose-50 text-rose-700 font-bold border border-rose-200 flex items-center gap-1.5 shrink-0">
             <span>🌸</span>
             <span>स्किनकेयर व ब्यूटी</span>
             <span class="px-1.5 py-0.5 rounded-full text-[10px] font-extrabold bg-rose-100 text-rose-700">25 उत्पाद</span>
           </a>
-          <a href="/kendra/" class="px-3.5 py-2 rounded-lg transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100">
-            नजदीकी केंद्र
+          <a href="/kendra/" class="px-3.5 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition flex items-center gap-1.5">
+            <span>📍</span>
+            <span>केंद्र डायरेक्टरी (777 ज़िले)</span>
           </a>
-          <a href="/kendra/" class="px-3.5 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition">
-            सभी 777 ज़िले
+          <a href="/#savings-calculator" class="hidden lg:inline-flex px-3.5 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100">
+            💰 बचत कैलकुलेटर
           </a>
         </nav>
 
         <!-- Right Quick Action -->
-        <div class="flex items-center gap-1.5">
-          <a href="/kendra/" class="md:hidden text-[11px] font-bold px-2.5 py-1.5 rounded-lg bg-blue-50 text-blue-700 border border-blue-200 flex items-center gap-1 shrink-0">
-            <span>🏪</span> 777 ज़िले
+        <div class="flex items-center gap-2">
+          <a href="/kendra/" class="text-xs font-bold px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white shadow-sm flex items-center gap-1.5 transition">
+            <span>🏪</span>
+            <span>21,745 केंद्र खोजें</span>
           </a>
-          <div class="hidden lg:flex items-center gap-2 text-xs text-slate-500 font-medium">
-            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span>25 सरकारी ब्यूटी व पर्सनल केयर उत्पाद</span>
-          </div>
         </div>
 
-      </div>
-
-      <!-- Mobile Top Segmented Tab Scroller -->
-      <div class="md:hidden flex items-center gap-1.5 overflow-x-auto scrollbar-none pb-2 pt-0.5 -mx-3 px-3 text-xs font-semibold select-none border-t border-slate-100">
-        <a href="/" class="px-3 py-1.5 rounded-lg shrink-0 transition-colors text-slate-600 hover:bg-slate-100 border border-transparent flex items-center gap-1">
-          <span>💊</span> दवा खोजक
-        </a>
-        <a href="/skincare/" class="px-3 py-1.5 rounded-lg shrink-0 transition-colors bg-rose-50 text-rose-700 border border-rose-200 flex items-center gap-1 font-bold">
-          <span>🌸</span> स्किनकेयर
-          <span class="px-1 py-0.2 rounded-full text-[9px] font-bold bg-rose-100 text-rose-700">25</span>
-        </a>
-        <a href="/kendra/" class="px-3 py-1.5 rounded-lg shrink-0 transition-colors text-slate-600 hover:bg-slate-100 border border-transparent flex items-center gap-1">
-          <span>📍</span> नजदीकी केंद्र
-        </a>
-        <a href="/kendra/" class="px-3 py-1.5 rounded-lg shrink-0 transition-colors text-slate-600 hover:bg-slate-100 border border-transparent flex items-center gap-1">
-          <span>🗺️</span> 777 ज़िले
-        </a>
       </div>
 
     </div>
@@ -276,24 +258,24 @@
     </div>
   </footer>
 
-  <!-- Mobile Sticky Bottom App Navigation Bar -->
-  <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 px-3 py-1.5 flex items-center justify-around shadow-xl">
-    <a href="/" class="flex flex-col items-center justify-center py-1 px-3 text-slate-500 font-medium transition">
+  <!-- Mobile Sticky Bottom App Navigation Bar (Native Mobile App Experience) -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-slate-200 px-2 py-1.5 flex items-center justify-around shadow-2xl">
+    <a href="/" class="flex flex-col items-center justify-center py-1 px-3 text-slate-500 hover:text-emerald-700 font-medium transition">
       <span class="text-lg leading-none">💊</span>
-      <span class="text-[10px] mt-1">दवा खोजें</span>
+      <span class="text-[10px] mt-1">दवाएं</span>
     </a>
-    <a href="/skincare/" class="flex flex-col items-center justify-center py-1 px-3 text-rose-600 font-bold transition relative">
+    <a href="/skincare/" class="flex flex-col items-center justify-center py-1 px-3 text-rose-600 font-bold bg-rose-50/70 rounded-xl transition relative">
       <span class="text-lg leading-none">🌸</span>
       <span class="text-[10px] mt-1">स्किनकेयर</span>
       <span class="absolute top-1 right-2 w-2 h-2 rounded-full bg-rose-500"></span>
     </a>
-    <a href="/kendra/" class="flex flex-col items-center justify-center py-1 px-3 text-slate-500 font-medium transition">
+    <a href="/kendra/" class="flex flex-col items-center justify-center py-1 px-3 text-slate-500 hover:text-blue-600 font-medium transition">
       <span class="text-lg leading-none">📍</span>
-      <span class="text-[10px] mt-1">केंद्र खोजें</span>
-    </a>
-    <a href="/kendra/" class="flex flex-col items-center justify-center py-1 px-3 text-slate-500 font-medium transition">
-      <span class="text-lg leading-none">🗺️</span>
       <span class="text-[10px] mt-1">777 ज़िले</span>
+    </a>
+    <a href="/#savings-calculator" class="flex flex-col items-center justify-center py-1 px-3 text-slate-500 hover:text-emerald-600 font-medium transition">
+      <span class="text-lg leading-none">💰</span>
+      <span class="text-[10px] mt-1">बचत</span>
     </a>
   </nav>
 
