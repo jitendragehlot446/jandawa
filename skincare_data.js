@@ -16,7 +16,12 @@ var skincareData = [
     "benefits": "जिद्दी कील-मुहांसे (Pimples), ब्लैकहेड्स और चेहरे का अतिरिक्त तेल गहराई से साफ करता है।",
     "usage": "चेहरे पर पानी लगाकर हल्के हाथों से 1 मिनट झाग बनाएं और धो लें। दिन में 2 बार इस्तेमाल करें।",
     "img": "images/products/salicylic_facewash.png",
-    "tag": "सबसे लोकप्रिय फेस वॉश"
+    "tag": "सबसे लोकप्रिय फेस वॉश",
+    "title_en": "Salicylic & Glycolic Anti-Acne Face Wash",
+    "benefits_en": "Deeply cleanses stubborn pimples, blackheads, and controls excess facial sebum.",
+    "usage_en": "Apply on damp face, massage gently for 1 minute, and rinse with water. Use twice daily.",
+    "tag_en": "Most Popular Face Wash",
+    "category_en": "Face Wash & Acne"
   },
   {
     "id": "sk-02",
@@ -34,7 +39,12 @@ var skincareData = [
     "benefits": "मृत त्वचा (Dead Skin) हटाकर चेहरे पर प्राकृतिक निखार लाता है और धूप से टैनिंग दूर करता है।",
     "usage": "रोजाना सुबह और रात को चेहरा धोने के लिए उपयुक्त। सभी प्रकार की त्वचा हेतु सुरक्षित।",
     "img": "images/products/glycolic_facewash.png",
-    "tag": "ग्लो व टैन रिमूवल"
+    "tag": "ग्लो व टैन रिमूवल",
+    "title_en": "Glycolic Acid & Aloe Vera Glow Face Wash",
+    "benefits_en": "Exfoliates dead skin cells, removes sun tanning, and restores natural skin radiance.",
+    "usage_en": "Ideal for daily face wash morning and evening. Safe for all skin types.",
+    "tag_en": "Glow & Tan Removal",
+    "category_en": "Face Wash & Acne"
   },
   {
     "id": "sk-03",
@@ -52,7 +62,12 @@ var skincareData = [
     "benefits": "डर्मेटोलॉजिस्ट द्वारा सबसे ज्यादा लिखा जाने वाला मुहांसे व बंद पोर्स (Clogged Pores) का फॉर्मूला।",
     "usage": "केवल रात को सोने से पहले मुहांसों पर लगाएं। दिन में धूप से बचाव रखें।",
     "img": "images/products/adapalene_gel.png",
-    "tag": "डॉक्टरों की पहली पसंद"
+    "tag": "डॉक्टरों की पहली पसंद",
+    "title_en": "Adapalene Acne Gel 0.1%",
+    "benefits_en": "Dermatologist-preferred formula to unclog pores and clear persistent acne.",
+    "usage_en": "Apply a thin layer on acne lesions at bedtime only. Protect skin from direct sunlight.",
+    "tag_en": "Doctor's Top Choice",
+    "category_en": "Face Wash & Acne"
   },
   {
     "id": "sk-04",
@@ -70,7 +85,12 @@ var skincareData = [
     "benefits": "पिंपल्स पैदा करने वाले बैक्टीरिया को 48 घंटे में खत्म कर सूजन और लाली कम करता है।",
     "usage": "साफ चेहरे पर केवल मुहांसों वाली जगह पर लगाएं।",
     "img": "images/products/benzoyl_peroxide.jpg",
-    "tag": "पिंपल्स तुरंत सुखाए"
+    "tag": "पिंपल्स तुरंत सुखाए",
+    "title_en": "Benzoyl Peroxide 5% Acne Gel",
+    "benefits_en": "Kills 99% of acne-causing bacteria and dries out active cystic pimples quickly.",
+    "usage_en": "Wash face, dry thoroughly, and apply directly to affected pimples once daily.",
+    "tag_en": "Anti-Bacterial Acne Gel",
+    "category_en": "Face Wash & Acne"
   },
   {
     "id": "sk-05",
@@ -88,7 +108,12 @@ var skincareData = [
     "benefits": "मुहांसों के काले निशान, झाइयां (Melasma) और लालिमा ठीक करने के लिए बेहतरीन एक्टिव।",
     "usage": "दिन में या रात को चेहरे पर प्रभावित हिस्से पर पतली परत लगाएं।",
     "img": "images/products/azelaic_acid.jpg",
-    "tag": "काले दाग व झाइयां"
+    "tag": "काले दाग व झाइयां",
+    "title_en": "Azelaic Acid 10% Cream",
+    "benefits_en": "Reduces acne blemishes, dark spots, hyperpigmentation, and redness.",
+    "usage_en": "Apply a pea-sized amount on spots and pigmentation twice daily after cleansing.",
+    "tag_en": "Blemish & Spot Reducer",
+    "category_en": "Face Wash & Acne"
   },
   {
     "id": "sk-06",
@@ -106,7 +131,12 @@ var skincareData = [
     "benefits": "गहरे दाग-धब्बे, पिगमेंटेशन और झाइयों को तेजी से हल्का करने हेतु ट्रिपल कॉम्बिनेशन।",
     "usage": "रात को सोने से पहले लगाएं। डॉक्टर की सलाह पर ही उपयोग करें।",
     "img": "images/products/skin_brightening.jpg",
-    "tag": "झाइयों का इलाज"
+    "tag": "झाइयों का इलाज",
+    "title_en": "Triple Action Melasma & Dark Spot Cream",
+    "benefits_en": "Clinically proven triple combination for stubborn melasma and dark facial patches.",
+    "usage_en": "Apply only at night on dark patches as directed by your physician. Strictly use sunscreen in daytime.",
+    "tag_en": "Triple Action Melasma Formula",
+    "category_en": "Face Wash & Acne"
   },
   {
     "id": "sk-07",
@@ -124,7 +154,12 @@ var skincareData = [
     "benefits": "हठीली रूसी (Dandruff), स्कैल्प की खुजली और फंगस को जड़ से खत्म करने वाला मेडिकल शैम्पू।",
     "usage": "गीले बालों में लगाकर 5 मिनट तक स्कैल्प पर छोड़ें, फिर पानी से धो लें। हफ्ते में 2 बार लगाएं।",
     "img": "images/products/ketoconazole_shampoo.jpg",
-    "tag": "100% रूसी खत्म"
+    "tag": "100% रूसी खत्म",
+    "title_en": "Ketoconazole 2% Medicated Anti-Dandruff Shampoo",
+    "benefits_en": "Eliminates stubborn dandruff flakes and soothes scalp itchiness from the very first wash.",
+    "usage_en": "Apply on wet hair, massage scalp for 3 to 5 minutes, and rinse thoroughly. Use 2-3 times weekly.",
+    "tag_en": "Doctor Recommended Anti-Dandruff",
+    "category_en": "Hair & Dandruff"
   },
   {
     "id": "sk-08",
@@ -142,7 +177,12 @@ var skincareData = [
     "benefits": "दोहरे एक्शन वाला क्लिनिकल शैम्पू — रूसी को तुरंत रोके और बालों का झड़ना कम करे।",
     "usage": "बालों की जड़ों में लगाकर 3 से 5 मिनट रखें और धो लें।",
     "img": "images/products/ketoconazole_soap.jpg",
-    "tag": "डबल एक्शन शैम्पू"
+    "tag": "डबल एक्शन शैम्पू",
+    "title_en": "Ketoconazole 2% + ZPTO Anti-Dandruff Shampoo",
+    "benefits_en": "Dual antifungal action stops recurring dandruff and controls scalp oiliness.",
+    "usage_en": "Massage into scalp for 3 minutes, then rinse. Use twice weekly for lasting relief.",
+    "tag_en": "Advanced Anti-Dandruff",
+    "category_en": "Hair & Dandruff"
   },
   {
     "id": "sk-09",
@@ -160,7 +200,12 @@ var skincareData = [
     "benefits": "गंजेपन, गिरते बालों और हेयर थिनिंग को रोककर नए बाल उगाने के लिए FDA-प्रमाणित फॉर्मूला।",
     "usage": "ड्रॉपर से रोजाना 1ml सिर के खाली हिस्से पर दिन में 2 बार हल्के से लगाएं।",
     "img": "images/products/minoxidil_5.png",
-    "tag": "नए बाल उगाने का फॉर्मूला"
+    "tag": "नए बाल उगाने का फॉर्मूला",
+    "title_en": "Minoxidil 5% Hair Regrowth Solution",
+    "benefits_en": "FDA-approved proven solution to stimulate hair follicles and reverse male/female hair thinning.",
+    "usage_en": "Apply 1 ml directly onto thinning scalp areas twice daily. Do not rinse off.",
+    "tag_en": "Proven Hair Regrowth",
+    "category_en": "Hair & Dandruff"
   },
   {
     "id": "sk-10",
@@ -178,7 +223,12 @@ var skincareData = [
     "benefits": "DHT हॉर्मोन को ब्लॉक करके पुरुषों में वंशानुगत गंजापन रोकने और बालों को घना बनाने हेतु।",
     "usage": "रात को 1ml स्कैल्प पर लगाएं। केवल वयस्कों हेतु।",
     "img": "images/products/minoxidil_finasteride.png",
-    "tag": "घने बालों के लिए"
+    "tag": "घने बालों के लिए",
+    "title_en": "Minoxidil 5% + Finasteride 0.1% Hair Solution",
+    "benefits_en": "Blocks DHT hormone to stop hereditary hair loss and stimulate new follicle growth.",
+    "usage_en": "Apply 1 ml on affected dry scalp once daily at bedtime. For adult male use only.",
+    "tag_en": "DHT Blocker Hair Regrowth",
+    "category_en": "Hair & Dandruff"
   },
   {
     "id": "sk-11",
@@ -196,7 +246,12 @@ var skincareData = [
     "benefits": "सूखी और बेजान त्वचा को 24 घंटे नमी प्रदान करती है, त्वचा को कोमल और चमकदार बनाती है।",
     "usage": "नहाने के बाद या चेहरा धोने के बाद पूरे चेहरे और शरीर पर लगाएं।",
     "img": "images/products/moisturizing_cream.png",
-    "tag": "24 घंटे स्किन हाइड्रेशन"
+    "tag": "24 घंटे स्किन हाइड्रेशन",
+    "title_en": "Aloe Vera & Vitamin-E Daily Nourishing Cream",
+    "benefits_en": "Deeply nourishes dry skin, repairs moisture barrier, and keeps skin soft and hydrated.",
+    "usage_en": "Apply generously on clean face and body after bath or whenever skin feels dry.",
+    "tag_en": "Daily Nourishing Cream",
+    "category_en": "Moisturizer & Body"
   },
   {
     "id": "sk-12",
@@ -214,7 +269,12 @@ var skincareData = [
     "benefits": "घमौरियां, धूप से जलन (Sunburn), खुजली और ऑयली स्किन के लिए अचूक सरकारी लोशन।",
     "usage": "हिलाकर चेहरे, गर्दन या शरीर के प्रभावित हिस्से पर कॉटन से लगाएं।",
     "img": "images/products/calamine_lotion.png",
-    "tag": "घमौरियां व जलन शांत करे"
+    "tag": "घमौरियां व जलन शांत करे",
+    "title_en": "Calamine Soothing Anti-Itch Lotion IP",
+    "benefits_en": "Provides instant cooling relief from skin rashes, prickly heat, itching, and sunburn.",
+    "usage_en": "Shake well before use. Apply gently on affected skin with cotton or clean fingertips.",
+    "tag_en": "Soothing Anti-Itch Lotion",
+    "category_en": "Moisturizer & Body"
   },
   {
     "id": "sk-13",
@@ -232,7 +292,12 @@ var skincareData = [
     "benefits": "चेहरे के ग्लो, डार्क सर्कल्स और बालों के तेल में मिलाकर लगाने के लिए देश का सबसे लोकप्रिय सप्लीमेंट।",
     "usage": "डॉक्टर की सलाह से खाएं या कैप्सूल काटकर तेल चेहरे/बालों पर सीधे लगाएं।",
     "img": "images/products/vitamin_e_capsules.jpg",
-    "tag": "चेहरे की चमक व बाल"
+    "tag": "चेहरे की चमक व बाल",
+    "title_en": "Vitamin-E Softgel Capsules 400 mg",
+    "benefits_en": "Powerful antioxidant for glowing skin, stronger hair roots, and cellular nourishment.",
+    "usage_en": "Can be consumed as a dietary supplement or pierced to apply pure Vitamin E oil on face and hair.",
+    "tag_en": "Skin Glow & Hair Strength",
+    "category_en": "Moisturizer & Body"
   },
   {
     "id": "sk-14",
@@ -250,7 +315,12 @@ var skincareData = [
     "benefits": "फटे होंठ, फटी एड़ियां और सर्दियों में रूखी त्वचा के लिए शुद्ध 100% प्राकृतिक नमी।",
     "usage": "गुलाब जल में मिलाकर रात को चेहरे या होंठों पर लगाएं।",
     "img": "images/products/glycerin_ip.jpg",
-    "tag": "फटे होंठ व एड़ियां"
+    "tag": "फटे होंठ व एड़ियां",
+    "title_en": "Pure Glycerin IP 98%",
+    "benefits_en": "100% pure humectant that locks moisture into dry lips, cracked heels, and rough hands.",
+    "usage_en": "Mix with rose water or apply directly on dry lips, cracked heels, and dry patches.",
+    "tag_en": "Cracked Heels & Soft Lips",
+    "category_en": "Moisturizer & Body"
   },
   {
     "id": "sk-15",
@@ -268,7 +338,12 @@ var skincareData = [
     "benefits": "भारत सरकार की क्रांतिकारी पहल — 100% पर्यावरण-अनुकूल, रेशमी मुलायम और मात्र ₹1 में 1 पैड!",
     "usage": "माहवारी के दिनों में उपयोग करें। आसानी से नष्ट होने वाला इको-फ्रेंडली पैड।",
     "img": "images/products/suvidha_sanitary_pad.jpg",
-    "tag": "देश का सबसे सस्ता पैड (₹1)"
+    "tag": "देश का सबसे सस्ता पैड (₹1)",
+    "title_en": "Jan Aushadhi 'Suvidha' Biodegradable Sanitary Napkins (4 Pack)",
+    "benefits_en": "Revolutionary Indian Govt initiative — 100% eco-friendly, silky soft, and only ₹1 per pad!",
+    "usage_en": "Use during menstruation. 100% oxo-biodegradable, easy and safe disposal.",
+    "tag_en": "India's Most Affordable Pad (₹1)",
+    "category_en": "Suvidha Sanitary Pads"
   },
   {
     "id": "sk-16",
@@ -286,7 +361,12 @@ var skincareData = [
     "benefits": "पूरी माहवारी के लिए 10 पैड्स का पूरा पैक सिर्फ ₹10 में! सूखापन और दुर्गंध से सुरक्षित।",
     "usage": "मासिक धर्म के दौरान सुरक्षित स्वास्थ्य रक्षा हेतु।",
     "img": "images/products/suvidha_napkins_pack.jpg",
-    "tag": "10 पैड सिर्फ ₹10 में"
+    "tag": "10 पैड सिर्फ ₹10 में",
+    "title_en": "Jan Aushadhi Suvidha Regular Wings Pads (10 Pack)",
+    "benefits_en": "Full menstrual cycle pack of 10 pads for just ₹10! Keeps you dry and odor-free.",
+    "usage_en": "Use for secure, hygienic menstrual protection throughout your period.",
+    "tag_en": "10 Pads for Just ₹10",
+    "category_en": "Suvidha Sanitary Pads"
   },
   {
     "id": "sk-17",
@@ -304,7 +384,12 @@ var skincareData = [
     "benefits": "हैवी फ्लो (भारी रक्तस्राव) और रात के समय रिसाव से बचने के लिए एक्स्ट्रा लंबा साइज।",
     "usage": "रात के समय या हैवी फ्लो वाले दिनों में उपयोग करें।",
     "img": "images/products/suvidha_xl_pack.jpg",
-    "tag": "हैवी फ्लो सुरक्षा"
+    "tag": "हैवी फ्लो सुरक्षा",
+    "title_en": "Jan Aushadhi Suvidha Extra Large (XL) Pads",
+    "benefits_en": "Extra long size with super absorbent gel core for heavy flow days and overnight leak protection.",
+    "usage_en": "Ideal for overnight protection or heavy flow days.",
+    "tag_en": "Heavy Flow Night Protection",
+    "category_en": "Suvidha Sanitary Pads"
   },
   {
     "id": "sk-18",
@@ -322,7 +407,12 @@ var skincareData = [
     "benefits": "शिशु की नाजुक त्वचा के लिए कॉटन जैसा मुलायम, रैश-फ्री और 12 घंटे तक सूखा रखने वाला डायपर।",
     "usage": "3 से 8 किलो तक के छोटे बच्चों के लिए।",
     "img": "images/products/baby_diaper.png",
-    "tag": "रैश-फ्री बेबी डायपर"
+    "tag": "रैश-फ्री बेबी डायपर",
+    "title_en": "Jan Aushadhi 'Bachpan' Baby Diapers (Small)",
+    "benefits_en": "Super absorbent polymer core with wetness indicator to keep baby dry and rash-free.",
+    "usage_en": "Change diaper when color indicator shifts or after 4-6 hours for maximum infant hygiene.",
+    "tag_en": "Wetness Indicator Diaper",
+    "category_en": "Baby Care"
   },
   {
     "id": "sk-19",
@@ -340,7 +430,12 @@ var skincareData = [
     "benefits": "बिना अल्कोहल और केमिकल के — शिशु के हाथ, मुंह और डायपर एरिया साफ करने के लिए 100% सुरक्षित।",
     "usage": "डायपर बदलने के समय या सफर में बच्चे की त्वचा साफ करने के लिए।",
     "img": "images/products/baby_care_wipes.png",
-    "tag": "केमिकल-फ्री वाइप्स"
+    "tag": "केमिकल-फ्री वाइप्स",
+    "title_en": "Jan Aushadhi Gentle Baby Wipes with Aloe",
+    "benefits_en": "Alcohol-free and paraben-free gentle wipes enriched with Aloe Vera and Vitamin E.",
+    "usage_en": "Use to clean baby's diaper area, hands, and face gently.",
+    "tag_en": "Gentle & Alcohol-Free",
+    "category_en": "Baby Care"
   },
   {
     "id": "sk-20",
@@ -358,7 +453,12 @@ var skincareData = [
     "benefits": "बीपीए-फ्री और एंटी-कोलिक निप्पल युक्त बोतल जो बच्चे के पेट में गैस नहीं बनने देती।",
     "usage": "दूध या पानी पिलाने के लिए। उबालकर आसानी से स्टरलाइज़ की जा सकती है।",
     "img": "images/products/baby_feeding_bottle.jpg",
-    "tag": "BPA-Free सुरक्षित बोतल"
+    "tag": "BPA-Free सुरक्षित बोतल",
+    "title_en": "Anti-Colic Baby Feeding Bottle (250ml)",
+    "benefits_en": "100% BPA-free food-grade feeding bottle with anti-colic silicone teat and clear volume markings.",
+    "usage_en": "Sterilize bottle and nipple in boiling water for 3-5 minutes before first use.",
+    "tag_en": "100% BPA-Free",
+    "category_en": "Baby Care"
   },
   {
     "id": "sk-21",
@@ -376,7 +476,12 @@ var skincareData = [
     "benefits": "मसूड़ों से खून आना, मुंह की बदबू, पायरिया और दांतों के बैक्टीरिया को पूरी तरह खत्म करता है।",
     "usage": "10ml माउथवॉश से 30 सेकंड तक कुल्ला करें और थूक दें। पानी न मिलाएं।",
     "img": "images/products/chlorhexidine_mouthwash.jpg",
-    "tag": "मसूड़ों की सूजन व बदबू"
+    "tag": "मसूड़ों की सूजन व बदबू",
+    "title_en": "Chlorhexidine 0.2% Antiseptic Mouthwash",
+    "benefits_en": "Gold-standard dental antiseptic that kills 99.9% of oral germs and stops bleeding gums.",
+    "usage_en": "Rinse mouth with 10 ml undiluted for 60 seconds twice daily after brushing. Do not swallow.",
+    "tag_en": "Dentist Recommended Antiseptic",
+    "category_en": "Dental & Oral Care"
   },
   {
     "id": "sk-22",
@@ -394,7 +499,12 @@ var skincareData = [
     "benefits": "मुंह, जीभ और गालों के छालों का दर्द 2 मिनट में सुन्न करके तुरंत खाना खाने योग्य बनाता है।",
     "usage": "साफ उंगली से दिन में 3-4 बार छालों पर लगाएं।",
     "img": "images/products/mouth_ulcer_gel.jpg",
-    "tag": "2 मिनट में छाले का दर्द दूर"
+    "tag": "2 मिनट में छाले का दर्द दूर",
+    "title_en": "Instant Relief Mouth Ulcer Gel",
+    "benefits_en": "Instant numbing and anti-inflammatory relief from painful mouth ulcers and denture sores.",
+    "usage_en": "Wash hands, apply a small dot directly onto the mouth ulcer 3-4 times daily before meals.",
+    "tag_en": "Instant Ulcer Pain Relief",
+    "category_en": "Dental & Oral Care"
   },
   {
     "id": "sk-23",
@@ -412,7 +522,12 @@ var skincareData = [
     "benefits": "ठंडा-गर्म पानी लगने, झनझनाहट और कमजोर इनेमल से दांतों को संपूर्ण सुरक्षा।",
     "usage": "रोजाना सुबह और रात को ब्रश करें।",
     "img": "images/products/medicated_toothpaste.jpg",
-    "tag": "झनझनाहट से तुरंत राहत"
+    "tag": "झनझनाहट से तुरंत राहत",
+    "title_en": "Medicated Sensitive Teeth Toothpaste",
+    "benefits_en": "Clinically proven to seal exposed dentin tubules and eliminate sharp tooth sensitivity.",
+    "usage_en": "Brush thoroughly twice daily with a soft toothbrush. Do not swallow.",
+    "tag_en": "Sensitivity Protection",
+    "category_en": "Dental & Oral Care"
   },
   {
     "id": "sk-24",
@@ -430,7 +545,12 @@ var skincareData = [
     "benefits": "दाद (Ringworm), जांघों व पसीने की खुजली और फंगल इन्फेक्शन को जड़ से मिटाने हेतु।",
     "usage": "प्रभावित जगह को सुखाकर दिन में 2 बार हल्के से लगाएं।",
     "img": "images/products/clotrimazole_powder.png",
-    "tag": "दाद-खाज-खुजली का इलाज"
+    "tag": "दाद-खाज-खुजली का इलाज",
+    "title_en": "Clotrimazole Cream IP 1% Antifungal",
+    "benefits_en": "Fast-acting antifungal cream for ringworm, athlete's foot, jock itch, and sweat rashes.",
+    "usage_en": "Clean and dry affected area, then apply a thin layer 2-3 times daily for 2-4 weeks.",
+    "tag_en": "Fast-Acting Antifungal",
+    "category_en": "Skin Infection"
   },
   {
     "id": "sk-25",
@@ -448,6 +568,11 @@ var skincareData = [
     "benefits": "घाव में मवाद, बालतोड़ (Boils), कटना-छिलना और स्किन इन्फेक्शन को तेजी से सुखाने वाली दवा।",
     "usage": "घाव पर साफ कॉटन से दिन में 2-3 बार लगाएं।",
     "img": "images/products/mupirocin_ointment.jpg",
-    "tag": "घाव व बालतोड़ के लिए"
+    "tag": "घाव व बालतोड़ के लिए",
+    "title_en": "Mupirocin 2% Topical Antibacterial Ointment",
+    "benefits_en": "Specialized topical antibiotic for skin cuts, infected wounds, boils, and impetigo.",
+    "usage_en": "Apply a small amount to the infected skin 2 to 3 times daily. Can be covered with a sterile bandage.",
+    "tag_en": "Topical Antibiotic Ointment",
+    "category_en": "Skin Infection"
   }
 ];
