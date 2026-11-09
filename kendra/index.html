@@ -8,7 +8,7 @@
   <link rel="canonical" href="https://jandawa.pages.dev/kendra/">
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
 </head>
-<body class="overflow-x-hidden w-full max-w-full bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col font-sans">
+<body class="overflow-x-hidden w-full max-w-full bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col font-sans pb-20 md:pb-0">
   <header class="bg-white border-b border-slate-200 sticky top-0 z-30">
     <div class="max-w-6xl mx-auto px-4 py-3.5 flex items-center justify-between">
       <a href="/" class="flex items-center gap-2">
@@ -1356,5 +1356,26 @@
       }
     });
   </script>
+  <!-- Mobile Sticky Bottom App Navigation Bar -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 px-3 py-1.5 flex items-center justify-around shadow-xl">
+    <a href="/" class="flex flex-col items-center justify-center py-1 px-3 text-slate-500 font-medium transition">
+      <span class="text-lg leading-none">💊</span>
+      <span class="text-[10px] mt-1">दवा खोजें</span>
+    </a>
+    <a href="/skincare/" class="flex flex-col items-center justify-center py-1 px-3 text-slate-500 font-medium transition relative">
+      <span class="text-lg leading-none">🌸</span>
+      <span class="text-[10px] mt-1">स्किनकेयर</span>
+      <span class="absolute top-1 right-2 w-2 h-2 rounded-full bg-rose-500"></span>
+    </a>
+    <a href="/kendra/" class="flex flex-col items-center justify-center py-1 px-3 text-blue-600 font-bold transition">
+      <span class="text-lg leading-none">📍</span>
+      <span class="text-[10px] mt-1">केंद्र खोजें</span>
+    </a>
+    <a href="/kendra/" class="flex flex-col items-center justify-center py-1 px-3 text-blue-600 font-bold transition">
+      <span class="text-lg leading-none">🗺️</span>
+      <span class="text-[10px] mt-1">777 ज़िले</span>
+    </a>
+  </nav>
+
 </body>
 </html>

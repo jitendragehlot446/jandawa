@@ -91,11 +91,11 @@
           <button id="navTabMeds" onclick="switchMainTab('medicines')" class="px-3.5 py-2 rounded-lg transition-colors bg-brand-50 text-brand-800">
             दवा खोजक
           </button>
-          <button id="navTabSkincare" onclick="switchMainTab('skincare')" class="px-3.5 py-2 rounded-lg transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100 flex items-center gap-1.5 shrink-0">
+          <a href="/skincare/" class="px-3.5 py-2 rounded-lg transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100 flex items-center gap-1.5 shrink-0">
             <span>🌸</span>
             <span>स्किनकेयर व ब्यूटी</span>
             <span class="px-1.5 py-0.5 rounded-full text-[10px] font-extrabold bg-rose-100 text-rose-700">नया</span>
-          </button>
+          </a>
           <button id="navTabKendra" onclick="switchMainTab('kendra')" class="px-3.5 py-2 rounded-lg transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100">
             नजदीकी केंद्र
           </button>
@@ -125,10 +125,10 @@
         <button id="mobileTabMeds" onclick="switchMainTab('medicines')" class="mobile-tab-btn active px-3 py-1.5 rounded-lg shrink-0 transition-colors bg-brand-50 text-brand-800 border border-brand-200 flex items-center gap-1">
           <span>💊</span> दवा खोजक
         </button>
-        <button id="mobileTabSkincare" onclick="switchMainTab('skincare')" class="mobile-tab-btn px-3 py-1.5 rounded-lg shrink-0 transition-colors text-slate-600 hover:bg-slate-100 border border-transparent flex items-center gap-1">
+        <a href="/skincare/" class="mobile-tab-btn px-3 py-1.5 rounded-lg shrink-0 transition-colors text-slate-600 hover:bg-slate-100 border border-transparent flex items-center gap-1">
           <span>🌸</span> स्किनकेयर
           <span class="px-1 py-0.2 rounded-full text-[9px] font-bold bg-rose-100 text-rose-700">New</span>
-        </button>
+        </a>
         <button id="mobileTabKendra" onclick="switchMainTab('kendra')" class="mobile-tab-btn px-3 py-1.5 rounded-lg shrink-0 transition-colors text-slate-600 hover:bg-slate-100 border border-transparent flex items-center gap-1">
           <span>📍</span> नजदीकी केंद्र
         </button>
@@ -1573,7 +1573,8 @@
     function onAppReady() {
       checkAndRender();
       if (window.location.hash === '#skincare' || window.location.search.includes('tab=skincare')) {
-        switchMainTab('skincare');
+        window.location.replace('/skincare/');
+        return;
       } else if (window.location.hash === '#kendra' || window.location.search.includes('tab=kendra')) {
         switchMainTab('kendra');
       }
@@ -1591,11 +1592,11 @@
       <span class="text-lg leading-none">💊</span>
       <span class="text-[10px] mt-1">दवा खोजें</span>
     </button>
-    <button id="bottomNavSkincare" onclick="switchMainTab('skincare')" class="flex flex-col items-center justify-center py-1 px-3 text-slate-500 font-medium transition relative">
+    <a href="/skincare/" class="flex flex-col items-center justify-center py-1 px-3 text-slate-500 font-medium transition relative">
       <span class="text-lg leading-none">🌸</span>
       <span class="text-[10px] mt-1">स्किनकेयर</span>
       <span class="absolute top-1 right-2 w-2 h-2 rounded-full bg-rose-500"></span>
-    </button>
+    </a>
     <button id="bottomNavKendra" onclick="switchMainTab('kendra')" class="flex flex-col items-center justify-center py-1 px-3 text-slate-500 font-medium transition">
       <span class="text-lg leading-none">📍</span>
       <span class="text-[10px] mt-1">केंद्र खोजें</span>
