@@ -338,6 +338,9 @@
         return true;
       });
 
+      const _t = (typeof window.t === 'function') ? window.t : ((k, d) => d || k);
+      const currentLang = (typeof window.getLanguage === 'function') ? window.getLanguage() : 'hi';
+
       const countLabel = document.getElementById('skincareCountLabel');
       if (countLabel) {
         countLabel.innerText = (currentLang === 'en') ? `Total ${filtered.length} products available` : `कुल ${filtered.length} उत्पाद उपलब्ध`;
@@ -354,9 +357,6 @@
         `;
         return;
       }
-
-      const _t = (typeof window.t === 'function') ? window.t : ((k, d) => d || k);
-      const currentLang = (typeof window.getLanguage === 'function') ? window.getLanguage() : 'hi';
 
       grid.innerHTML = filtered.map(p => {
         const diff = (p.marketPrice - p.janPrice).toFixed(2);
