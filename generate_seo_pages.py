@@ -314,8 +314,7 @@ def main():
     sorted_meds = sorted(medicines, key=score_med, reverse=True)
 
     generated = []
-    # Generate 550 high-volume programmatic SEO pages
-    TARGET_COUNT = 550
+    # Generate SEO pages for ALL unique medicines
     seen_slugs = set()
     
     for med in sorted_meds:
@@ -325,8 +324,6 @@ def main():
         seen_slugs.add(slug)
         generate_page(med)
         generated.append(slug)
-        if len(generated) >= TARGET_COUNT:
-            break
 
     update_sitemap(generated)
     print(f"Successfully generated {len(generated)} programmatic SEO pages and updated sitemap.xml!")
