@@ -71,7 +71,7 @@ def generate_page(med):
     saving_pct = med.get("savingPercent") or (round((s_amt / b_mrp) * 100) if b_mrp > 0 else 80)
     yearly_saving = f"{(s_amt * 12):.2f}"
 
-    page_url = f"https://jandawa.pages.dev/substitute/{slug}.html"
+    page_url = f"https://jandawa.pages.dev/substitute/{slug}"
     whatsapp_text = f"दवा पर {saving_pct}% बचत! {brand_name} (₹{brand_mrp}) की जगह जन औषधि का {jan_name} मात्र ₹{jan_mrp} में उपलब्ध है। पूरी जानकारी व नजदीकी केंद्र यहाँ देखें: {page_url}"
     encoded_whatsapp = urllib.parse.quote(whatsapp_text)
 
@@ -295,7 +295,7 @@ def update_sitemap(slugs):
     ]
 
     for slug in slugs:
-        sitemap_lines.append(f'  <url><loc>{base_url}/substitute/{slug}.html</loc><priority>0.8</priority></url>')
+        sitemap_lines.append(f'  <url><loc>{base_url}/substitute/{slug}</loc><priority>0.8</priority></url>')
 
     sitemap_lines.append('</urlset>')
 

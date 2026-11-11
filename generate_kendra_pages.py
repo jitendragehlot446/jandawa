@@ -51,7 +51,7 @@ def main():
         pin = k.get('pincode', '').strip()
         if re.match(r'^\d{6}$', pin):
             slug = f"{slugify(st)}-{slugify(dist)}"
-            pin_map[pin] = {'d': dist, 's': st, 'u': f"/kendra/{slug}.html"}
+            pin_map[pin] = {'d': dist, 's': st, 'u': f"/kendra/{slug}"}
 
     by_state_dist = defaultdict(lambda: defaultdict(list))
     for k in kendras:
@@ -72,8 +72,8 @@ def main():
         for dist_name, store_list in districts.items():
             dist_slug = slugify(dist_name)
             page_slug = f"{state_slug}-{dist_slug}"
-            page_url = f"https://jandawa.pages.dev/kendra/{page_slug}.html"
-            generated_slugs.append(f"kendra/{page_slug}.html")
+            page_url = f"https://jandawa.pages.dev/kendra/{page_slug}"
+            generated_slugs.append(f"kendra/{page_slug}")
 
             store_count = len(store_list)
 
